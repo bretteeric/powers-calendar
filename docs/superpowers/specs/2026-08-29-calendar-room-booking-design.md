@@ -81,7 +81,7 @@
 | `DisplayName` | nvarchar(50), NOT NULL | |
 | `Email` | nvarchar(100), NOT NULL | 唯一索引 |
 | `DepartmentId` | int, FK → `Department` | |
-| `PasswordHash` | nvarchar(200), NOT NULL | ASP.NET Core Identity 雜湊 |
+| `PasswordHash` | nvarchar(200), NOT NULL | 以 `PasswordHasher<User>` 產生，見 6.2 |
 | `Role` | nvarchar(20), NOT NULL | `Employee` / `Admin` |
 | `IcsFeedToken` | nvarchar(64), NOT NULL | 隨機值，訂閱 feed 的授權憑證，唯一索引 |
 | `IsActive` | bit | 停用帳號不能登入，既有事件保留 |
@@ -224,9 +224,15 @@ COMMIT
 | `series` | 編輯 | 更新 `Event`，然後重新展開：**刪除 `IsModified = false AND IsCancelled = false` 的 occurrence，依新規則重新產生；`OriginalStartAt` 已存在於保留列的日期則跳過** |
 | `series` | 取消 | `Event.Status = Cancelled`，所有 occurrence 設 `IsCancelled = true` |
 
+**`mode=single` 不可變更會議廳。** 要換會議廳只能取消該次發生後另建事件。單筆編輯僅能改時間與標題。
+
+**所有會改動時段的編輯，一律走 5.2 的交易與鎖流程** —— 包含 `mode=single` 的時間調整。把一次發生移到別的時段同樣可能撞上既有預約，若這條路徑用單純的 `UPDATE` 實作，系統最核心的正確性保證就從側門被繞過。僅改標題（`TitleOverride`）不涉及時段，可略過鎖與檢查。
+
+衝突時整個編輯失敗並回 409，不做部分套用。
+
 **關鍵性質：已被單獨修改或取消的 occurrence，在系列重新展開時必須保留。** 這是 `OriginalStartAt` 欄位存在的唯一理由，也是必測項目。
 
-重新展開同樣走 5.2 的交易與鎖流程 —— 若新規則產生的時段與其他事件衝突，整個編輯失敗並回 409，不做部分套用。
+**重新展開只作用於當下時間之後的 occurrence。** 已經發生過的次數一律原狀保留，即使系列規則改變也不回頭改寫歷史 —— 行事曆的過去紀錄應該反映實際發生過的事。
 
 ### 5.5 通知產生時機
 
@@ -236,6 +242,8 @@ COMMIT
 | 編輯事件的時間或會議廳 | 全體與會者 | `EventUpdated` |
 | 取消事件 | 全體與會者 | `EventCancelled` |
 | 管理員強制取消他人預約 | 事件擁有者 + 全體與會者 | `ForcedCancellation` |
+
+**`mode=single` 的編輯與取消同樣發送通知**（訊息中標明是哪一次發生，例如「9/14 的『週一產品例會』已改期至 14:00」）—— 與會者只被改動一次會議，仍然需要知道。
 
 僅修改標題或說明不產生通知。通知訊息在產生當下就寫成完整句子存入 `Message`。
 
@@ -297,12 +305,14 @@ COMMIT
 | Web 框架 | ASP.NET Core（Web API + Razor Pages 同一專案） |
 | ORM | EF Core 10 |
 | 資料庫 | **SQL Server**；開發與測試使用 **SQL Server LocalDB** |
-| 身分驗證 | ASP.NET Core Identity，Cookie 驗證 |
+| 身分驗證 | Cookie 驗證中介軟體 + `PasswordHasher<User>`（見下方說明） |
 | iCalendar | `Ical.Net` 5.2.3 |
 | 前端 | Bootstrap 5.3、Vue 3、Axios、SweetAlert2，**全部離線放置於 `wwwroot`** |
 | 測試 | xUnit |
 
 **不使用 SQLite。** `UPDLOCK, HOLDLOCK` 是 SQL Server 專屬語法，而它承載本系統最核心的正確性保證 —— 開發與測試環境必須與正式環境使用同一種資料庫，否則併發測試沒有意義。
+
+**不引入完整的 ASP.NET Core Identity 框架。** 使用 4.2 定義的自訂 `User` 資料表，搭配 `Microsoft.AspNetCore.Identity` 套件中的 `PasswordHasher<User>` 做密碼雜湊，以及 `AddAuthentication().AddCookie()` 做登入狀態。完整 Identity 會帶進 `AspNetUsers` 等一整組自有結構描述，與本系統的資料模型重複且互相牴觸；本系統只需要「雜湊密碼」與「Cookie 登入」這兩項能力。
 
 ---
 
@@ -445,6 +455,9 @@ COMMIT
 - 編輯既有事件時，排除該事件自己的 occurrence
 - 未指派會議廳的事件不做衝突檢查
 - **系列重新展開時，`IsModified` 與 `IsCancelled` 的 occurrence 必須保留**
+- **系列重新展開不改動已發生過的 occurrence**
+- **`mode=single` 把一次發生移到已被占用的時段 → 必須回 409**（驗證單筆編輯沒有繞過衝突檢查）
+- `mode=single` 僅改標題 → 不觸發衝突檢查，直接成功
 - 重複事件中任一次發生衝突 → 整筆失敗，資料庫無任何寫入
 
 ### 10.3 併發整合測試（驗收核心）
