@@ -27,7 +27,7 @@ public class IcalNetSmokeTests
             // 刻意使用不帶時區的 floating time：台灣無日光節約，浮動時間即台北當地時間。
             DtStart = new CalDateTime(2026, 9, 7, 10, 0, 0),
             DtEnd = new CalDateTime(2026, 9, 7, 11, 0, 0),
-            RecurrenceRules = new List<RecurrencePattern> { pattern },
+            RecurrenceRule = pattern,
         };
 
         var starts = ev.GetOccurrences()
@@ -57,7 +57,7 @@ public class IcalNetSmokeTests
         {
             DtStart = new CalDateTime(2026, 9, 25, 15, 0, 0),
             DtEnd = new CalDateTime(2026, 9, 25, 16, 0, 0),
-            RecurrenceRules = new List<RecurrencePattern> { pattern },
+            RecurrenceRule = pattern,
         };
 
         var starts = ev.GetOccurrences().Take(10).Select(o => o.Period.StartTime.Value).ToList();

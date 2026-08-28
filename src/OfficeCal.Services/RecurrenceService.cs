@@ -26,7 +26,11 @@ public class RecurrenceService : IRecurrenceService
             throw new ValidationException("結束時間必須晚於開始時間");
 
         if (string.IsNullOrWhiteSpace(rrule))
-            return new[] { new TimeSlot(startAt, endAt) };
+            return new[]
+            {
+                new TimeSlot(DateTime.SpecifyKind(startAt, DateTimeKind.Unspecified),
+                             DateTime.SpecifyKind(endAt, DateTimeKind.Unspecified)),
+            };
 
         var pattern = RruleFormatter.Parse(rrule);   // 同時驗證結束條件必填
         ValidateStartMatches(pattern, startAt);
@@ -35,7 +39,7 @@ public class RecurrenceService : IRecurrenceService
         {
             DtStart = ToCal(startAt),
             DtEnd = ToCal(endAt),
-            RecurrenceRules = new List<RecurrencePattern> { ToIcal(pattern) },
+            RecurrenceRule = ToIcal(pattern),
         };
 
         // 規則一定有 UNTIL 或 COUNT，所以列舉必然終止；Take 只是防呆上限。
