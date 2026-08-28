@@ -1,0 +1,38 @@
+# 隔離工作區（SDD 執行用）
+.worktrees/
+.claude/worktrees/
+.superpowers/
+
+# .NET 建置產物
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+*.received.*
+TestResults/
+[Cc]overage*/
+*.coverage
+*.trx
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+*.nuget.props
+*.nuget.targets
+
+# LocalDB / 資料庫檔案
+*.mdf
+*.ldf
+*.ndf
+
+# 作業系統
+Thumbs.db
+.DS_Store
