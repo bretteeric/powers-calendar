@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\OfficeCal.Core\OfficeCal.Core.csproj" />
+    <ProjectReference Include="..\OfficeCal.Infrastructure\OfficeCal.Infrastructure.csproj" />
+    <ProjectReference Include="..\OfficeCal.Services\OfficeCal.Services.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
