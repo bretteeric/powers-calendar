@@ -123,4 +123,124 @@ public class UsersApiTests
             new LoginRequest { EmployeeNo = "E403", Password = ApiFactory.EmployeePassword });
         Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
     }
+
+    // --- 任務 14 審查第 1 輪重要 1：5 個端點只有 1 個有非 Admin 的 403 測試保護，補齊其餘 3 個 ---
+
+    [Fact]
+    public async Task 非管理員不能取得員工清單()
+    {
+        await _api.EnsureEmployeeAsync("E301", "李小華");
+        var employee = await _api.LoginAsync("E301", ApiFactory.EmployeePassword);
+
+        var res = await employee.GetAsync("/api/v1/users");
+        Assert.Equal(HttpStatusCode.Forbidden, res.StatusCode);
+    }
+
+    [Fact]
+    public async Task 非管理員不能編輯員工帳號()
+    {
+        var targetId = await _api.EnsureEmployeeAsync("E304", "被瞄準的帳號一");
+        await _api.EnsureEmployeeAsync("E301", "李小華");
+        var employee = await _api.LoginAsync("E301", ApiFactory.EmployeePassword);
+
+        var res = await employee.PutAsJsonAsync($"/api/v1/users/{targetId}", new UpdateUserRequest
+        {
+            DisplayName = "被偷改的帳號", Email = "e304@corp.local",
+            Role = "Admin", IsActive = true,
+        });
+        Assert.Equal(HttpStatusCode.Forbidden, res.StatusCode);
+    }
+
+    [Fact]
+    public async Task 非管理員不能重設他人密碼()
+    {
+        var targetId = await _api.EnsureEmployeeAsync("E305", "被瞄準的帳號二");
+        await _api.EnsureEmployeeAsync("E301", "李小華");
+        var employee = await _api.LoginAsync("E301", ApiFactory.EmployeePassword);
+
+        var res = await employee.PostAsJsonAsync($"/api/v1/users/{targetId}/reset-password",
+            new ResetPasswordRequest { NewPassword = "Hijacked@123" });
+        Assert.Equal(HttpStatusCode.Forbidden, res.StatusCode);
+    }
+
+    // --- 任務 14 審查第 1 輪重要 2：停用／降級對既有 session 完全無效，須靠 OnValidatePrincipal 擋下 ---
+
+    [Fact]
+    public async Task 使用者被停用後既有session的下一次呼叫回四百零一()
+    {
+        var id = await _api.EnsureEmployeeAsync("E306", "在線後被停用的人");
+        var client = await _api.LoginAsync("E306", ApiFactory.EmployeePassword);
+
+        // 先確認這個 session 本來是正常可用的
+        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/v1/me")).StatusCode);
+
+        var admin = await _api.LoginAsync(DbSeeder.AdminEmployeeNo, DbSeeder.AdminInitialPassword);
+        await admin.PutAsJsonAsync($"/api/v1/users/{id}", new UpdateUserRequest
+        {
+            DisplayName = "在線後被停用的人", Email = "e306@corp.local",
+            Role = "Employee", IsActive = false,
+        });
+
+        var res = await client.GetAsync("/api/v1/me");
+        Assert.Equal(HttpStatusCode.Unauthorized, res.StatusCode);
+
+        // 規格 3：401 也要走統一信封（任務 8 修過一次，這裡順帶守住不要回歸）
+        var body = await res.Content.ReadFromJsonAsync<ApiResponse<object>>(ApiFactory.Json);
+        Assert.False(body!.Success);
+        Assert.False(string.IsNullOrWhiteSpace(body.Message));
+    }
+
+    [Fact]
+    public async Task 管理員被降級後既有session不能再呼叫管理端點()
+    {
+        var id = await _api.EnsureEmployeeAsync("E307", "在線後被降級的管理員",
+            OfficeCal.Core.Enums.UserRole.Admin);
+        var client = await _api.LoginAsync("E307", ApiFactory.EmployeePassword);
+
+        // 先確認這個 session 本來是 Admin，能打管理端點
+        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/v1/users")).StatusCode);
+
+        var admin = await _api.LoginAsync(DbSeeder.AdminEmployeeNo, DbSeeder.AdminInitialPassword);
+        await admin.PutAsJsonAsync($"/api/v1/users/{id}", new UpdateUserRequest
+        {
+            DisplayName = "在線後被降級的管理員", Email = "e307@corp.local",
+            Role = "Employee", IsActive = true,
+        });
+
+        // 角色宣告與資料庫現值不符，principal 被拒絕，走 401（不是 403 沒有權限）
+        var res = await client.PutAsJsonAsync($"/api/v1/users/{id}", new UpdateUserRequest
+        {
+            DisplayName = "想改回自己是Admin", Email = "e307@corp.local",
+            Role = "Admin", IsActive = true,
+        });
+        Assert.Equal(HttpStatusCode.Unauthorized, res.StatusCode);
+    }
+
+    // --- 任務 14 審查第 1 輪重要 3：管理員不能停用或降級自己，避免系統失去所有管理入口 ---
+
+    [Fact]
+    public async Task 管理員不能停用或降級自己的帳號()
+    {
+        var id = await _api.EnsureEmployeeAsync("E308", "自我保護測試管理員",
+            OfficeCal.Core.Enums.UserRole.Admin);
+        var self = await _api.LoginAsync("E308", ApiFactory.EmployeePassword);
+
+        var deactivateSelf = await self.PutAsJsonAsync($"/api/v1/users/{id}", new UpdateUserRequest
+        {
+            DisplayName = "自我保護測試管理員", Email = "e308@corp.local",
+            Role = "Admin", IsActive = false,
+        });
+        Assert.Equal(HttpStatusCode.BadRequest, deactivateSelf.StatusCode);
+
+        var demoteSelf = await self.PutAsJsonAsync($"/api/v1/users/{id}", new UpdateUserRequest
+        {
+            DisplayName = "自我保護測試管理員", Email = "e308@corp.local",
+            Role = "Employee", IsActive = true,
+        });
+        Assert.Equal(HttpStatusCode.BadRequest, demoteSelf.StatusCode);
+
+        // 兩次都被擋下，帳號應該仍是啟用中的 Admin，能正常呼叫管理端點
+        var stillWorks = await self.GetAsync("/api/v1/users");
+        Assert.Equal(HttpStatusCode.OK, stillWorks.StatusCode);
+    }
 }

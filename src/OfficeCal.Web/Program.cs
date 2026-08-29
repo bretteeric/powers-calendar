@@ -1,5 +1,7 @@
+using System.Security.Claims;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -68,6 +70,30 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             ctx.Response.ContentType = "application/json; charset=utf-8";
             await ctx.Response.WriteAsync(
                 JsonSerializer.Serialize(ApiResponse.Fail("沒有權限執行此操作"), authEnvelopeJson));
+        };
+        // 任務 14 審查重要 2：角色與啟用狀態是登入當下烘進 cookie 的宣告，12 小時效期內
+        // 若帳號被停用或降級，既有 session 原本完全不受影響。這裡每個請求都重讀一次資料庫，
+        // 只要 IsActive 變 false，或目前角色與 cookie 內宣告的角色不同，就拒絕這個 principal
+        // 並登出——內部系統規模下，每請求一次 DB 讀取可以接受，不需要快取層或 token 版本機制。
+        o.Events.OnValidatePrincipal = async ctx =>
+        {
+            var idValue = ctx.Principal?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var roleValue = ctx.Principal?.FindFirstValue(ClaimTypes.Role);
+
+            if (!int.TryParse(idValue, out var userId))
+            {
+                ctx.RejectPrincipal();
+                return;
+            }
+
+            var db = ctx.HttpContext.RequestServices.GetRequiredService<OfficeCalDbContext>();
+            var user = await db.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user is null || !user.IsActive || user.Role.ToString() != roleValue)
+            {
+                ctx.RejectPrincipal();
+                await ctx.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
         };
     });
 

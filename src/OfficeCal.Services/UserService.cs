@@ -13,9 +13,11 @@ public class UserService : IUserService
     private readonly OfficeCalDbContext _db;
     private readonly IUserRepository _users;
     private readonly IPasswordService _passwords;
+    private readonly IUserContext _me;
 
-    public UserService(OfficeCalDbContext db, IUserRepository users, IPasswordService passwords)
-        => (_db, _users, _passwords) = (db, users, passwords);
+    public UserService(OfficeCalDbContext db, IUserRepository users, IPasswordService passwords,
+                       IUserContext me)
+        => (_db, _users, _passwords, _me) = (db, users, passwords, me);
 
     public async Task<List<UserPickerDto>> ListForPickerAsync(CancellationToken ct = default)
         => (await _users.ListAsync(ct))
@@ -68,6 +70,13 @@ public class UserService : IUserService
     {
         var user = await _users.GetByIdAsync(id, ct) ?? throw new NotFoundException("找不到使用者");
         var email = req.Email.Trim();
+        var newRole = ParseRole(req.Role);
+
+        // 任務 14 審查重要 3：這是唯一能移除 Admin 身分的端點，若允許自我停用／自我降級，
+        // 一旦系統只剩一名 Admin 就會失去所有管理入口，且無應用層復原路徑（DbSeeder 只補
+        // 「帳號不存在」，不會把既有帳號改回 Admin）。擋掉對自己的操作即可保證此情境不會發生。
+        if (id == _me.UserId && (!req.IsActive || newRole != UserRole.Admin))
+            throw new ValidationException("不能停用或降級自己的帳號");
 
         if (await _db.Users.AnyAsync(u => u.Email == email && u.Id != id, ct))
             throw new ValidationException($"Email「{email}」已被使用");
@@ -75,7 +84,7 @@ public class UserService : IUserService
         user.DisplayName = req.DisplayName.Trim();
         user.Email = email;
         user.DepartmentId = req.DepartmentId;
-        user.Role = ParseRole(req.Role);
+        user.Role = newRole;
         user.IsActive = req.IsActive;   // 停用帳號不能登入，既有事件保留
         await _db.SaveChangesAsync(ct);
     }

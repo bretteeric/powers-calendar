@@ -33,6 +33,24 @@ public class AuthApiTests
     }
 
     [Fact]
+    public async Task 登入回應本身就帶部門名稱()
+    {
+        // 任務 14 審查順帶一條：鎖住 UserRepository.GetByEmployeeNoAsync 的 Include(Department)
+        // 修復——這條測試特意檢查 POST /api/v1/auth/login 的回應本體（而非另外呼叫
+        // GetByIdAsync 已含 Include 的 /api/v1/me），DbSeeder 把管理員種在「資訊部」。
+        var client = _api.CreateClient();
+        var res = await client.PostAsJsonAsync("/api/v1/auth/login",
+            new LoginRequest
+            {
+                EmployeeNo = DbSeeder.AdminEmployeeNo, Password = DbSeeder.AdminInitialPassword,
+            });
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+
+        var body = await res.Content.ReadFromJsonAsync<ApiResponse<MeDto>>(ApiFactory.Json);
+        Assert.Equal("資訊部", body!.Data!.DepartmentName);
+    }
+
+    [Fact]
     public async Task 密碼錯誤回四百且信封標示失敗()
     {
         var client = _api.CreateClient();
