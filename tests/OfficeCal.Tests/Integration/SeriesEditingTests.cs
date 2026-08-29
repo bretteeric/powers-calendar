@@ -153,6 +153,35 @@ public class SeriesEditingTests
     }
 
     [Fact]
+    public async Task 系列換會議廳時被保留的未來發生撞到新會議廳既有預約也整筆失敗()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var other = await TestData.AddUserAsync(ctx, "E002", "王小明");
+        var roomA = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var roomB = await TestData.AddRoomAsync(ctx, "B 棟 2F 小會議室");
+        var ev = await AddWeeklySeriesAsync(ctx, owner, roomA);
+
+        var o21 = await ctx.EventOccurrences.FirstAsync(o => o.OriginalStartAt == D(21, 10));
+        o21.StartAt = D(21, 14); o21.EndAt = D(21, 15); o21.IsModified = true;
+        await ctx.SaveChangesAsync();
+
+        // roomB 在保留列被搬過去的新時段（9/21 14:00–15:00）已經有別人的預約
+        await TestData.AddBookedEventAsync(ctx, other, roomB, D(21, 14), D(21, 15), "季度檢討會");
+
+        ev.RoomId = roomB.Id;
+        await Assert.ThrowsAsync<ConflictException>(() =>
+            InTransactionAsync(ctx, () => NewService(ctx).ReExpandSeriesAsync(ev, SlotsAt(10))));
+
+        await using var verify = _db.CreateContext();
+        // 交易已回滾：原系列仍在 roomA，含被單獨改期的那筆（StartAt 14:00，RoomId 仍是 roomA）
+        Assert.Equal(4, await verify.EventOccurrences.CountAsync(o => o.RoomId == roomA.Id));
+        Assert.Equal(D(21, 14),
+            (await verify.EventOccurrences.SingleAsync(o => o.OriginalStartAt == D(21, 10))).StartAt);
+    }
+
+    [Fact]
     public async Task 系列換到已被占用的會議廳時整筆失敗()
     {
         await _db.ResetAsync();
