@@ -12,14 +12,27 @@
     methods: {
       onDocumentClick(e) { if (!this.$el.contains(e.target)) this.open = false; },
       async load() {
-        const data = await window.api.get('/api/v1/notifications', { params: { take: 20 } });
-        this.items = data.items;
-        this.unread = data.unreadCount;
+        // 背景自動呼叫（掛載時、每 60 秒輪詢）：失敗不彈窗，避免後端短暫異常時
+        // 每 60 秒打斷使用者一次。401（帳號被停用／登出）不受影響，攔截器優先處理。
+        try {
+          const data = await window.api.get('/api/v1/notifications',
+            { params: { take: 20 }, silent: true });
+          this.items = data.items;
+          this.unread = data.unreadCount;
+        } catch (e) {
+          // 靜默；下一輪輪詢或使用者手動操作時會自然重試。
+        }
       },
       fmt(iso) { return window.api.fmtDateTime(iso); },
       async click(n) {
+        // 這是使用者主動點擊觸發，失敗時攔截器仍會照常彈窗；這裡只補 try/catch
+        // 避免未處理的 rejection 冒出 console 錯誤，不改變「失敗就不繼續導覽」的行為。
         if (!n.isRead) {
-          await window.api.post(`/api/v1/notifications/${n.id}/read`);
+          try {
+            await window.api.post(`/api/v1/notifications/${n.id}/read`);
+          } catch (e) {
+            return;   // 攔截器已顯示訊息
+          }
           n.isRead = true;
           this.unread = Math.max(0, this.unread - 1);
         }

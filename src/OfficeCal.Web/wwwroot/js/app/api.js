@@ -14,6 +14,12 @@
         return new Promise(() => {});   // 停在這裡，不要讓呼叫端再處理
       }
 
+      // config.silent === true：背景自動呼叫（例如通知中心的 60 秒輪詢），失敗不彈窗，
+      // 交回呼叫端自行以 try/catch 靜默處理。401 一律優先處理，不受 silent 影響。
+      if (err.config && err.config.silent) {
+        return Promise.reject(err);
+      }
+
       if (status === 409 && body && body.data && body.data.conflicts) {
         showConflicts(body.message, body.data.conflicts);
         return Promise.reject(err);
