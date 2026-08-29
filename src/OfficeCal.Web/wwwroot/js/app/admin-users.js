@@ -44,8 +44,11 @@
         }
       },
       async resetPassword(u) {
+        // SweetAlert2 v11 的 title 以 innerHTML 渲染，text 才是 textContent；
+        // 使用者可控的字串（displayName 由 Admin 設定）一律只放進 text。
         const result = await Swal.fire({
-          title: `重設 ${u.displayName} 的密碼`,
+          title: '重設密碼',
+          text: `重設 ${u.displayName} 的密碼`,
           input: 'password',
           inputLabel: '新密碼（至少 8 個字元）',
           inputValidator: (value) => (value && value.length < 8 ? '密碼至少 8 個字元' : undefined),
@@ -63,8 +66,10 @@
         const next = !u.isActive;
         const ok = await Swal.fire({
           icon: 'question',
-          title: next ? `要啟用 ${u.displayName} 的帳號嗎？` : `要停用 ${u.displayName} 的帳號嗎？`,
-          text: next ? '啟用後可以再次登入。' : '停用後對方無法再登入，且下一次操作即會被立即登出。',
+          title: next ? '要啟用這個帳號嗎？' : '要停用這個帳號嗎？',
+          text: next
+            ? `啟用 ${u.displayName} 的帳號後，對方可以再次登入。`
+            : `停用 ${u.displayName} 的帳號後，對方無法再登入，且下一次操作即會被立即登出。`,
           showCancelButton: true, confirmButtonText: '確定', cancelButtonText: '取消',
         });
         if (!ok.isConfirmed) return;
