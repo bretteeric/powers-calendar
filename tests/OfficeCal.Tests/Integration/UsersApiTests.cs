@@ -275,4 +275,52 @@ public class UsersApiTests
         Assert.Equal("Admin", target.Role);
         Assert.True(target.IsActive);
     }
+
+    // --- 最終審查重要 4：GET /api/v1/departments 整條路徑原本零測試 ---
+
+    [Fact]
+    public async Task 任何已登入者都能取得部門清單但未登入不行()
+    {
+        await _api.EnsureEmployeeAsync("E311", "查部門的人");
+        var employee = await _api.LoginAsync("E311", ApiFactory.EmployeePassword);
+
+        var res = await employee.GetFromJsonAsync<ApiResponse<List<DepartmentDto>>>(
+            "/api/v1/departments", ApiFactory.Json);
+
+        Assert.True(res!.Success);
+        // 種子資料的三個部門
+        Assert.Contains(res.Data!, d => d.Name == "資訊部");
+        Assert.Contains(res.Data!, d => d.Name == "業務部");
+        Assert.Contains(res.Data!, d => d.Name == "管理部");
+        Assert.All(res.Data!, d => Assert.True(d.Id > 0));
+
+        // 控制器掛的是 [Authorize]，未登入走統一信封的 401
+        var anonymous = _api.CreateClient();
+        var denied = await anonymous.GetAsync("/api/v1/departments");
+        Assert.Equal(HttpStatusCode.Unauthorized, denied.StatusCode);
+    }
+
+    // --- 最終審查重要 4：ListForPickerAsync 的 .Where(u => u.IsActive) 沒有測試保護 ---
+
+    [Fact]
+    public async Task 停用的員工不會出現在與會者選單()
+    {
+        var id = await _api.EnsureEmployeeAsync("E312", "即將被停用的與會者");
+        var admin = await _api.LoginAsync(DbSeeder.AdminEmployeeNo, DbSeeder.AdminInitialPassword);
+
+        var before = await admin.GetFromJsonAsync<ApiResponse<List<UserPickerDto>>>(
+            "/api/v1/users/picker", ApiFactory.Json);
+        Assert.Contains(before!.Data!, u => u.Id == id);
+
+        var deactivate = await admin.PutAsJsonAsync($"/api/v1/users/{id}", new UpdateUserRequest
+        {
+            DisplayName = "即將被停用的與會者", Email = "e312@corp.local",
+            Role = "Employee", IsActive = false,
+        });
+        Assert.Equal(HttpStatusCode.OK, deactivate.StatusCode);
+
+        var after = await admin.GetFromJsonAsync<ApiResponse<List<UserPickerDto>>>(
+            "/api/v1/users/picker", ApiFactory.Json);
+        Assert.DoesNotContain(after!.Data!, u => u.Id == id);
+    }
 }

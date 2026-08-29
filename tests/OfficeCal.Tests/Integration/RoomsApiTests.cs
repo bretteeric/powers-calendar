@@ -71,4 +71,30 @@ public class RoomsApiTests
         Assert.Contains(row.Busy, b => b.StartAt == day.AddHours(10) && b.Title == "占用測試");
         Assert.All(res.Data!, r => Assert.True(r.Capacity >= big.Capacity));
     }
+
+    // --- 最終審查重要 4：授權屬性是「刪掉不會有任何東西轉紅」的那類程式碼。
+    // 任務 14 對 users 的三個端點做過同樣的補齊，rooms 的 PUT 被漏下了。 ---
+
+    [Fact]
+    public async Task 非管理員不能編輯會議廳()
+    {
+        await _api.EnsureEmployeeAsync("E201", "李小華");
+        var employee = await _api.LoginAsync("E201", ApiFactory.EmployeePassword);
+
+        // 讀取會議廳清單本來就開放給所有已登入者，拿得到 id 不代表可以改
+        var rooms = (await employee.GetFromJsonAsync<ApiResponse<List<RoomDto>>>(
+            "/api/v1/rooms", ApiFactory.Json))!.Data!;
+        var target = rooms[0];
+
+        var res = await employee.PutAsJsonAsync($"/api/v1/rooms/{target.Id}",
+            new RoomRequest { Name = "偷偷改名的會議室", Capacity = 1 });
+
+        Assert.Equal(HttpStatusCode.Forbidden, res.StatusCode);
+
+        // 名稱與容量都沒有被改動
+        var after = (await employee.GetFromJsonAsync<ApiResponse<List<RoomDto>>>(
+            "/api/v1/rooms", ApiFactory.Json))!.Data!.Single(r => r.Id == target.Id);
+        Assert.Equal(target.Name, after.Name);
+        Assert.Equal(target.Capacity, after.Capacity);
+    }
 }
