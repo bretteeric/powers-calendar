@@ -403,4 +403,53 @@ public class EventServiceTests
         Assert.Single(notes);   // 只有建立時的那一筆 AddedToEvent，更新時沒有新增
         Assert.Equal(NotificationType.AddedToEvent, notes[0].Type);
     }
+
+    // --- 最終審查重要 5：CancelAsync 缺少已取消守衛 ---
+    // CancelOccurrenceAsync／CancelSeriesAsync 對 IsCancelled 是冪等的，但 EventCancelledAsync
+    // 不是；重複 DELETE 會再發一輪通知給所有與會者。
+
+    [Fact]
+    public async Task 重複取消整個系列不會再發一輪通知()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var guest = await TestData.AddUserAsync(ctx, "E002", "王小明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var ev = await TestData.AddBookedEventAsync(ctx, owner, room, D(7, 10), D(7, 11), "季度檢討會");
+        ctx.EventAttendees.Add(new EventAttendee { EventId = ev.Id, UserId = guest.Id });
+        await ctx.SaveChangesAsync();
+
+        var (svc, _) = NewService(ctx, owner);
+        await svc.CancelAsync(ev.Id, EditMode.Series, null);
+
+        await Assert.ThrowsAsync<ValidationException>(
+            () => svc.CancelAsync(ev.Id, EditMode.Series, null));
+
+        await using var verify = _db.CreateContext();
+        Assert.Single(await verify.Notifications.ToListAsync());
+    }
+
+    [Fact]
+    public async Task 重複取消同一次發生不會再發一輪通知()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var guest = await TestData.AddUserAsync(ctx, "E002", "王小明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var ev = await TestData.AddBookedEventAsync(ctx, owner, room, D(7, 10), D(7, 11), "季度檢討會");
+        ctx.EventAttendees.Add(new EventAttendee { EventId = ev.Id, UserId = guest.Id });
+        await ctx.SaveChangesAsync();
+        var occ = await ctx.EventOccurrences.FirstAsync(o => o.EventId == ev.Id);
+
+        var (svc, _) = NewService(ctx, owner);
+        await svc.CancelAsync(ev.Id, EditMode.Single, occ.Id);
+
+        await Assert.ThrowsAsync<ValidationException>(
+            () => svc.CancelAsync(ev.Id, EditMode.Single, occ.Id));
+
+        await using var verify = _db.CreateContext();
+        Assert.Single(await verify.Notifications.ToListAsync());
+    }
 }

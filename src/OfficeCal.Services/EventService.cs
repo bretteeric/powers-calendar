@@ -264,6 +264,9 @@ public class EventService : IEventService
         var ev = await _events.GetTrackedWithAttendeesAsync(eventId, ct)
                  ?? throw new NotFoundException("找不到事件");
         RequireEditPermission(ev);
+        // CancelOccurrenceAsync／CancelSeriesAsync 對 IsCancelled 是冪等的，但通知不是：
+        // 少了這道守衛，重複 DELETE 會再發一輪取消通知給所有與會者。
+        if (ev.Status == EventStatus.Cancelled) throw new ValidationException("已取消的事件不能重複取消");
 
         var forced = _me.IsAdmin && ev.OwnerId != _me.UserId;
         var recipients = ev.Attendees.Select(a => a.UserId).ToList();
@@ -279,6 +282,7 @@ public class EventService : IEventService
             var occ = await _occurrences.GetTrackedByIdAsync(occId, ct)
                       ?? throw new NotFoundException("找不到該次發生");
             if (occ.EventId != ev.Id) throw new ValidationException("該次發生不屬於此事件");
+            if (occ.IsCancelled) throw new ValidationException("已取消的該次發生不能重複取消");
 
             occStart = occ.StartAt;
             await _booking.CancelOccurrenceAsync(occ, ct);
