@@ -1,0 +1,83 @@
+- generic [active] [ref=f96e1]:
+  - navigation [ref=f96e2]:
+    - generic [ref=f96e3]:
+      - link "公司行事曆" [ref=f96e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f96e5]:
+        - list [ref=f96e6]:
+          - listitem [ref=f96e7]:
+            - link "我的行事曆" [ref=f96e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f96e9]:
+            - link "會議廳時間軸" [ref=f96e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔" [ref=f96e13] [cursor=pointer]
+        - list [ref=f96e14]:
+          - listitem [ref=f96e15]:
+            - link "任務20新員工" [ref=f96e16] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f96e17]:
+    - generic [ref=f96e20]:
+      - generic [ref=f96e21]:
+        - generic [ref=f96e22]:
+          - button "‹" [ref=f96e23] [cursor=pointer]
+          - button "今天" [ref=f96e24] [cursor=pointer]
+          - button "›" [ref=f96e25] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f96e26]
+        - generic [ref=f96e27]:
+          - button "月" [ref=f96e28] [cursor=pointer]
+          - button "週" [ref=f96e29] [cursor=pointer]
+          - button "日" [ref=f96e30] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f96e31] [cursor=pointer]
+      - generic [ref=f96e32]:
+        - generic [ref=f96e33]:
+          - generic [ref=f96e34]: 日
+          - generic [ref=f96e35]: 一
+          - generic [ref=f96e36]: 二
+          - generic [ref=f96e37]: 三
+          - generic [ref=f96e38]: 四
+          - generic [ref=f96e39]: 五
+          - generic [ref=f96e40]: 六
+        - generic [ref=f96e41]:
+          - generic [ref=f96e42] [cursor=pointer]: "26"
+          - generic [ref=f96e44] [cursor=pointer]: "27"
+          - generic [ref=f96e46] [cursor=pointer]: "28"
+          - generic [ref=f96e48] [cursor=pointer]: "29"
+          - generic [ref=f96e50] [cursor=pointer]: "30"
+          - generic [ref=f96e52] [cursor=pointer]: "31"
+          - generic [ref=f96e54] [cursor=pointer]: "1"
+          - generic [ref=f96e56] [cursor=pointer]: "2"
+          - generic [ref=f96e58] [cursor=pointer]: "3"
+          - generic [ref=f96e60] [cursor=pointer]: "4"
+          - generic [ref=f96e62] [cursor=pointer]: "5"
+          - generic [ref=f96e64] [cursor=pointer]: "6"
+          - generic [ref=f96e66] [cursor=pointer]: "7"
+          - generic [ref=f96e68] [cursor=pointer]: "8"
+          - generic [ref=f96e70] [cursor=pointer]: "9"
+          - generic [ref=f96e72] [cursor=pointer]: "10"
+          - generic [ref=f96e74] [cursor=pointer]: "11"
+          - generic [ref=f96e76] [cursor=pointer]: "12"
+          - generic [ref=f96e78] [cursor=pointer]: "13"
+          - generic [ref=f96e80] [cursor=pointer]: "14"
+          - generic [ref=f96e82] [cursor=pointer]: "15"
+          - generic [ref=f96e84] [cursor=pointer]: "16"
+          - generic [ref=f96e86] [cursor=pointer]: "17"
+          - generic [ref=f96e88] [cursor=pointer]: "18"
+          - generic [ref=f96e90] [cursor=pointer]: "19"
+          - generic [ref=f96e92] [cursor=pointer]: "20"
+          - generic [ref=f96e94] [cursor=pointer]: "21"
+          - generic [ref=f96e96] [cursor=pointer]: "22"
+          - generic [ref=f96e98] [cursor=pointer]: "23"
+          - generic [ref=f96e100] [cursor=pointer]: "24"
+          - generic [ref=f96e102] [cursor=pointer]: "25"
+          - generic [ref=f96e104] [cursor=pointer]: "26"
+          - generic [ref=f96e106] [cursor=pointer]: "27"
+          - generic [ref=f96e108] [cursor=pointer]: "28"
+          - generic [ref=f96e110] [cursor=pointer]: "29"
+          - generic [ref=f96e112] [cursor=pointer]: "30"
+          - generic [ref=f96e114] [cursor=pointer]: "31"
+          - generic [ref=f96e116] [cursor=pointer]: "1"
+          - generic [ref=f96e118] [cursor=pointer]: "2"
+          - generic [ref=f96e120] [cursor=pointer]: "3"
+          - generic [ref=f96e122] [cursor=pointer]: "4"
+          - generic [ref=f96e124] [cursor=pointer]: "5"

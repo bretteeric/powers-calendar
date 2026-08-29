@@ -1,0 +1,67 @@
+- generic [ref=f118e1]:
+  - navigation [ref=f118e2]:
+    - generic [ref=f118e3]:
+      - link [ref=f118e57] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f118e5]:
+        - list [ref=f118e6]:
+          - listitem [ref=f118e7]:
+            - link [ref=f118e58] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f118e9]:
+            - link [ref=f118e59] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+        - button [ref=f118e60] [cursor=pointer]: 🔔
+        - list [ref=f118e14]:
+          - listitem [ref=f118e15]:
+            - link [ref=f118e61] [cursor=pointer]:
+              - /url: "#"
+              - text: 任務20新員工
+  - main [ref=f118e17]:
+    - generic [ref=f118e18]:
+      - heading [level=1] [ref=f118e62]: 個人設定
+      - generic [ref=f118e21]:
+        - generic [ref=f118e23]:
+          - heading [level=2] [ref=f118e63]: 個人資料
+          - generic [ref=f118e25]:
+            - term [ref=f118e26]: 員工編號
+            - definition [ref=f118e27]: T2001
+            - term [ref=f118e28]: 姓名
+            - definition [ref=f118e29]: 任務20新員工
+            - term [ref=f118e30]: Email
+            - definition [ref=f118e31]: t2001@corp.local
+            - term [ref=f118e32]: 部門
+            - definition [ref=f118e33]: 管理部
+            - term [ref=f118e34]: 角色
+            - definition [ref=f118e35]: 一般員工
+          - separator [ref=f118e36]
+          - heading [level=2] [ref=f118e64]: 訂閱行事曆
+          - paragraph [ref=f118e38]: 把下面的網址加進 Outlook 或 Google 行事曆的「訂閱」功能，即可自動同步你的行程。
+          - generic [ref=f118e39]:
+            - textbox [ref=f118e40]: http://localhost:5088/feeds/cB7Thld6AQKnEj_Qa_Mrm-eQMH1fBRZMZuxZOFBZBLU.ics
+            - button [ref=f118e65] [cursor=pointer]: 複製
+          - button [ref=f118e66] [cursor=pointer]: 重新產生訂閱網址
+        - generic [ref=f118e44]:
+          - heading [level=2] [ref=f118e67]: 修改密碼
+          - generic [ref=f118e46]:
+            - generic [ref=f118e47]:
+              - generic [ref=f118e48]: 目前密碼
+              - textbox [ref=f118e49]
+            - generic [ref=f118e50]:
+              - generic [ref=f118e51]: 新密碼（至少 8 個字元）
+              - textbox [ref=f118e52]
+            - generic [ref=f118e53]:
+              - generic [ref=f118e54]: 再輸入一次新密碼
+              - textbox [ref=f118e55]
+            - button [ref=f118e68] [cursor=pointer]: 更新密碼
+  - dialog [ref=f118e70]:
+    - generic [ref=f118e71]: "!"
+    - heading "重新產生訂閱網址？" [level=2] [ref=f118e73]
+    - generic [ref=f118e74]: 舊網址會立刻失效，已訂閱的行事曆軟體需要重新加入。
+    - text: "!"
+    - generic [ref=f118e75]:
+      - button "重新產生" [active] [ref=f118e76] [cursor=pointer]
+      - button "取消" [ref=f118e77] [cursor=pointer]

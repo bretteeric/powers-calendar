@@ -1,0 +1,64 @@
+- generic [active] [ref=f49e1]:
+  - navigation [ref=f49e2]:
+    - generic [ref=f49e3]:
+      - link "公司行事曆" [ref=f49e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f49e5]:
+        - list [ref=f49e6]:
+          - listitem [ref=f49e7]:
+            - link "我的行事曆" [ref=f49e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f49e9]:
+            - link "會議廳時間軸" [ref=f49e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f49e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f49e14]: "1"
+        - list [ref=f49e15]:
+          - listitem [ref=f49e16]:
+            - link "測試員工19" [ref=f49e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f49e18]:
+    - generic [ref=f49e21]:
+      - generic [ref=f49e22]:
+        - generic [ref=f49e23]:
+          - button "‹" [ref=f49e24] [cursor=pointer]
+          - button "今天" [ref=f49e25] [cursor=pointer]
+          - button "›" [ref=f49e26] [cursor=pointer]
+        - heading "2026/9/7（一）" [level=1] [ref=f49e27]
+        - generic [ref=f49e28]:
+          - button "月" [ref=f49e29] [cursor=pointer]
+          - button "週" [ref=f49e30] [cursor=pointer]
+          - button "日" [ref=f49e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f49e32] [cursor=pointer]
+      - generic [ref=f49e33]:
+        - generic [ref=f49e34]: 9/7（一）
+        - generic [ref=f49e37]:
+          - generic [ref=f49e38]:
+            - generic [ref=f49e39]: 00:00
+            - generic [ref=f49e40]: 01:00
+            - generic [ref=f49e41]: 02:00
+            - generic [ref=f49e42]: 03:00
+            - generic [ref=f49e43]: 04:00
+            - generic [ref=f49e44]: 05:00
+            - generic [ref=f49e45]: 06:00
+            - generic [ref=f49e46]: 07:00
+            - generic [ref=f49e47]: 08:00
+            - generic [ref=f49e48]: 09:00
+            - generic [ref=f49e49]: 10:00
+            - generic [ref=f49e50]: 11:00
+            - generic [ref=f49e51]: 12:00
+            - generic [ref=f49e52]: 13:00
+            - generic [ref=f49e53]: 14:00
+            - generic [ref=f49e54]: 15:00
+            - generic [ref=f49e55]: 16:00
+            - generic [ref=f49e56]: 17:00
+            - generic [ref=f49e57]: 18:00
+            - generic [ref=f49e58]: 19:00
+            - generic [ref=f49e59]: 20:00
+            - generic [ref=f49e60]: 21:00
+            - generic [ref=f49e61]: 22:00
+            - generic [ref=f49e62]: 23:00
+          - generic [ref=f49e88] [cursor=pointer]:
+            - generic [ref=f49e89]: 通知測試事件
+            - generic [ref=f49e90]: 個人事件

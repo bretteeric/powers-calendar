@@ -1,0 +1,92 @@
+- generic [ref=f107e1]:
+  - navigation [ref=f107e2]:
+    - generic [ref=f107e3]:
+      - link [ref=f107e1055] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f107e5]:
+        - list [ref=f107e6]:
+          - listitem [ref=f107e7]:
+            - link [ref=f107e1056] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f107e9]:
+            - link [ref=f107e1057] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+        - button [ref=f107e1058] [cursor=pointer]: 🔔
+        - list [ref=f107e14]:
+          - listitem [ref=f107e15]:
+            - link [ref=f107e1059] [cursor=pointer]:
+              - /url: "#"
+              - text: 任務20新員工
+  - main [ref=f107e17]:
+    - generic [ref=f107e20]:
+      - generic [ref=f107e21]:
+        - generic [ref=f107e22]:
+          - button [ref=f107e1060] [cursor=pointer]: ‹
+          - button [ref=f107e1061] [cursor=pointer]: 今天
+          - button [ref=f107e1062] [cursor=pointer]: ›
+        - heading [level=1] [ref=f107e1063]: 2026 年 10 月
+        - generic [ref=f107e27]:
+          - button [ref=f107e1064] [cursor=pointer]: 月
+          - button [ref=f107e1065] [cursor=pointer]: 週
+          - button [ref=f107e1066] [cursor=pointer]: 日
+        - button [ref=f107e1067] [cursor=pointer]: ＋ 新增事件
+      - generic [ref=f107e32]:
+        - generic [ref=f107e798]:
+          - generic [ref=f107e799]: 日
+          - generic [ref=f107e800]: 一
+          - generic [ref=f107e801]: 二
+          - generic [ref=f107e802]: 三
+          - generic [ref=f107e803]: 四
+          - generic [ref=f107e804]: 五
+          - generic [ref=f107e805]: 六
+        - generic [ref=f107e806]:
+          - generic [ref=f107e865] [cursor=pointer]: "27"
+          - generic [ref=f107e867] [cursor=pointer]: "28"
+          - generic [ref=f107e869] [cursor=pointer]: "29"
+          - generic [ref=f107e871] [cursor=pointer]: "30"
+          - generic [ref=f107e873] [cursor=pointer]: "1"
+          - generic [ref=f107e875] [cursor=pointer]: "2"
+          - generic [ref=f107e877] [cursor=pointer]: "3"
+          - generic [ref=f107e879] [cursor=pointer]: "4"
+          - generic [ref=f107e881] [cursor=pointer]: "5"
+          - generic [ref=f107e883] [cursor=pointer]: "6"
+          - generic [ref=f107e885] [cursor=pointer]: "7"
+          - generic [ref=f107e887] [cursor=pointer]: "8"
+          - generic [ref=f107e889] [cursor=pointer]: "9"
+          - generic [ref=f107e891] [cursor=pointer]: "10"
+          - generic [ref=f107e970] [cursor=pointer]: "11"
+          - generic [ref=f107e972] [cursor=pointer]: "12"
+          - generic [ref=f107e974] [cursor=pointer]: "13"
+          - generic [ref=f107e976] [cursor=pointer]:
+            - generic [ref=f107e977]: "14"
+            - generic [ref=f107e1068]: 16:00 驗收21-每月第二個星期三
+          - generic [ref=f107e979] [cursor=pointer]: "15"
+          - generic [ref=f107e981] [cursor=pointer]: "16"
+          - generic [ref=f107e983] [cursor=pointer]: "17"
+          - generic [ref=f107e985] [cursor=pointer]: "18"
+          - generic [ref=f107e987] [cursor=pointer]: "19"
+          - generic [ref=f107e989] [cursor=pointer]: "20"
+          - generic [ref=f107e991] [cursor=pointer]: "21"
+          - generic [ref=f107e993] [cursor=pointer]: "22"
+          - generic [ref=f107e995] [cursor=pointer]: "23"
+          - generic [ref=f107e997] [cursor=pointer]: "24"
+          - generic [ref=f107e999] [cursor=pointer]: "25"
+          - generic [ref=f107e1001] [cursor=pointer]: "26"
+          - generic [ref=f107e1003] [cursor=pointer]: "27"
+          - generic [ref=f107e1005] [cursor=pointer]: "28"
+          - generic [ref=f107e1007] [cursor=pointer]: "29"
+          - generic [ref=f107e1009] [cursor=pointer]: "30"
+          - generic [ref=f107e1011] [cursor=pointer]: "31"
+          - generic [ref=f107e1013] [cursor=pointer]: "1"
+          - generic [ref=f107e1015] [cursor=pointer]: "2"
+          - generic [ref=f107e1017] [cursor=pointer]: "3"
+          - generic [ref=f107e1019] [cursor=pointer]: "4"
+          - generic [ref=f107e1021] [cursor=pointer]: "5"
+          - generic [ref=f107e1023] [cursor=pointer]: "6"
+          - generic [ref=f107e1025] [cursor=pointer]: "7"
+  - dialog [active] [ref=f107e1070]:
+    - heading "已儲存" [level=2] [ref=f107e1078]
+    - text: "!"

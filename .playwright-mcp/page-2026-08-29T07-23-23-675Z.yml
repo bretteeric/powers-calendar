@@ -1,0 +1,127 @@
+- generic [ref=f86e1]:
+  - navigation [ref=f86e2]:
+    - generic [ref=f86e3]:
+      - link [ref=f86e249] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f86e5]:
+        - list [ref=f86e6]:
+          - listitem [ref=f86e7]:
+            - link [ref=f86e250] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f86e9]:
+            - link [ref=f86e251] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f86e11]:
+            - link [ref=f86e252] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f86e13]:
+            - link [ref=f86e253] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f86e254] [cursor=pointer]: 🔔
+        - list [ref=f86e18]:
+          - listitem [ref=f86e19]:
+            - link [ref=f86e255] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f86e21]:
+    - generic [ref=f86e24]:
+      - generic [ref=f86e25]:
+        - heading [level=1] [ref=f86e256]: 員工管理
+        - button [ref=f86e257] [cursor=pointer]: ＋ 新增帳號
+      - table [ref=f86e29]:
+        - rowgroup [ref=f86e30]:
+          - row [ref=f86e258]:
+            - columnheader [ref=f86e259]: 員工編號
+            - columnheader [ref=f86e260]: 姓名
+            - columnheader [ref=f86e261]: Email
+            - columnheader [ref=f86e262]: 部門
+            - columnheader [ref=f86e263]: 角色
+            - columnheader [ref=f86e264]: 狀態
+            - columnheader [ref=f86e265]: 操作
+        - rowgroup [ref=f86e39]:
+          - row [ref=f86e266]:
+            - cell [ref=f86e267]: A0001
+            - cell [ref=f86e268]: 系統管理員
+            - cell [ref=f86e269]: admin@corp.local
+            - cell [ref=f86e270]: 資訊部
+            - cell [ref=f86e271]:
+              - generic [ref=f86e46]: 系統管理員
+            - cell [ref=f86e272]:
+              - generic [ref=f86e48]: 啟用中
+            - cell [ref=f86e273]:
+              - button [ref=f86e274] [cursor=pointer]: 編輯
+              - button [ref=f86e275] [cursor=pointer]: 重設密碼
+              - button [ref=f86e276] [cursor=pointer]: 停用
+          - row [ref=f86e277]:
+            - cell [ref=f86e278]: E9001
+            - cell [ref=f86e279]: 測試員工乙
+            - cell [ref=f86e280]: e9001@corp.local
+            - cell [ref=f86e281]: —
+            - cell [ref=f86e282]:
+              - generic [ref=f86e59]: 一般員工
+            - cell [ref=f86e283]:
+              - generic [ref=f86e61]: 啟用中
+            - cell [ref=f86e284]:
+              - button [ref=f86e285] [cursor=pointer]: 編輯
+              - button [ref=f86e286] [cursor=pointer]: 重設密碼
+              - button [ref=f86e287] [cursor=pointer]: 停用
+          - row [ref=f86e288]:
+            - cell [ref=f86e289]: T2001
+            - cell [ref=f86e290]: 任務20新員工
+            - cell [ref=f86e291]: t2001@corp.local
+            - cell [ref=f86e292]: 管理部
+            - cell [ref=f86e293]:
+              - generic [ref=f86e72]: 一般員工
+            - cell [ref=f86e294]:
+              - generic [ref=f86e74]: 已停用
+            - cell [ref=f86e295]:
+              - button [ref=f86e296] [cursor=pointer]: 編輯
+              - button [ref=f86e297] [cursor=pointer]: 重設密碼
+              - button [ref=f86e298] [cursor=pointer]: 啟用
+          - row [ref=f86e299]:
+            - cell [ref=f86e300]: T9001
+            - cell [ref=f86e301]: 測試員工19
+            - cell [ref=f86e302]: test19@corp.local
+            - cell [ref=f86e303]: —
+            - cell [ref=f86e304]:
+              - generic [ref=f86e85]: 一般員工
+            - cell [ref=f86e305]:
+              - generic [ref=f86e87]: 啟用中
+            - cell [ref=f86e306]:
+              - button [ref=f86e307] [cursor=pointer]: 編輯
+              - button [ref=f86e308] [cursor=pointer]: 重設密碼
+              - button [ref=f86e309] [cursor=pointer]: 停用
+      - dialog [ref=f86e224]:
+        - generic [ref=f86e225]:
+          - generic [ref=f86e226]:
+            - heading [level=5] [ref=f86e310]: 編輯帳號
+            - button [active] [ref=f86e228] [cursor=pointer]
+          - generic [ref=f86e229]:
+            - generic [ref=f86e230]:
+              - generic [ref=f86e231]: 姓名
+              - textbox [ref=f86e232]: 系統管理員
+            - generic [ref=f86e233]:
+              - generic [ref=f86e234]: Email
+              - textbox [ref=f86e235]: admin@corp.local
+            - generic [ref=f86e236]:
+              - generic [ref=f86e237]: 部門
+              - combobox [ref=f86e238]
+            - generic [ref=f86e239]:
+              - generic [ref=f86e240]: 角色
+              - combobox [ref=f86e241]
+            - generic [ref=f86e242]:
+              - checkbox [checked] [ref=f86e311]
+              - generic [ref=f86e244]: 啟用中
+          - generic [ref=f86e245]:
+            - button [ref=f86e312] [cursor=pointer]: 取消
+            - button [ref=f86e313] [cursor=pointer]: 儲存
+  - dialog [ref=f86e315]:
+    - heading "操作失敗" [level=2] [ref=f86e320]
+    - generic [ref=f86e321]: 不能停用或降級自己的帳號
+    - text: "!"
+    - button "OK" [ref=f86e323] [cursor=pointer]

@@ -1,0 +1,51 @@
+- generic [active] [ref=f69e1]:
+  - navigation [ref=f69e2]:
+    - generic [ref=f69e3]:
+      - link "公司行事曆" [ref=f69e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f69e5]:
+        - list [ref=f69e6]:
+          - listitem [ref=f69e7]:
+            - link "我的行事曆" [ref=f69e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f69e9]:
+            - link "會議廳時間軸" [ref=f69e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f69e11]:
+            - link "會議廳管理" [ref=f69e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f69e13]:
+            - link "員工管理" [ref=f69e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f69e17] [cursor=pointer]
+        - list [ref=f69e18]:
+          - listitem [ref=f69e19]:
+            - link "系統管理員" [ref=f69e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f69e21]:
+    - generic [ref=f69e22]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f69e23]
+      - generic [ref=f69e25]:
+        - generic [ref=f69e26]:
+          - generic [ref=f69e27]:
+            - button "‹" [ref=f69e28] [cursor=pointer]
+            - button "›" [ref=f69e29] [cursor=pointer]
+          - textbox [ref=f69e30]: 2026-08-29
+          - generic [ref=f69e31]:
+            - generic [ref=f69e32]: 最少可容納
+            - spinbutton "不限" [ref=f69e33]
+            - generic [ref=f69e34]: 人
+          - generic [ref=f69e35]: 載入中…
+        - generic [ref=f69e39]:
+          - generic [ref=f69e40]: "00"
+          - generic [ref=f69e42]: "02"
+          - generic [ref=f69e44]: "04"
+          - generic [ref=f69e46]: "06"
+          - generic [ref=f69e48]: "08"
+          - generic [ref=f69e50]: "10"
+          - generic [ref=f69e52]: "12"
+          - generic [ref=f69e54]: "14"
+          - generic [ref=f69e56]: "16"
+          - generic [ref=f69e58]: "18"
+          - generic [ref=f69e60]: "20"
+          - generic [ref=f69e62]: "22"

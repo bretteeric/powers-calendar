@@ -1,0 +1,84 @@
+- generic [active] [ref=f87e1]:
+  - navigation [ref=f87e2]:
+    - generic [ref=f87e3]:
+      - link "公司行事曆" [ref=f87e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f87e5]:
+        - list [ref=f87e6]:
+          - listitem [ref=f87e7]:
+            - link "我的行事曆" [ref=f87e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f87e9]:
+            - link "會議廳時間軸" [ref=f87e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f87e11]:
+            - link "會議廳管理" [ref=f87e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f87e13]:
+            - link "員工管理" [ref=f87e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f87e17] [cursor=pointer]
+        - list [ref=f87e18]:
+          - listitem [ref=f87e19]:
+            - link "系統管理員" [ref=f87e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f87e21]:
+    - generic [ref=f87e24]:
+      - generic [ref=f87e25]:
+        - heading "員工管理" [level=1] [ref=f87e26]
+        - button "＋ 新增帳號" [ref=f87e27] [cursor=pointer]
+      - table [ref=f87e29]:
+        - rowgroup [ref=f87e30]:
+          - row [ref=f87e31]:
+            - columnheader "員工編號" [ref=f87e32]
+            - columnheader "姓名" [ref=f87e33]
+            - columnheader "Email" [ref=f87e34]
+            - columnheader "部門" [ref=f87e35]
+            - columnheader "角色" [ref=f87e36]
+            - columnheader "狀態" [ref=f87e37]
+            - columnheader "操作" [ref=f87e38]
+        - rowgroup [ref=f87e39]:
+          - row [ref=f87e40]:
+            - cell "A0001" [ref=f87e41]
+            - cell "系統管理員" [ref=f87e42]
+            - cell "admin@corp.local" [ref=f87e43]
+            - cell "資訊部" [ref=f87e44]
+            - cell "系統管理員" [ref=f87e45]
+            - cell "啟用中" [ref=f87e47]
+            - cell [ref=f87e49]:
+              - button "編輯" [ref=f87e50] [cursor=pointer]
+              - button "重設密碼" [ref=f87e51] [cursor=pointer]
+              - button "停用" [ref=f87e52] [cursor=pointer]
+          - row [ref=f87e53]:
+            - cell "E9001" [ref=f87e54]
+            - cell "測試員工乙" [ref=f87e55]
+            - cell "e9001@corp.local" [ref=f87e56]
+            - cell "—" [ref=f87e57]
+            - cell "一般員工" [ref=f87e58]
+            - cell "啟用中" [ref=f87e60]
+            - cell [ref=f87e62]:
+              - button "編輯" [ref=f87e63] [cursor=pointer]
+              - button "重設密碼" [ref=f87e64] [cursor=pointer]
+              - button "停用" [ref=f87e65] [cursor=pointer]
+          - row [ref=f87e66]:
+            - cell "T2001" [ref=f87e67]
+            - cell "任務20新員工" [ref=f87e68]
+            - cell "t2001@corp.local" [ref=f87e69]
+            - cell "管理部" [ref=f87e70]
+            - cell "一般員工" [ref=f87e71]
+            - cell "已停用" [ref=f87e73]
+            - cell [ref=f87e75]:
+              - button "編輯" [ref=f87e76] [cursor=pointer]
+              - button "重設密碼" [ref=f87e77] [cursor=pointer]
+              - button "啟用" [ref=f87e78] [cursor=pointer]
+          - row [ref=f87e79]:
+            - cell "T9001" [ref=f87e80]
+            - cell "測試員工19" [ref=f87e81]
+            - cell "test19@corp.local" [ref=f87e82]
+            - cell "—" [ref=f87e83]
+            - cell "一般員工" [ref=f87e84]
+            - cell "啟用中" [ref=f87e86]
+            - cell [ref=f87e88]:
+              - button "編輯" [ref=f87e89] [cursor=pointer]
+              - button "重設密碼" [ref=f87e90] [cursor=pointer]
+              - button "停用" [ref=f87e91] [cursor=pointer]

@@ -1,0 +1,94 @@
+- generic [ref=f133e1]:
+  - navigation [ref=f133e2]:
+    - generic [ref=f133e3]:
+      - link [ref=f133e487] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f133e5]:
+        - list [ref=f133e6]:
+          - listitem [ref=f133e7]:
+            - link [ref=f133e488] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f133e9]:
+            - link [ref=f133e489] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+        - button [ref=f133e490] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f133e14]: "1"
+        - list [ref=f133e15]:
+          - listitem [ref=f133e16]:
+            - link [ref=f133e491] [cursor=pointer]:
+              - /url: "#"
+              - text: 任務20新員工
+  - main [ref=f133e18]:
+    - generic [ref=f133e21]:
+      - generic [ref=f133e22]:
+        - generic [ref=f133e23]:
+          - button [ref=f133e492] [cursor=pointer]: ‹
+          - button [ref=f133e493] [cursor=pointer]: 今天
+          - button [ref=f133e494] [cursor=pointer]: ›
+        - heading [level=1] [ref=f133e495]: 2026 年 12 月
+        - generic [ref=f133e28]:
+          - button [ref=f133e496] [cursor=pointer]: 月
+          - button [ref=f133e497] [cursor=pointer]: 週
+          - button [ref=f133e498] [cursor=pointer]: 日
+        - button [ref=f133e499] [cursor=pointer]: ＋ 新增事件
+      - generic [ref=f133e33]:
+        - generic [ref=f133e34]:
+          - generic [ref=f133e35]: 日
+          - generic [ref=f133e36]: 一
+          - generic [ref=f133e37]: 二
+          - generic [ref=f133e38]: 三
+          - generic [ref=f133e39]: 四
+          - generic [ref=f133e40]: 五
+          - generic [ref=f133e41]: 六
+        - generic [ref=f133e42]:
+          - generic [ref=f133e303] [cursor=pointer]: "29"
+          - generic [ref=f133e305] [cursor=pointer]: "30"
+          - generic [ref=f133e307] [cursor=pointer]: "1"
+          - generic [ref=f133e309] [cursor=pointer]: "2"
+          - generic [ref=f133e311] [cursor=pointer]: "3"
+          - generic [ref=f133e313] [cursor=pointer]: "4"
+          - generic [ref=f133e315] [cursor=pointer]: "5"
+          - generic [ref=f133e317] [cursor=pointer]: "6"
+          - generic [ref=f133e319] [cursor=pointer]: "7"
+          - generic [ref=f133e321] [cursor=pointer]: "8"
+          - generic [ref=f133e323] [cursor=pointer]:
+            - generic [ref=f133e324]: "9"
+            - generic [ref=f133e500]: 17:00 驗收21-每月第二個星期三
+          - generic [ref=f133e326] [cursor=pointer]: "10"
+          - generic [ref=f133e328] [cursor=pointer]: "11"
+          - generic [ref=f133e330] [cursor=pointer]: "12"
+          - generic [ref=f133e333] [cursor=pointer]: "13"
+          - generic [ref=f133e335] [cursor=pointer]: "14"
+          - generic [ref=f133e337] [cursor=pointer]: "15"
+          - generic [ref=f133e339] [cursor=pointer]: "16"
+          - generic [ref=f133e341] [cursor=pointer]: "17"
+          - generic [ref=f133e343] [cursor=pointer]: "18"
+          - generic [ref=f133e345] [cursor=pointer]: "19"
+          - generic [ref=f133e347] [cursor=pointer]: "20"
+          - generic [ref=f133e349] [cursor=pointer]: "21"
+          - generic [ref=f133e351] [cursor=pointer]: "22"
+          - generic [ref=f133e353] [cursor=pointer]: "23"
+          - generic [ref=f133e355] [cursor=pointer]: "24"
+          - generic [ref=f133e357] [cursor=pointer]: "25"
+          - generic [ref=f133e359] [cursor=pointer]: "26"
+          - generic [ref=f133e361] [cursor=pointer]: "27"
+          - generic [ref=f133e363] [cursor=pointer]: "28"
+          - generic [ref=f133e365] [cursor=pointer]: "29"
+          - generic [ref=f133e367] [cursor=pointer]: "30"
+          - generic [ref=f133e369] [cursor=pointer]: "31"
+          - generic [ref=f133e371] [cursor=pointer]: "1"
+          - generic [ref=f133e373] [cursor=pointer]: "2"
+          - generic [ref=f133e375] [cursor=pointer]: "3"
+          - generic [ref=f133e377] [cursor=pointer]: "4"
+          - generic [ref=f133e379] [cursor=pointer]: "5"
+          - generic [ref=f133e381] [cursor=pointer]: "6"
+          - generic [ref=f133e383] [cursor=pointer]: "7"
+          - generic [ref=f133e385] [cursor=pointer]: "8"
+          - generic [ref=f133e387] [cursor=pointer]: "9"
+  - dialog [active] [ref=f133e502]:
+    - heading "已儲存" [level=2] [ref=f133e510]
+    - text: "!"

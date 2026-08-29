@@ -1,0 +1,75 @@
+- generic [active] [ref=f121e1]:
+  - navigation [ref=f121e2]:
+    - generic [ref=f121e3]:
+      - link "公司行事曆" [ref=f121e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f121e5]:
+        - list [ref=f121e6]:
+          - listitem [ref=f121e7]:
+            - link "我的行事曆" [ref=f121e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f121e9]:
+            - link "會議廳時間軸" [ref=f121e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f121e11]:
+            - link "會議廳管理" [ref=f121e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f121e13]:
+            - link "員工管理" [ref=f121e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f121e17] [cursor=pointer]
+        - list [ref=f121e18]:
+          - listitem [ref=f121e19]:
+            - link "系統管理員" [ref=f121e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f121e21]:
+    - generic [ref=f121e24]:
+      - generic [ref=f121e25]:
+        - heading "會議廳管理" [level=1] [ref=f121e26]
+        - button "＋ 新增會議廳" [ref=f121e27] [cursor=pointer]
+      - table [ref=f121e29]:
+        - rowgroup [ref=f121e30]:
+          - row [ref=f121e31]:
+            - columnheader "名稱" [ref=f121e32]
+            - columnheader "位置" [ref=f121e33]
+            - columnheader "容納人數" [ref=f121e34]
+            - columnheader "設備" [ref=f121e35]
+            - columnheader "狀態" [ref=f121e36]
+            - columnheader "操作" [ref=f121e37]
+        - rowgroup [ref=f121e38]:
+          - row [ref=f121e39]:
+            - cell "A 棟 3F 大會議廳" [ref=f121e40]
+            - cell "A 棟 3 樓" [ref=f121e41]
+            - cell "40" [ref=f121e42]
+            - cell "投影機、視訊設備、白板" [ref=f121e43]
+            - cell "啟用中" [ref=f121e44]
+            - cell [ref=f121e46]:
+              - button "編輯" [ref=f121e47] [cursor=pointer]
+              - button "停用" [ref=f121e48] [cursor=pointer]
+          - row [ref=f121e49]:
+            - cell "A 棟 3F 小會議室" [ref=f121e50]
+            - cell "A 棟 3 樓" [ref=f121e51]
+            - cell "8" [ref=f121e52]
+            - cell "電視螢幕" [ref=f121e53]
+            - cell "啟用中" [ref=f121e54]
+            - cell [ref=f121e56]:
+              - button "編輯" [ref=f121e57] [cursor=pointer]
+              - button "停用" [ref=f121e58] [cursor=pointer]
+          - row [ref=f121e59]:
+            - cell "B 棟 2F 討論室" [ref=f121e60]
+            - cell "B 棟 2 樓" [ref=f121e61]
+            - cell "6" [ref=f121e62]
+            - cell "白板" [ref=f121e63]
+            - cell "啟用中" [ref=f121e64]
+            - cell [ref=f121e66]:
+              - button "編輯" [ref=f121e67] [cursor=pointer]
+              - button "停用" [ref=f121e68] [cursor=pointer]
+          - row [ref=f121e69]:
+            - cell "測試會議廳-T20-已編輯" [ref=f121e70]
+            - cell "C 棟 1 樓" [ref=f121e71]
+            - cell "20" [ref=f121e72]
+            - cell "白板" [ref=f121e73]
+            - cell "啟用中" [ref=f121e74]
+            - cell [ref=f121e76]:
+              - button "編輯" [ref=f121e77] [cursor=pointer]
+              - button "停用" [ref=f121e78] [cursor=pointer]

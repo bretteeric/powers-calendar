@@ -1,0 +1,101 @@
+- generic [ref=f79e1]:
+  - navigation [ref=f79e2]:
+    - generic [ref=f79e3]:
+      - link [ref=f79e92] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f79e5]:
+        - list [ref=f79e6]:
+          - listitem [ref=f79e7]:
+            - link [ref=f79e93] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f79e9]:
+            - link [ref=f79e94] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f79e11]:
+            - link [ref=f79e95] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f79e13]:
+            - link [ref=f79e96] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f79e97] [cursor=pointer]: 🔔
+        - list [ref=f79e18]:
+          - listitem [ref=f79e19]:
+            - link [ref=f79e98] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f79e21]:
+    - generic [ref=f79e24]:
+      - generic [ref=f79e25]:
+        - heading [level=1] [ref=f79e99]: 員工管理
+        - button [ref=f79e100] [cursor=pointer]: ＋ 新增帳號
+      - table [ref=f79e29]:
+        - rowgroup [ref=f79e30]:
+          - row [ref=f79e101]:
+            - columnheader [ref=f79e102]: 員工編號
+            - columnheader [ref=f79e103]: 姓名
+            - columnheader [ref=f79e104]: Email
+            - columnheader [ref=f79e105]: 部門
+            - columnheader [ref=f79e106]: 角色
+            - columnheader [ref=f79e107]: 狀態
+            - columnheader [ref=f79e108]: 操作
+        - rowgroup [ref=f79e39]:
+          - row [ref=f79e109]:
+            - cell [ref=f79e110]: A0001
+            - cell [ref=f79e111]: 系統管理員
+            - cell [ref=f79e112]: admin@corp.local
+            - cell [ref=f79e113]: 資訊部
+            - cell [ref=f79e114]:
+              - generic [ref=f79e46]: 系統管理員
+            - cell [ref=f79e115]:
+              - generic [ref=f79e48]: 啟用中
+            - cell [ref=f79e116]:
+              - button [ref=f79e117] [cursor=pointer]: 編輯
+              - button [ref=f79e118] [cursor=pointer]: 重設密碼
+              - button [ref=f79e119] [cursor=pointer]: 停用
+          - row [ref=f79e120]:
+            - cell [ref=f79e121]: E9001
+            - cell [ref=f79e122]: 測試員工乙
+            - cell [ref=f79e123]: e9001@corp.local
+            - cell [ref=f79e124]: —
+            - cell [ref=f79e125]:
+              - generic [ref=f79e59]: 一般員工
+            - cell [ref=f79e126]:
+              - generic [ref=f79e61]: 啟用中
+            - cell [ref=f79e127]:
+              - button [ref=f79e128] [cursor=pointer]: 編輯
+              - button [ref=f79e129] [cursor=pointer]: 重設密碼
+              - button [ref=f79e130] [cursor=pointer]: 停用
+          - row [ref=f79e131]:
+            - cell [ref=f79e132]: T2001
+            - cell [ref=f79e133]: 任務20新員工
+            - cell [ref=f79e134]: t2001@corp.local
+            - cell [ref=f79e135]: 業務部
+            - cell [ref=f79e136]:
+              - generic [ref=f79e72]: 一般員工
+            - cell [ref=f79e137]:
+              - generic [ref=f79e74]: 啟用中
+            - cell [ref=f79e138]:
+              - button [ref=f79e139] [cursor=pointer]: 編輯
+              - button [ref=f79e140] [cursor=pointer]: 重設密碼
+              - button [ref=f79e141] [cursor=pointer]: 停用
+          - row [ref=f79e142]:
+            - cell [ref=f79e143]: T9001
+            - cell [ref=f79e144]: 測試員工19
+            - cell [ref=f79e145]: test19@corp.local
+            - cell [ref=f79e146]: —
+            - cell [ref=f79e147]:
+              - generic [ref=f79e85]: 一般員工
+            - cell [ref=f79e148]:
+              - generic [ref=f79e87]: 啟用中
+            - cell [ref=f79e149]:
+              - button [ref=f79e150] [cursor=pointer]: 編輯
+              - button [ref=f79e151] [cursor=pointer]: 重設密碼
+              - button [ref=f79e152] [cursor=pointer]: 停用
+  - dialog [active] [ref=f79e162]:
+    - heading "已重設密碼" [level=2] [ref=f79e170]
+    - text: "!"

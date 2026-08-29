@@ -1,0 +1,8 @@
+[   62372ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[   62378ms] me
+[  122363ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  122363ms] me
+[  182363ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  182364ms] me
+[  242372ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  242373ms] me

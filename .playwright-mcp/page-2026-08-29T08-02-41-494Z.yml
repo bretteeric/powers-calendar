@@ -1,0 +1,94 @@
+- generic [ref=f112e1]:
+  - navigation [ref=f112e2]:
+    - generic [ref=f112e3]:
+      - link [ref=f112e192] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f112e5]:
+        - list [ref=f112e6]:
+          - listitem [ref=f112e7]:
+            - link [ref=f112e193] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f112e9]:
+            - link [ref=f112e194] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+        - button [ref=f112e195] [cursor=pointer]: 🔔
+        - list [ref=f112e14]:
+          - listitem [ref=f112e15]:
+            - link [ref=f112e196] [cursor=pointer]:
+              - /url: "#"
+              - text: 任務20新員工
+  - main [ref=f112e17]:
+    - generic [ref=f112e20]:
+      - generic [ref=f112e21]:
+        - generic [ref=f112e22]:
+          - button [ref=f112e197] [cursor=pointer]: ‹
+          - button [ref=f112e198] [cursor=pointer]: 今天
+          - button [ref=f112e199] [cursor=pointer]: ›
+        - heading [level=1] [ref=f112e200]: 2026 年 8 月
+        - generic [ref=f112e27]:
+          - button [ref=f112e201] [cursor=pointer]: 月
+          - button [ref=f112e202] [cursor=pointer]: 週
+          - button [ref=f112e203] [cursor=pointer]: 日
+        - button [ref=f112e204] [cursor=pointer]: ＋ 新增事件
+      - generic [ref=f112e32]:
+        - generic [ref=f112e33]:
+          - generic [ref=f112e34]: 日
+          - generic [ref=f112e35]: 一
+          - generic [ref=f112e36]: 二
+          - generic [ref=f112e37]: 三
+          - generic [ref=f112e38]: 四
+          - generic [ref=f112e39]: 五
+          - generic [ref=f112e40]: 六
+        - generic [ref=f112e41]:
+          - generic [ref=f112e42] [cursor=pointer]: "26"
+          - generic [ref=f112e44] [cursor=pointer]: "27"
+          - generic [ref=f112e46] [cursor=pointer]: "28"
+          - generic [ref=f112e48] [cursor=pointer]: "29"
+          - generic [ref=f112e50] [cursor=pointer]: "30"
+          - generic [ref=f112e52] [cursor=pointer]: "31"
+          - generic [ref=f112e54] [cursor=pointer]: "1"
+          - generic [ref=f112e56] [cursor=pointer]: "2"
+          - generic [ref=f112e58] [cursor=pointer]: "3"
+          - generic [ref=f112e60] [cursor=pointer]: "4"
+          - generic [ref=f112e62] [cursor=pointer]: "5"
+          - generic [ref=f112e64] [cursor=pointer]: "6"
+          - generic [ref=f112e66] [cursor=pointer]: "7"
+          - generic [ref=f112e68] [cursor=pointer]: "8"
+          - generic [ref=f112e70] [cursor=pointer]: "9"
+          - generic [ref=f112e72] [cursor=pointer]: "10"
+          - generic [ref=f112e74] [cursor=pointer]: "11"
+          - generic [ref=f112e76] [cursor=pointer]: "12"
+          - generic [ref=f112e78] [cursor=pointer]: "13"
+          - generic [ref=f112e80] [cursor=pointer]: "14"
+          - generic [ref=f112e82] [cursor=pointer]: "15"
+          - generic [ref=f112e84] [cursor=pointer]: "16"
+          - generic [ref=f112e86] [cursor=pointer]: "17"
+          - generic [ref=f112e88] [cursor=pointer]: "18"
+          - generic [ref=f112e90] [cursor=pointer]: "19"
+          - generic [ref=f112e92] [cursor=pointer]: "20"
+          - generic [ref=f112e94] [cursor=pointer]: "21"
+          - generic [ref=f112e96] [cursor=pointer]: "22"
+          - generic [ref=f112e98] [cursor=pointer]: "23"
+          - generic [ref=f112e100] [cursor=pointer]: "24"
+          - generic [ref=f112e102] [cursor=pointer]: "25"
+          - generic [ref=f112e104] [cursor=pointer]: "26"
+          - generic [ref=f112e106] [cursor=pointer]: "27"
+          - generic [ref=f112e108] [cursor=pointer]: "28"
+          - generic [ref=f112e110] [cursor=pointer]: "29"
+          - generic [ref=f112e112] [cursor=pointer]: "30"
+          - generic [ref=f112e114] [cursor=pointer]: "31"
+          - generic [ref=f112e116] [cursor=pointer]: "1"
+          - generic [ref=f112e118] [cursor=pointer]:
+            - generic [ref=f112e119]: "2"
+            - generic [ref=f112e205]: 14:00 驗收21-個人事件
+          - generic [ref=f112e121] [cursor=pointer]:
+            - generic [ref=f112e122]: "3"
+            - generic [ref=f112e206]: 15:00 驗收21-衝突測試A
+          - generic [ref=f112e124] [cursor=pointer]: "4"
+          - generic [ref=f112e126] [cursor=pointer]: "5"
+  - dialog [active] [ref=f112e208]:
+    - heading "已儲存" [level=2] [ref=f112e216]
+    - text: "!"

@@ -1,0 +1,10 @@
+[   62415ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  122414ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  182391ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  242398ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  302402ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  362380ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  422388ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  482396ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  542400ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5088/api/v1/notifications?take=20:0
+[  600073ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:5088/api/v1/notifications?take=20:0

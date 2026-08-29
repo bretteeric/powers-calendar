@@ -1,0 +1,130 @@
+- generic [ref=f84e1]:
+  - navigation [ref=f84e2]:
+    - generic [ref=f84e3]:
+      - link [ref=f84e120] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f84e5]:
+        - list [ref=f84e6]:
+          - listitem [ref=f84e7]:
+            - link [ref=f84e121] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f84e9]:
+            - link [ref=f84e122] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f84e11]:
+            - link [ref=f84e123] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f84e13]:
+            - link [ref=f84e124] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f84e125] [cursor=pointer]: 🔔
+        - list [ref=f84e18]:
+          - listitem [ref=f84e19]:
+            - link [ref=f84e126] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f84e21]:
+    - generic [ref=f84e24]:
+      - generic [ref=f84e25]:
+        - heading [level=1] [ref=f84e127]: 員工管理
+        - button [ref=f84e128] [cursor=pointer]: ＋ 新增帳號
+      - table [ref=f84e29]:
+        - rowgroup [ref=f84e30]:
+          - row [ref=f84e129]:
+            - columnheader [ref=f84e130]: 員工編號
+            - columnheader [ref=f84e131]: 姓名
+            - columnheader [ref=f84e132]: Email
+            - columnheader [ref=f84e133]: 部門
+            - columnheader [ref=f84e134]: 角色
+            - columnheader [ref=f84e135]: 狀態
+            - columnheader [ref=f84e136]: 操作
+        - rowgroup [ref=f84e39]:
+          - row [ref=f84e137]:
+            - cell [ref=f84e138]: A0001
+            - cell [ref=f84e139]: 系統管理員
+            - cell [ref=f84e140]: admin@corp.local
+            - cell [ref=f84e141]: 資訊部
+            - cell [ref=f84e142]:
+              - generic [ref=f84e46]: 系統管理員
+            - cell [ref=f84e143]:
+              - generic [ref=f84e48]: 啟用中
+            - cell [ref=f84e144]:
+              - button [ref=f84e145] [cursor=pointer]: 編輯
+              - button [ref=f84e146] [cursor=pointer]: 重設密碼
+              - button [ref=f84e147] [cursor=pointer]: 停用
+          - row [ref=f84e148]:
+            - cell [ref=f84e149]: E9001
+            - cell [ref=f84e150]: 測試員工乙
+            - cell [ref=f84e151]: e9001@corp.local
+            - cell [ref=f84e152]: —
+            - cell [ref=f84e153]:
+              - generic [ref=f84e59]: 一般員工
+            - cell [ref=f84e154]:
+              - generic [ref=f84e61]: 啟用中
+            - cell [ref=f84e155]:
+              - button [ref=f84e156] [cursor=pointer]: 編輯
+              - button [ref=f84e157] [cursor=pointer]: 重設密碼
+              - button [ref=f84e158] [cursor=pointer]: 停用
+          - row [ref=f84e159]:
+            - cell [ref=f84e160]: T2001
+            - cell [ref=f84e161]: 任務20新員工
+            - cell [ref=f84e162]: t2001@corp.local
+            - cell [ref=f84e163]: 業務部
+            - cell [ref=f84e164]:
+              - generic [ref=f84e72]: 一般員工
+            - cell [ref=f84e165]:
+              - generic [ref=f84e74]: 啟用中
+            - cell [ref=f84e166]:
+              - button [ref=f84e167] [cursor=pointer]: 編輯
+              - button [ref=f84e168] [cursor=pointer]: 重設密碼
+              - button [ref=f84e169] [cursor=pointer]: 停用
+          - row [ref=f84e170]:
+            - cell [ref=f84e171]: T9001
+            - cell [ref=f84e172]: 測試員工19
+            - cell [ref=f84e173]: test19@corp.local
+            - cell [ref=f84e174]: —
+            - cell [ref=f84e175]:
+              - generic [ref=f84e85]: 一般員工
+            - cell [ref=f84e176]:
+              - generic [ref=f84e87]: 啟用中
+            - cell [ref=f84e177]:
+              - button [ref=f84e178] [cursor=pointer]: 編輯
+              - button [ref=f84e179] [cursor=pointer]: 重設密碼
+              - button [ref=f84e180] [cursor=pointer]: 停用
+      - dialog [ref=f84e92]:
+        - generic [ref=f84e93]:
+          - generic [ref=f84e94]:
+            - heading [level=5] [ref=f84e181]: 新增帳號
+            - button [active] [ref=f84e96] [cursor=pointer]
+          - generic [ref=f84e97]:
+            - generic [ref=f84e98]:
+              - generic [ref=f84e99]: 員工編號
+              - textbox [ref=f84e100]: T2002
+            - generic [ref=f84e101]:
+              - generic [ref=f84e102]: 姓名
+              - textbox [ref=f84e103]: 重複測試
+            - generic [ref=f84e104]:
+              - generic [ref=f84e105]: Email
+              - textbox [ref=f84e106]: t2001@corp.local
+            - generic [ref=f84e107]:
+              - generic [ref=f84e108]: 部門
+              - combobox [ref=f84e109]
+            - generic [ref=f84e110]:
+              - generic [ref=f84e111]: 角色
+              - combobox [ref=f84e112]
+            - generic [ref=f84e113]:
+              - generic [ref=f84e114]: 初始密碼（至少 8 個字元）
+              - textbox [ref=f84e115]: DupTest@2026
+          - generic [ref=f84e116]:
+            - button [ref=f84e182] [cursor=pointer]: 取消
+            - button [ref=f84e183] [cursor=pointer]: 儲存
+  - dialog [ref=f84e195]:
+    - heading "操作失敗" [level=2] [ref=f84e200]
+    - generic [ref=f84e201]: Email「t2001@corp.local」已被使用
+    - text: "!"
+    - button "OK" [disabled] [ref=f84e203]

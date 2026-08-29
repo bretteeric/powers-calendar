@@ -1,0 +1,69 @@
+- generic [ref=f107e1]:
+  - navigation [ref=f107e2]:
+    - generic [ref=f107e3]:
+      - link [ref=f107e693] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f107e5]:
+        - list [ref=f107e6]:
+          - listitem [ref=f107e7]:
+            - link [ref=f107e694] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f107e9]:
+            - link [ref=f107e695] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+        - button [ref=f107e696] [cursor=pointer]: 🔔
+        - list [ref=f107e14]:
+          - listitem [ref=f107e15]:
+            - link [ref=f107e697] [cursor=pointer]:
+              - /url: "#"
+              - text: 任務20新員工
+  - main [ref=f107e17]:
+    - generic [ref=f107e20]:
+      - generic [ref=f107e21]:
+        - generic [ref=f107e22]:
+          - button [ref=f107e698] [cursor=pointer]: ‹
+          - button [ref=f107e699] [cursor=pointer]: 今天
+          - button [ref=f107e700] [cursor=pointer]: ›
+        - heading [level=1] [ref=f107e701]: 2026/9/2（三）
+        - generic [ref=f107e27]:
+          - button [ref=f107e702] [cursor=pointer]: 月
+          - button [ref=f107e703] [cursor=pointer]: 週
+          - button [ref=f107e704] [cursor=pointer]: 日
+        - button [ref=f107e705] [cursor=pointer]: ＋ 新增事件
+      - generic [ref=f107e32]:
+        - generic [ref=f107e207]: 9/2（三）
+        - generic [ref=f107e216]:
+          - generic [ref=f107e217]:
+            - generic [ref=f107e218]: 00:00
+            - generic [ref=f107e219]: 01:00
+            - generic [ref=f107e220]: 02:00
+            - generic [ref=f107e221]: 03:00
+            - generic [ref=f107e222]: 04:00
+            - generic [ref=f107e223]: 05:00
+            - generic [ref=f107e224]: 06:00
+            - generic [ref=f107e225]: 07:00
+            - generic [ref=f107e226]: 08:00
+            - generic [ref=f107e227]: 09:00
+            - generic [ref=f107e228]: 10:00
+            - generic [ref=f107e229]: 11:00
+            - generic [ref=f107e230]: 12:00
+            - generic [ref=f107e231]: 13:00
+            - generic [ref=f107e232]: 14:00
+            - generic [ref=f107e233]: 15:00
+            - generic [ref=f107e234]: 16:00
+            - generic [ref=f107e235]: 17:00
+            - generic [ref=f107e236]: 18:00
+            - generic [ref=f107e237]: 19:00
+            - generic [ref=f107e238]: 20:00
+            - generic [ref=f107e239]: 21:00
+            - generic [ref=f107e240]: 22:00
+            - generic [ref=f107e241]: 23:00
+          - generic [ref=f107e685] [cursor=pointer]:
+            - generic [ref=f107e686]: 驗收21-個人事件
+            - generic [ref=f107e687]: 個人事件
+  - dialog [active] [ref=f107e707]:
+    - heading "已儲存" [level=2] [ref=f107e715]
+    - text: "!"

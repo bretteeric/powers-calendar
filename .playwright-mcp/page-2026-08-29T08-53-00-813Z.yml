@@ -1,0 +1,89 @@
+- generic [ref=f133e1]:
+  - navigation [ref=f133e2]:
+    - generic [ref=f133e3]:
+      - link "公司行事曆" [ref=f133e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f133e5]:
+        - list [ref=f133e6]:
+          - listitem [ref=f133e7]:
+            - link "我的行事曆" [ref=f133e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f133e9]:
+            - link "會議廳時間軸" [ref=f133e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f133e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f133e14]: "1"
+        - list [ref=f133e15]:
+          - listitem [ref=f133e16]:
+            - link "任務20新員工" [ref=f133e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f133e18]:
+    - generic [ref=f133e21]:
+      - generic [ref=f133e22]:
+        - generic [ref=f133e23]:
+          - button "‹" [ref=f133e24] [cursor=pointer]
+          - button "今天" [ref=f133e25] [cursor=pointer]
+          - button "›" [active] [ref=f133e26] [cursor=pointer]
+        - heading "2026 年 11 月" [level=1] [ref=f133e259]
+        - generic [ref=f133e28]:
+          - button "月" [ref=f133e29] [cursor=pointer]
+          - button "週" [ref=f133e30] [cursor=pointer]
+          - button "日" [ref=f133e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f133e32] [cursor=pointer]
+      - generic [ref=f133e33]:
+        - generic [ref=f133e34]:
+          - generic [ref=f133e35]: 日
+          - generic [ref=f133e36]: 一
+          - generic [ref=f133e37]: 二
+          - generic [ref=f133e38]: 三
+          - generic [ref=f133e39]: 四
+          - generic [ref=f133e40]: 五
+          - generic [ref=f133e41]: 六
+        - generic [ref=f133e42]:
+          - generic [ref=f133e245] [cursor=pointer]: "1"
+          - generic [ref=f133e247] [cursor=pointer]: "2"
+          - generic [ref=f133e249] [cursor=pointer]: "3"
+          - generic [ref=f133e251] [cursor=pointer]: "4"
+          - generic [ref=f133e253] [cursor=pointer]: "5"
+          - generic [ref=f133e255] [cursor=pointer]: "6"
+          - generic [ref=f133e257] [cursor=pointer]: "7"
+          - generic [ref=f133e260] [cursor=pointer]: "8"
+          - generic [ref=f133e262] [cursor=pointer]: "9"
+          - generic [ref=f133e264] [cursor=pointer]: "10"
+          - generic [ref=f133e266] [cursor=pointer]:
+            - generic [ref=f133e267]: "11"
+            - generic "驗收21-每月第二個星期三" [ref=f133e268]: 15:00 驗收21-每月第二個星期三
+          - generic [ref=f133e269] [cursor=pointer]: "12"
+          - generic [ref=f133e271] [cursor=pointer]: "13"
+          - generic [ref=f133e273] [cursor=pointer]: "14"
+          - generic [ref=f133e275] [cursor=pointer]: "15"
+          - generic [ref=f133e277] [cursor=pointer]: "16"
+          - generic [ref=f133e279] [cursor=pointer]: "17"
+          - generic [ref=f133e281] [cursor=pointer]: "18"
+          - generic [ref=f133e283] [cursor=pointer]: "19"
+          - generic [ref=f133e285] [cursor=pointer]: "20"
+          - generic [ref=f133e287] [cursor=pointer]: "21"
+          - generic [ref=f133e289] [cursor=pointer]: "22"
+          - generic [ref=f133e291] [cursor=pointer]: "23"
+          - generic [ref=f133e293] [cursor=pointer]: "24"
+          - generic [ref=f133e295] [cursor=pointer]: "25"
+          - generic [ref=f133e297] [cursor=pointer]: "26"
+          - generic [ref=f133e299] [cursor=pointer]: "27"
+          - generic [ref=f133e301] [cursor=pointer]: "28"
+          - generic [ref=f133e303] [cursor=pointer]: "29"
+          - generic [ref=f133e305] [cursor=pointer]: "30"
+          - generic [ref=f133e307] [cursor=pointer]: "1"
+          - generic [ref=f133e309] [cursor=pointer]: "2"
+          - generic [ref=f133e311] [cursor=pointer]: "3"
+          - generic [ref=f133e313] [cursor=pointer]: "4"
+          - generic [ref=f133e315] [cursor=pointer]: "5"
+          - generic [ref=f133e317] [cursor=pointer]: "6"
+          - generic [ref=f133e319] [cursor=pointer]: "7"
+          - generic [ref=f133e321] [cursor=pointer]: "8"
+          - generic [ref=f133e323] [cursor=pointer]:
+            - generic [ref=f133e324]: "9"
+            - generic "驗收21-每月第二個星期三" [ref=f133e325]: 15:00 驗收21-每月第二個星期三
+          - generic [ref=f133e326] [cursor=pointer]: "10"
+          - generic [ref=f133e328] [cursor=pointer]: "11"
+          - generic [ref=f133e330] [cursor=pointer]: "12"

@@ -1,0 +1,103 @@
+- generic [ref=f99e1]:
+  - navigation [ref=f99e2]:
+    - generic [ref=f99e3]:
+      - link [ref=f99e92] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f99e5]:
+        - list [ref=f99e6]:
+          - listitem [ref=f99e7]:
+            - link [ref=f99e93] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f99e9]:
+            - link [ref=f99e94] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f99e11]:
+            - link [ref=f99e95] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f99e13]:
+            - link [ref=f99e96] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f99e97] [cursor=pointer]: 🔔
+        - list [ref=f99e18]:
+          - listitem [ref=f99e19]:
+            - link [ref=f99e98] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f99e21]:
+    - generic [ref=f99e24]:
+      - generic [ref=f99e25]:
+        - heading [level=1] [ref=f99e99]: 員工管理
+        - button [ref=f99e100] [cursor=pointer]: ＋ 新增帳號
+      - table [ref=f99e29]:
+        - rowgroup [ref=f99e30]:
+          - row [ref=f99e101]:
+            - columnheader [ref=f99e102]: 員工編號
+            - columnheader [ref=f99e103]: 姓名
+            - columnheader [ref=f99e104]: Email
+            - columnheader [ref=f99e105]: 部門
+            - columnheader [ref=f99e106]: 角色
+            - columnheader [ref=f99e107]: 狀態
+            - columnheader [ref=f99e108]: 操作
+        - rowgroup [ref=f99e39]:
+          - row [ref=f99e109]:
+            - cell [ref=f99e110]: A0001
+            - cell [ref=f99e111]: 系統管理員
+            - cell [ref=f99e112]: admin@corp.local
+            - cell [ref=f99e113]: 資訊部
+            - cell [ref=f99e114]:
+              - generic [ref=f99e46]: 系統管理員
+            - cell [ref=f99e115]:
+              - generic [ref=f99e48]: 啟用中
+            - cell [ref=f99e116]:
+              - button [ref=f99e117] [cursor=pointer]: 編輯
+              - button [ref=f99e118] [cursor=pointer]: 重設密碼
+              - button [ref=f99e119] [cursor=pointer]: 停用
+          - row [ref=f99e120]:
+            - cell [ref=f99e121]: E9001
+            - cell [ref=f99e122]: 測試員工乙
+            - cell [ref=f99e123]: e9001@corp.local
+            - cell [ref=f99e124]: —
+            - cell [ref=f99e125]:
+              - generic [ref=f99e59]: 一般員工
+            - cell [ref=f99e126]:
+              - generic [ref=f99e61]: 啟用中
+            - cell [ref=f99e127]:
+              - button [ref=f99e128] [cursor=pointer]: 編輯
+              - button [ref=f99e129] [cursor=pointer]: 重設密碼
+              - button [ref=f99e130] [cursor=pointer]: 停用
+          - row [ref=f99e131]:
+            - cell [ref=f99e132]: T2001
+            - cell [ref=f99e133]: 任務20新員工
+            - cell [ref=f99e134]: t2001@corp.local
+            - cell [ref=f99e135]: 管理部
+            - cell [ref=f99e136]:
+              - generic [ref=f99e72]: 一般員工
+            - cell [ref=f99e137]:
+              - generic [ref=f99e74]: 啟用中
+            - cell [ref=f99e138]:
+              - button [ref=f99e139] [cursor=pointer]: 編輯
+              - button [ref=f99e140] [cursor=pointer]: 重設密碼
+              - button [ref=f99e141] [cursor=pointer]: 停用
+          - row [ref=f99e142]:
+            - cell [ref=f99e143]: T9001
+            - cell [ref=f99e144]: 測試員工19
+            - cell [ref=f99e145]: test19@corp.local
+            - cell [ref=f99e146]: —
+            - cell [ref=f99e147]:
+              - generic [ref=f99e85]: 一般員工
+            - cell [ref=f99e148]:
+              - generic [ref=f99e87]: 啟用中
+            - cell [ref=f99e149]:
+              - button [ref=f99e150] [cursor=pointer]: 編輯
+              - button [ref=f99e151] [cursor=pointer]: 重設密碼
+              - button [ref=f99e152] [cursor=pointer]: 停用
+  - dialog [ref=f99e163]:
+    - heading "操作失敗" [level=2] [ref=f99e168]
+    - generic [ref=f99e169]: 不能停用或降級自己的帳號
+    - text: "!"
+    - button "OK" [active] [ref=f99e171] [cursor=pointer]

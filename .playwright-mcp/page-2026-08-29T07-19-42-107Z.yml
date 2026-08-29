@@ -1,0 +1,106 @@
+- generic [ref=f71e1]:
+  - navigation [ref=f71e2]:
+    - generic [ref=f71e3]:
+      - link "公司行事曆" [ref=f71e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f71e5]:
+        - list [ref=f71e6]:
+          - listitem [ref=f71e7]:
+            - link "我的行事曆" [ref=f71e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f71e9]:
+            - link "會議廳時間軸" [ref=f71e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f71e11]:
+            - link "會議廳管理" [ref=f71e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f71e13]:
+            - link "員工管理" [ref=f71e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f71e17] [cursor=pointer]
+        - list [ref=f71e18]:
+          - listitem [ref=f71e19]:
+            - link "系統管理員" [ref=f71e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f71e21]:
+    - generic [ref=f71e24]:
+      - generic [ref=f71e25]:
+        - heading "員工管理" [level=1] [ref=f71e26]
+        - button "＋ 新增帳號" [ref=f71e27] [cursor=pointer]
+      - table [ref=f71e29]:
+        - rowgroup [ref=f71e30]:
+          - row [ref=f71e31]:
+            - columnheader "員工編號" [ref=f71e32]
+            - columnheader "姓名" [ref=f71e33]
+            - columnheader "Email" [ref=f71e34]
+            - columnheader "部門" [ref=f71e35]
+            - columnheader "角色" [ref=f71e36]
+            - columnheader "狀態" [ref=f71e37]
+            - columnheader "操作" [ref=f71e38]
+        - rowgroup [ref=f71e39]:
+          - row [ref=f71e40]:
+            - cell "A0001" [ref=f71e41]
+            - cell "系統管理員" [ref=f71e42]
+            - cell "admin@corp.local" [ref=f71e43]
+            - cell "資訊部" [ref=f71e44]
+            - cell "系統管理員" [ref=f71e45]
+            - cell "啟用中" [ref=f71e47]
+            - cell [ref=f71e49]:
+              - button "編輯" [ref=f71e50] [cursor=pointer]
+              - button "重設密碼" [ref=f71e51] [cursor=pointer]
+              - button "停用" [ref=f71e52] [cursor=pointer]
+          - row [ref=f71e53]:
+            - cell "E9001" [ref=f71e54]
+            - cell "測試員工乙" [ref=f71e55]
+            - cell "e9001@corp.local" [ref=f71e56]
+            - cell "—" [ref=f71e57]
+            - cell "一般員工" [ref=f71e58]
+            - cell "啟用中" [ref=f71e60]
+            - cell [ref=f71e62]:
+              - button "編輯" [ref=f71e63] [cursor=pointer]
+              - button "重設密碼" [ref=f71e64] [cursor=pointer]
+              - button "停用" [ref=f71e65] [cursor=pointer]
+          - row [ref=f71e66]:
+            - cell "T9001" [ref=f71e67]
+            - cell "測試員工19" [ref=f71e68]
+            - cell "test19@corp.local" [ref=f71e69]
+            - cell "—" [ref=f71e70]
+            - cell "一般員工" [ref=f71e71]
+            - cell "啟用中" [ref=f71e73]
+            - cell [ref=f71e75]:
+              - button "編輯" [ref=f71e76] [cursor=pointer]
+              - button "重設密碼" [ref=f71e77] [cursor=pointer]
+              - button "停用" [ref=f71e78] [cursor=pointer]
+      - dialog [ref=f71e79]:
+        - generic [ref=f71e80]:
+          - generic [ref=f71e81]:
+            - heading "新增帳號" [level=5] [ref=f71e82]
+            - button [ref=f71e83] [cursor=pointer]
+          - generic [ref=f71e84]:
+            - generic [ref=f71e85]:
+              - generic [ref=f71e86]: 員工編號
+              - textbox [ref=f71e87]: T2001
+            - generic [ref=f71e88]:
+              - generic [ref=f71e89]: 姓名
+              - textbox [ref=f71e90]: 任務20新員工
+            - generic [ref=f71e91]:
+              - generic [ref=f71e92]: Email
+              - textbox [ref=f71e93]: t2001@corp.local
+            - generic [ref=f71e94]:
+              - generic [ref=f71e95]: 部門
+              - combobox [ref=f71e96]:
+                - option "未指定"
+                - option "業務部" [selected]
+                - option "管理部"
+                - option "資訊部"
+            - generic [ref=f71e97]:
+              - generic [ref=f71e98]: 角色
+              - combobox [ref=f71e99]:
+                - option "一般員工" [selected]
+                - option "系統管理員"
+            - generic [ref=f71e100]:
+              - generic [ref=f71e101]: 初始密碼（至少 8 個字元）
+              - textbox [active] [ref=f71e102]: InitPass@2026
+          - generic [ref=f71e103]:
+            - button "取消" [ref=f71e104] [cursor=pointer]
+            - button "儲存" [ref=f71e105] [cursor=pointer]

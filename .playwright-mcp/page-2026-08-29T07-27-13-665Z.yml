@@ -1,0 +1,71 @@
+- generic [active] [ref=f90e1]:
+  - navigation [ref=f90e2]:
+    - generic [ref=f90e3]:
+      - link "公司行事曆" [ref=f90e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f90e5]:
+        - list [ref=f90e6]:
+          - listitem [ref=f90e7]:
+            - link "我的行事曆" [ref=f90e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f90e9]:
+            - link "會議廳時間軸" [ref=f90e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f90e11]:
+            - link "會議廳管理" [ref=f90e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f90e13]:
+            - link "員工管理" [ref=f90e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f90e17] [cursor=pointer]
+        - list [ref=f90e18]:
+          - listitem [ref=f90e19]:
+            - link "系統管理員" [ref=f90e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f90e21]:
+    - generic [ref=f90e22]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f90e23]
+      - generic [ref=f90e25]:
+        - generic [ref=f90e26]:
+          - generic [ref=f90e27]:
+            - button "‹" [ref=f90e28] [cursor=pointer]
+            - button "›" [ref=f90e29] [cursor=pointer]
+          - textbox [ref=f90e30]: 2026-08-29
+          - generic [ref=f90e31]:
+            - generic [ref=f90e32]: 最少可容納
+            - spinbutton "不限" [ref=f90e33]
+            - generic [ref=f90e34]: 人
+        - generic [ref=f90e35]:
+          - generic [ref=f90e38]:
+            - generic [ref=f90e39]: "00"
+            - generic [ref=f90e41]: "02"
+            - generic [ref=f90e43]: "04"
+            - generic [ref=f90e45]: "06"
+            - generic [ref=f90e47]: "08"
+            - generic [ref=f90e49]: "10"
+            - generic [ref=f90e51]: "12"
+            - generic [ref=f90e53]: "14"
+            - generic [ref=f90e55]: "16"
+            - generic [ref=f90e57]: "18"
+            - generic [ref=f90e59]: "20"
+            - generic [ref=f90e61]: "22"
+          - generic [ref=f90e63]:
+            - generic [ref=f90e64]:
+              - generic [ref=f90e65]: A 棟 3F 大會議廳
+              - generic [ref=f90e66]: 40 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 大會議廳" [ref=f90e67]
+          - generic [ref=f90e68]:
+            - generic [ref=f90e69]:
+              - generic [ref=f90e70]: A 棟 3F 小會議室
+              - generic [ref=f90e71]: 8 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 小會議室" [ref=f90e72]
+          - generic [ref=f90e73]:
+            - generic [ref=f90e74]:
+              - generic [ref=f90e75]: B 棟 2F 討論室
+              - generic [ref=f90e76]: 6 人・B 棟 2 樓
+            - generic "點一下即可預約 B 棟 2F 討論室" [ref=f90e77]
+          - generic [ref=f90e78]:
+            - generic [ref=f90e79]:
+              - generic [ref=f90e80]: 測試會議廳-T20-已編輯
+              - generic [ref=f90e81]: 20 人・C 棟 1 樓
+            - generic "點一下即可預約 測試會議廳-T20-已編輯" [ref=f90e82]

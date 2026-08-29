@@ -1,0 +1,106 @@
+- generic [ref=f94e1]:
+  - navigation [ref=f94e2]:
+    - generic [ref=f94e3]:
+      - link [ref=f94e92] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f94e5]:
+        - list [ref=f94e6]:
+          - listitem [ref=f94e7]:
+            - link [ref=f94e93] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f94e9]:
+            - link [ref=f94e94] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f94e11]:
+            - link [ref=f94e95] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f94e13]:
+            - link [ref=f94e96] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f94e97] [cursor=pointer]: 🔔
+        - list [ref=f94e18]:
+          - listitem [ref=f94e19]:
+            - link [ref=f94e98] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f94e21]:
+    - generic [ref=f94e24]:
+      - generic [ref=f94e25]:
+        - heading [level=1] [ref=f94e99]: 員工管理
+        - button [ref=f94e100] [cursor=pointer]: ＋ 新增帳號
+      - table [ref=f94e29]:
+        - rowgroup [ref=f94e30]:
+          - row [ref=f94e101]:
+            - columnheader [ref=f94e102]: 員工編號
+            - columnheader [ref=f94e103]: 姓名
+            - columnheader [ref=f94e104]: Email
+            - columnheader [ref=f94e105]: 部門
+            - columnheader [ref=f94e106]: 角色
+            - columnheader [ref=f94e107]: 狀態
+            - columnheader [ref=f94e108]: 操作
+        - rowgroup [ref=f94e39]:
+          - row [ref=f94e109]:
+            - cell [ref=f94e110]: A0001
+            - cell [ref=f94e111]: 系統管理員
+            - cell [ref=f94e112]: admin@corp.local
+            - cell [ref=f94e113]: 資訊部
+            - cell [ref=f94e114]:
+              - generic [ref=f94e46]: 系統管理員
+            - cell [ref=f94e115]:
+              - generic [ref=f94e48]: 啟用中
+            - cell [ref=f94e116]:
+              - button [ref=f94e117] [cursor=pointer]: 編輯
+              - button [ref=f94e118] [cursor=pointer]: 重設密碼
+              - button [ref=f94e119] [cursor=pointer]: 停用
+          - row [ref=f94e120]:
+            - cell [ref=f94e121]: E9001
+            - cell [ref=f94e122]: 測試員工乙
+            - cell [ref=f94e123]: e9001@corp.local
+            - cell [ref=f94e124]: —
+            - cell [ref=f94e125]:
+              - generic [ref=f94e59]: 一般員工
+            - cell [ref=f94e126]:
+              - generic [ref=f94e61]: 啟用中
+            - cell [ref=f94e127]:
+              - button [ref=f94e128] [cursor=pointer]: 編輯
+              - button [ref=f94e129] [cursor=pointer]: 重設密碼
+              - button [ref=f94e130] [cursor=pointer]: 停用
+          - row [ref=f94e131]:
+            - cell [ref=f94e132]: T2001
+            - cell [ref=f94e133]: 任務20新員工
+            - cell [ref=f94e134]: t2001@corp.local
+            - cell [ref=f94e135]: 管理部
+            - cell [ref=f94e136]:
+              - generic [ref=f94e72]: 一般員工
+            - cell [ref=f94e137]:
+              - generic [ref=f94e74]: 已停用
+            - cell [ref=f94e138]:
+              - button [ref=f94e139] [cursor=pointer]: 編輯
+              - button [ref=f94e140] [cursor=pointer]: 重設密碼
+              - button [ref=f94e141] [cursor=pointer]: 啟用
+          - row [ref=f94e142]:
+            - cell [ref=f94e143]: T9001
+            - cell [ref=f94e144]: 測試員工19
+            - cell [ref=f94e145]: test19@corp.local
+            - cell [ref=f94e146]: —
+            - cell [ref=f94e147]:
+              - generic [ref=f94e85]: 一般員工
+            - cell [ref=f94e148]:
+              - generic [ref=f94e87]: 啟用中
+            - cell [ref=f94e149]:
+              - button [ref=f94e150] [cursor=pointer]: 編輯
+              - button [ref=f94e151] [cursor=pointer]: 重設密碼
+              - button [ref=f94e152] [cursor=pointer]: 停用
+  - dialog [ref=f94e154]:
+    - heading "重設 任務20新員工 的密碼" [level=2] [ref=f94e155]
+    - generic [ref=f94e156]: 新密碼（至少 8 個字元）
+    - textbox "新密碼（至少 8 個字元）" [active] [ref=f94e157]
+    - text: "!"
+    - generic [ref=f94e158]:
+      - button "重設" [ref=f94e159] [cursor=pointer]
+      - button "取消" [ref=f94e160] [cursor=pointer]

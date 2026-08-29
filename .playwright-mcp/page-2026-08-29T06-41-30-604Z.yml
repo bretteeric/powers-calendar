@@ -1,0 +1,62 @@
+- generic [ref=f50e1]:
+  - navigation [ref=f50e2]:
+    - generic [ref=f50e3]:
+      - link "公司行事曆" [ref=f50e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f50e5]:
+        - list [ref=f50e6]:
+          - listitem [ref=f50e7]:
+            - link "我的行事曆" [ref=f50e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f50e9]:
+            - link "會議廳時間軸" [ref=f50e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f50e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f50e14]: "1"
+        - list [ref=f50e15]:
+          - listitem [ref=f50e16]:
+            - link "測試員工19" [ref=f50e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f50e18]:
+    - generic [ref=f50e19]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f50e20]
+      - generic [ref=f50e22]:
+        - generic [ref=f50e23]:
+          - generic [ref=f50e24]:
+            - button "‹" [ref=f50e25] [cursor=pointer]
+            - button "›" [ref=f50e26] [cursor=pointer]
+          - textbox [ref=f50e27]: 2026-08-29
+          - generic [ref=f50e28]:
+            - generic [ref=f50e29]: 最少可容納
+            - spinbutton "不限" [ref=f50e30]
+            - generic [ref=f50e31]: 人
+        - generic [ref=f50e33]:
+          - generic [ref=f50e36]:
+            - generic [ref=f50e37]: "00"
+            - generic [ref=f50e39]: "02"
+            - generic [ref=f50e41]: "04"
+            - generic [ref=f50e43]: "06"
+            - generic [ref=f50e45]: "08"
+            - generic [ref=f50e47]: "10"
+            - generic [ref=f50e49]: "12"
+            - generic [ref=f50e51]: "14"
+            - generic [ref=f50e53]: "16"
+            - generic [ref=f50e55]: "18"
+            - generic [ref=f50e57]: "20"
+            - generic [ref=f50e59]: "22"
+          - generic [ref=f50e61]:
+            - generic [ref=f50e62]:
+              - generic [ref=f50e63]: A 棟 3F 大會議廳
+              - generic [ref=f50e64]: 40 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 大會議廳" [ref=f50e65]
+          - generic [ref=f50e66]:
+            - generic [ref=f50e67]:
+              - generic [ref=f50e68]: A 棟 3F 小會議室
+              - generic [ref=f50e69]: 8 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 小會議室" [ref=f50e70]
+          - generic [ref=f50e71]:
+            - generic [ref=f50e72]:
+              - generic [ref=f50e73]: B 棟 2F 討論室
+              - generic [ref=f50e74]: 6 人・B 棟 2 樓
+            - generic "點一下即可預約 B 棟 2F 討論室" [ref=f50e75]

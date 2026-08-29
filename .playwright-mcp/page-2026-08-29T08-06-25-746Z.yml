@@ -1,0 +1,51 @@
+- generic [active] [ref=f123e1]:
+  - navigation [ref=f123e2]:
+    - generic [ref=f123e3]:
+      - link "公司行事曆" [ref=f123e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f123e5]:
+        - list [ref=f123e6]:
+          - listitem [ref=f123e7]:
+            - link "我的行事曆" [ref=f123e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f123e9]:
+            - link "會議廳時間軸" [ref=f123e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f123e11]:
+            - link "會議廳管理" [ref=f123e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f123e13]:
+            - link "員工管理" [ref=f123e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f123e17] [cursor=pointer]
+        - list [ref=f123e18]:
+          - listitem [ref=f123e19]:
+            - link "系統管理員" [ref=f123e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f123e21]:
+    - generic [ref=f123e22]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f123e23]
+      - generic [ref=f123e25]:
+        - generic [ref=f123e26]:
+          - generic [ref=f123e27]:
+            - button "‹" [ref=f123e28] [cursor=pointer]
+            - button "›" [ref=f123e29] [cursor=pointer]
+          - textbox [ref=f123e30]: 2026-08-29
+          - generic [ref=f123e31]:
+            - generic [ref=f123e32]: 最少可容納
+            - spinbutton "不限" [ref=f123e33]
+            - generic [ref=f123e34]: 人
+          - generic [ref=f123e35]: 載入中…
+        - generic [ref=f123e39]:
+          - generic [ref=f123e40]: "00"
+          - generic [ref=f123e42]: "02"
+          - generic [ref=f123e44]: "04"
+          - generic [ref=f123e46]: "06"
+          - generic [ref=f123e48]: "08"
+          - generic [ref=f123e50]: "10"
+          - generic [ref=f123e52]: "12"
+          - generic [ref=f123e54]: "14"
+          - generic [ref=f123e56]: "16"
+          - generic [ref=f123e58]: "18"
+          - generic [ref=f123e60]: "20"
+          - generic [ref=f123e62]: "22"

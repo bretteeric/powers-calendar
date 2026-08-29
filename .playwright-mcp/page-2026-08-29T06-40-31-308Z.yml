@@ -1,0 +1,85 @@
+- generic [active] [ref=f48e1]:
+  - navigation [ref=f48e2]:
+    - generic [ref=f48e3]:
+      - link "公司行事曆" [ref=f48e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f48e5]:
+        - list [ref=f48e6]:
+          - listitem [ref=f48e7]:
+            - link "我的行事曆" [ref=f48e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f48e9]:
+            - link "會議廳時間軸" [ref=f48e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f48e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f48e14]: "1"
+        - list [ref=f48e15]:
+          - listitem [ref=f48e16]:
+            - link "測試員工19" [ref=f48e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f48e18]:
+    - generic [ref=f48e21]:
+      - generic [ref=f48e22]:
+        - generic [ref=f48e23]:
+          - button "‹" [ref=f48e24] [cursor=pointer]
+          - button "今天" [ref=f48e25] [cursor=pointer]
+          - button "›" [ref=f48e26] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f48e27]
+        - generic [ref=f48e28]:
+          - button "月" [ref=f48e29] [cursor=pointer]
+          - button "週" [ref=f48e30] [cursor=pointer]
+          - button "日" [ref=f48e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f48e32] [cursor=pointer]
+      - generic [ref=f48e33]:
+        - generic [ref=f48e34]:
+          - generic [ref=f48e35]: 日
+          - generic [ref=f48e36]: 一
+          - generic [ref=f48e37]: 二
+          - generic [ref=f48e38]: 三
+          - generic [ref=f48e39]: 四
+          - generic [ref=f48e40]: 五
+          - generic [ref=f48e41]: 六
+        - generic [ref=f48e42]:
+          - generic [ref=f48e43] [cursor=pointer]: "26"
+          - generic [ref=f48e45] [cursor=pointer]: "27"
+          - generic [ref=f48e47] [cursor=pointer]: "28"
+          - generic [ref=f48e49] [cursor=pointer]: "29"
+          - generic [ref=f48e51] [cursor=pointer]: "30"
+          - generic [ref=f48e53] [cursor=pointer]: "31"
+          - generic [ref=f48e55] [cursor=pointer]: "1"
+          - generic [ref=f48e57] [cursor=pointer]: "2"
+          - generic [ref=f48e59] [cursor=pointer]: "3"
+          - generic [ref=f48e61] [cursor=pointer]: "4"
+          - generic [ref=f48e63] [cursor=pointer]: "5"
+          - generic [ref=f48e65] [cursor=pointer]: "6"
+          - generic [ref=f48e67] [cursor=pointer]: "7"
+          - generic [ref=f48e69] [cursor=pointer]: "8"
+          - generic [ref=f48e71] [cursor=pointer]: "9"
+          - generic [ref=f48e73] [cursor=pointer]: "10"
+          - generic [ref=f48e75] [cursor=pointer]: "11"
+          - generic [ref=f48e77] [cursor=pointer]: "12"
+          - generic [ref=f48e79] [cursor=pointer]: "13"
+          - generic [ref=f48e81] [cursor=pointer]: "14"
+          - generic [ref=f48e83] [cursor=pointer]: "15"
+          - generic [ref=f48e85] [cursor=pointer]: "16"
+          - generic [ref=f48e87] [cursor=pointer]: "17"
+          - generic [ref=f48e89] [cursor=pointer]: "18"
+          - generic [ref=f48e91] [cursor=pointer]: "19"
+          - generic [ref=f48e93] [cursor=pointer]: "20"
+          - generic [ref=f48e95] [cursor=pointer]: "21"
+          - generic [ref=f48e97] [cursor=pointer]: "22"
+          - generic [ref=f48e99] [cursor=pointer]: "23"
+          - generic [ref=f48e101] [cursor=pointer]: "24"
+          - generic [ref=f48e103] [cursor=pointer]: "25"
+          - generic [ref=f48e105] [cursor=pointer]: "26"
+          - generic [ref=f48e107] [cursor=pointer]: "27"
+          - generic [ref=f48e109] [cursor=pointer]: "28"
+          - generic [ref=f48e111] [cursor=pointer]: "29"
+          - generic [ref=f48e113] [cursor=pointer]: "30"
+          - generic [ref=f48e115] [cursor=pointer]: "31"
+          - generic [ref=f48e117] [cursor=pointer]: "1"
+          - generic [ref=f48e119] [cursor=pointer]: "2"
+          - generic [ref=f48e121] [cursor=pointer]: "3"
+          - generic [ref=f48e123] [cursor=pointer]: "4"
+          - generic [ref=f48e125] [cursor=pointer]: "5"

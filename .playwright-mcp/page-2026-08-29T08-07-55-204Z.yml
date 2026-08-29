@@ -1,0 +1,98 @@
+- generic [ref=f129e1]:
+  - navigation [ref=f129e2]:
+    - generic [ref=f129e3]:
+      - link [ref=f129e105] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f129e5]:
+        - list [ref=f129e6]:
+          - listitem [ref=f129e7]:
+            - link [ref=f129e106] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f129e9]:
+            - link [ref=f129e107] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f129e11]:
+            - link [ref=f129e108] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f129e13]:
+            - link [ref=f129e109] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f129e110] [cursor=pointer]: 🔔
+        - list [ref=f129e18]:
+          - listitem [ref=f129e19]:
+            - link [ref=f129e111] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f129e21]:
+    - generic [ref=f129e22]:
+      - heading [level=1] [ref=f129e112]: 會議廳資源時間軸
+      - generic [ref=f129e25]:
+        - generic [ref=f129e26]:
+          - generic [ref=f129e27]:
+            - button [ref=f129e113] [cursor=pointer]: ‹
+            - button [ref=f129e114] [cursor=pointer]: ›
+          - textbox [ref=f129e30]: 2026-09-04
+          - generic [ref=f129e31]:
+            - generic [ref=f129e32]: 最少可容納
+            - spinbutton [ref=f129e115]
+            - generic [ref=f129e34]: 人
+        - generic [ref=f129e35]:
+          - generic [ref=f129e38]:
+            - generic [ref=f129e39]: "00"
+            - generic [ref=f129e41]: "02"
+            - generic [ref=f129e43]: "04"
+            - generic [ref=f129e45]: "06"
+            - generic [ref=f129e47]: "08"
+            - generic [ref=f129e49]: "10"
+            - generic [ref=f129e51]: "12"
+            - generic [ref=f129e53]: "14"
+            - generic [ref=f129e55]: "16"
+            - generic [ref=f129e57]: "18"
+            - generic [ref=f129e59]: "20"
+            - generic [ref=f129e61]: "22"
+          - generic [ref=f129e64]:
+            - generic [ref=f129e65]: A 棟 3F 大會議廳
+            - generic [ref=f129e66]: 40 人・A 棟 3 樓
+          - generic [ref=f129e69]:
+            - generic [ref=f129e70]: A 棟 3F 小會議室
+            - generic [ref=f129e71]: 8 人・A 棟 3 樓
+          - generic [ref=f129e73]:
+            - generic [ref=f129e74]:
+              - generic [ref=f129e75]: B 棟 2F 討論室
+              - generic [ref=f129e76]: 6 人・B 棟 2 樓
+            - generic [ref=f129e118]: 驗收21-強制取消測試
+          - generic [ref=f129e79]:
+            - generic [ref=f129e80]: 測試會議廳-T20-已編輯
+            - generic [ref=f129e81]: 20 人・C 棟 1 樓
+        - dialog [ref=f129e84]:
+          - generic [ref=f129e85]:
+            - generic [ref=f129e86]:
+              - heading [level=5] [ref=f129e121]: 驗收21-強制取消測試
+              - button [active] [ref=f129e88] [cursor=pointer]
+            - generic [ref=f129e90]:
+              - term [ref=f129e91]: 時間
+              - definition [ref=f129e92]: 9/4 10:00 – 11:00
+              - term [ref=f129e93]: 會議廳
+              - definition [ref=f129e94]: B 棟 2F 討論室
+              - term [ref=f129e95]: 預約人
+              - definition [ref=f129e96]: 任務20新員工
+              - term [ref=f129e97]: 與會者
+              - definition [ref=f129e98]: 無
+            - generic [ref=f129e99]:
+              - button [ref=f129e122] [cursor=pointer]: 下載 .ics
+              - generic [ref=f129e101]:
+                - button [ref=f129e123] [cursor=pointer]: 編輯
+                - button [ref=f129e124] [cursor=pointer]: 取消預約
+  - dialog [ref=f129e126]:
+    - generic [ref=f129e127]: "!"
+    - heading "確定要取消嗎？" [level=2] [ref=f129e129]
+    - generic [ref=f129e130]: 整個系列的所有次數都會被取消。
+    - text: "!"
+    - generic [ref=f129e131]:
+      - button "確定取消" [ref=f129e132] [cursor=pointer]
+      - button "再想想" [ref=f129e133] [cursor=pointer]

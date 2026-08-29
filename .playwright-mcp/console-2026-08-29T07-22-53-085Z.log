@@ -1,0 +1,3 @@
+[    5751ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:5088/api/v1/users/1:0
+[    5757ms] [ERROR] me @ http://localhost:5088/js/vue.global.prod.js:4
+[   29633ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:5088/api/v1/users/1:0

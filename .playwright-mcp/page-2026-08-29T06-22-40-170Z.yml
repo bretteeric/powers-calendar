@@ -1,0 +1,50 @@
+- generic [active] [ref=f26e1]:
+  - navigation [ref=f26e2]:
+    - generic [ref=f26e3]:
+      - link "公司行事曆" [ref=f26e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f26e5]:
+        - list [ref=f26e6]:
+          - listitem [ref=f26e7]:
+            - link "我的行事曆" [ref=f26e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f26e9]:
+            - link "會議廳時間軸" [ref=f26e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f26e11]:
+            - link "會議廳管理" [ref=f26e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f26e13]:
+            - link "員工管理" [ref=f26e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - list [ref=f26e15]:
+          - listitem [ref=f26e16]:
+            - link "系統管理員" [ref=f26e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f26e18]:
+    - generic [ref=f26e19]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f26e20]
+      - generic [ref=f26e22]:
+        - generic [ref=f26e23]:
+          - generic [ref=f26e24]:
+            - button "‹" [ref=f26e25] [cursor=pointer]
+            - button "›" [ref=f26e26] [cursor=pointer]
+          - textbox [ref=f26e27]: 2026-08-29
+          - generic [ref=f26e28]:
+            - generic [ref=f26e29]: 最少可容納
+            - spinbutton "不限" [ref=f26e30]
+            - generic [ref=f26e31]: 人
+          - generic [ref=f26e32]: 載入中…
+        - generic [ref=f26e36]:
+          - generic [ref=f26e37]: "00"
+          - generic [ref=f26e39]: "02"
+          - generic [ref=f26e41]: "04"
+          - generic [ref=f26e43]: "06"
+          - generic [ref=f26e45]: "08"
+          - generic [ref=f26e47]: "10"
+          - generic [ref=f26e49]: "12"
+          - generic [ref=f26e51]: "14"
+          - generic [ref=f26e53]: "16"
+          - generic [ref=f26e55]: "18"
+          - generic [ref=f26e57]: "20"
+          - generic [ref=f26e59]: "22"

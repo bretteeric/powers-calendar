@@ -1,0 +1,58 @@
+- generic [ref=f107e1]:
+  - navigation [ref=f107e2]:
+    - generic [ref=f107e3]:
+      - link "公司行事曆" [ref=f107e192] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f107e5]:
+        - list [ref=f107e6]:
+          - listitem [ref=f107e7]:
+            - link "我的行事曆" [ref=f107e193] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f107e9]:
+            - link "會議廳時間軸" [ref=f107e194] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔" [ref=f107e195] [cursor=pointer]
+        - list [ref=f107e14]:
+          - listitem [ref=f107e15]:
+            - link "任務20新員工" [ref=f107e196] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f107e17]:
+    - generic [ref=f107e20]:
+      - generic [ref=f107e21]:
+        - generic [ref=f107e22]:
+          - button "‹" [active] [ref=f107e197] [cursor=pointer]
+          - button "今天" [ref=f107e198] [cursor=pointer]
+          - button "›" [ref=f107e199] [cursor=pointer]
+        - heading "2026/9/4（五）" [level=1] [ref=f107e604]
+        - generic [ref=f107e27]:
+          - button "月" [ref=f107e201] [cursor=pointer]
+          - button "週" [ref=f107e202] [cursor=pointer]
+          - button "日" [ref=f107e203] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f107e204] [cursor=pointer]
+      - generic [ref=f107e32]:
+        - generic [ref=f107e207]: 9/4（五）
+        - generic [ref=f107e217]:
+          - generic [ref=f107e218]: 00:00
+          - generic [ref=f107e219]: 01:00
+          - generic [ref=f107e220]: 02:00
+          - generic [ref=f107e221]: 03:00
+          - generic [ref=f107e222]: 04:00
+          - generic [ref=f107e223]: 05:00
+          - generic [ref=f107e224]: 06:00
+          - generic [ref=f107e225]: 07:00
+          - generic [ref=f107e226]: 08:00
+          - generic [ref=f107e227]: 09:00
+          - generic [ref=f107e228]: 10:00
+          - generic [ref=f107e229]: 11:00
+          - generic [ref=f107e230]: 12:00
+          - generic [ref=f107e231]: 13:00
+          - generic [ref=f107e232]: 14:00
+          - generic [ref=f107e233]: 15:00
+          - generic [ref=f107e234]: 16:00
+          - generic [ref=f107e235]: 17:00
+          - generic [ref=f107e236]: 18:00
+          - generic [ref=f107e237]: 19:00
+          - generic [ref=f107e238]: 20:00
+          - generic [ref=f107e239]: 21:00
+          - generic [ref=f107e240]: 22:00
+          - generic [ref=f107e241]: 23:00

@@ -1,0 +1,102 @@
+- generic [ref=f110e1]:
+  - navigation [ref=f110e2]:
+    - generic [ref=f110e3]:
+      - link "公司行事曆" [ref=f110e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f110e5]:
+        - list [ref=f110e6]:
+          - listitem [ref=f110e7]:
+            - link "我的行事曆" [ref=f110e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f110e9]:
+            - link "會議廳時間軸" [ref=f110e10] [cursor=pointer]:
+              - /url: /Rooms
+        - generic [ref=f110e12]:
+          - button "🔔 1" [active] [ref=f110e13] [cursor=pointer]:
+            - text: 🔔
+            - generic [ref=f110e14]: "1"
+          - generic [ref=f110e128]:
+            - generic [ref=f110e129]: 通知
+            - link "任務20新員工 邀請你參加 9/3 10:00 的「驗收21-衝突測試A」 8/29 15:55" [ref=f110e130] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f110e131]: 任務20新員工 邀請你參加 9/3 10:00 的「驗收21-衝突測試A」
+              - generic [ref=f110e132]: 8/29 15:55
+            - link "「通知測試事件」已改期至 9/7 14:00 8/29 14:37" [ref=f110e133] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f110e134]: 「通知測試事件」已改期至 9/7 14:00
+              - generic [ref=f110e135]: 8/29 14:37
+            - link "系統管理員 邀請你參加 9/7 10:00 的「通知測試事件」 8/29 14:36" [ref=f110e136] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f110e137]: 系統管理員 邀請你參加 9/7 10:00 的「通知測試事件」
+              - generic [ref=f110e138]: 8/29 14:36
+        - list [ref=f110e15]:
+          - listitem [ref=f110e16]:
+            - link "測試員工19" [ref=f110e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f110e18]:
+    - generic [ref=f110e21]:
+      - generic [ref=f110e22]:
+        - generic [ref=f110e23]:
+          - button "‹" [ref=f110e24] [cursor=pointer]
+          - button "今天" [ref=f110e25] [cursor=pointer]
+          - button "›" [ref=f110e26] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f110e27]
+        - generic [ref=f110e28]:
+          - button "月" [ref=f110e29] [cursor=pointer]
+          - button "週" [ref=f110e30] [cursor=pointer]
+          - button "日" [ref=f110e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f110e32] [cursor=pointer]
+      - generic [ref=f110e33]:
+        - generic [ref=f110e34]:
+          - generic [ref=f110e35]: 日
+          - generic [ref=f110e36]: 一
+          - generic [ref=f110e37]: 二
+          - generic [ref=f110e38]: 三
+          - generic [ref=f110e39]: 四
+          - generic [ref=f110e40]: 五
+          - generic [ref=f110e41]: 六
+        - generic [ref=f110e42]:
+          - generic [ref=f110e43] [cursor=pointer]: "26"
+          - generic [ref=f110e45] [cursor=pointer]: "27"
+          - generic [ref=f110e47] [cursor=pointer]: "28"
+          - generic [ref=f110e49] [cursor=pointer]: "29"
+          - generic [ref=f110e51] [cursor=pointer]: "30"
+          - generic [ref=f110e53] [cursor=pointer]: "31"
+          - generic [ref=f110e55] [cursor=pointer]: "1"
+          - generic [ref=f110e57] [cursor=pointer]: "2"
+          - generic [ref=f110e59] [cursor=pointer]: "3"
+          - generic [ref=f110e61] [cursor=pointer]: "4"
+          - generic [ref=f110e63] [cursor=pointer]: "5"
+          - generic [ref=f110e65] [cursor=pointer]: "6"
+          - generic [ref=f110e67] [cursor=pointer]: "7"
+          - generic [ref=f110e69] [cursor=pointer]: "8"
+          - generic [ref=f110e71] [cursor=pointer]: "9"
+          - generic [ref=f110e73] [cursor=pointer]: "10"
+          - generic [ref=f110e75] [cursor=pointer]: "11"
+          - generic [ref=f110e77] [cursor=pointer]: "12"
+          - generic [ref=f110e79] [cursor=pointer]: "13"
+          - generic [ref=f110e81] [cursor=pointer]: "14"
+          - generic [ref=f110e83] [cursor=pointer]: "15"
+          - generic [ref=f110e85] [cursor=pointer]: "16"
+          - generic [ref=f110e87] [cursor=pointer]: "17"
+          - generic [ref=f110e89] [cursor=pointer]: "18"
+          - generic [ref=f110e91] [cursor=pointer]: "19"
+          - generic [ref=f110e93] [cursor=pointer]: "20"
+          - generic [ref=f110e95] [cursor=pointer]: "21"
+          - generic [ref=f110e97] [cursor=pointer]: "22"
+          - generic [ref=f110e99] [cursor=pointer]: "23"
+          - generic [ref=f110e101] [cursor=pointer]: "24"
+          - generic [ref=f110e103] [cursor=pointer]: "25"
+          - generic [ref=f110e105] [cursor=pointer]: "26"
+          - generic [ref=f110e107] [cursor=pointer]: "27"
+          - generic [ref=f110e109] [cursor=pointer]: "28"
+          - generic [ref=f110e111] [cursor=pointer]: "29"
+          - generic [ref=f110e113] [cursor=pointer]: "30"
+          - generic [ref=f110e115] [cursor=pointer]: "31"
+          - generic [ref=f110e117] [cursor=pointer]: "1"
+          - generic [ref=f110e119] [cursor=pointer]: "2"
+          - generic [ref=f110e121] [cursor=pointer]:
+            - generic [ref=f110e122]: "3"
+            - generic "驗收21-衝突測試A" [ref=f110e123]: 10:00 驗收21-衝突測試A
+          - generic [ref=f110e124] [cursor=pointer]: "4"
+          - generic [ref=f110e126] [cursor=pointer]: "5"

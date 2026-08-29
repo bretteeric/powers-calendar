@@ -1,0 +1,19 @@
+- main [ref=f39e2]:
+  - generic [ref=f39e5]:
+    - generic [ref=f39e6]:
+      - heading "公司行事曆與會議廳預約" [level=1] [ref=f39e7]
+      - paragraph [ref=f39e8]: 管理個人日程、預約會議廳，同一間會議廳的同一時段永遠不會被重複預約。
+      - list [ref=f39e9]:
+        - listitem [ref=f39e10]: ・月／週／日三種檢視，一眼看完整週行程
+        - listitem [ref=f39e11]: ・會議廳資源時間軸，空檔一目了然
+        - listitem [ref=f39e12]: ・可訂閱的 .ics 網址，行事曆軟體直接同步
+    - generic [ref=f39e14]:
+      - heading "登入" [level=2] [ref=f39e15]
+      - generic [ref=f39e16]:
+        - generic [ref=f39e17]:
+          - generic [ref=f39e18]: 員工編號
+          - textbox [active] [ref=f39e19]
+        - generic [ref=f39e20]:
+          - generic [ref=f39e21]: 密碼
+          - textbox [ref=f39e22]
+        - button "登入" [ref=f39e23] [cursor=pointer]

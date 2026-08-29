@@ -1,0 +1,99 @@
+- generic [ref=f67e1]:
+  - navigation [ref=f67e2]:
+    - generic [ref=f67e3]:
+      - link "公司行事曆" [ref=f67e157] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f67e5]:
+        - list [ref=f67e6]:
+          - listitem [ref=f67e7]:
+            - link "我的行事曆" [ref=f67e158] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f67e9]:
+            - link "會議廳時間軸" [ref=f67e159] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f67e11]:
+            - link "會議廳管理" [ref=f67e160] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f67e13]:
+            - link "員工管理" [ref=f67e161] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f67e162] [cursor=pointer]
+        - list [ref=f67e18]:
+          - listitem [ref=f67e19]:
+            - link "系統管理員" [ref=f67e163] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f67e21]:
+    - generic [ref=f67e24]:
+      - generic [ref=f67e25]:
+        - heading "會議廳管理" [level=1] [ref=f67e164]
+        - button "＋ 新增會議廳" [ref=f67e165] [cursor=pointer]
+      - table [ref=f67e29]:
+        - rowgroup [ref=f67e30]:
+          - row [ref=f67e166]:
+            - columnheader "名稱" [ref=f67e167]
+            - columnheader "位置" [ref=f67e168]
+            - columnheader "容納人數" [ref=f67e169]
+            - columnheader "設備" [ref=f67e170]
+            - columnheader "狀態" [ref=f67e171]
+            - columnheader "操作" [ref=f67e172]
+        - rowgroup [ref=f67e38]:
+          - row [ref=f67e173]:
+            - cell "A 棟 3F 大會議廳" [ref=f67e174]
+            - cell "A 棟 3 樓" [ref=f67e175]
+            - cell "40" [ref=f67e176]
+            - cell "投影機、視訊設備、白板" [ref=f67e177]
+            - cell "啟用中" [ref=f67e178]
+            - cell [ref=f67e179]:
+              - button "編輯" [ref=f67e180] [cursor=pointer]
+              - button "停用" [ref=f67e181] [cursor=pointer]
+          - row [ref=f67e182]:
+            - cell "A 棟 3F 小會議室" [ref=f67e183]
+            - cell "A 棟 3 樓" [ref=f67e184]
+            - cell "8" [ref=f67e185]
+            - cell "電視螢幕" [ref=f67e186]
+            - cell "啟用中" [ref=f67e187]
+            - cell [ref=f67e188]:
+              - button "編輯" [ref=f67e189] [cursor=pointer]
+              - button "停用" [ref=f67e190] [cursor=pointer]
+          - row [ref=f67e191]:
+            - cell "B 棟 2F 討論室" [ref=f67e192]
+            - cell "B 棟 2 樓" [ref=f67e193]
+            - cell "6" [ref=f67e194]
+            - cell "白板" [ref=f67e195]
+            - cell "啟用中" [ref=f67e196]
+            - cell [ref=f67e197]:
+              - button "編輯" [ref=f67e198] [cursor=pointer]
+              - button "停用" [ref=f67e199] [cursor=pointer]
+          - row [ref=f67e200]:
+            - cell "測試會議廳-T20" [ref=f67e201]
+            - cell "C 棟 1 樓" [ref=f67e202]
+            - cell "12" [ref=f67e203]
+            - cell "白板" [ref=f67e204]
+            - cell "啟用中" [ref=f67e205]
+            - cell [ref=f67e206]:
+              - button "編輯" [ref=f67e207] [cursor=pointer]
+              - button "停用" [ref=f67e208] [cursor=pointer]
+      - dialog [active] [ref=f67e69]:
+        - generic [ref=f67e70]:
+          - generic [ref=f67e71]:
+            - heading "編輯會議廳" [level=5] [ref=f67e209]
+            - button [ref=f67e73] [cursor=pointer]
+          - generic [ref=f67e74]:
+            - generic [ref=f67e75]:
+              - generic [ref=f67e76]: 名稱
+              - textbox [ref=f67e77]: 測試會議廳-T20
+            - generic [ref=f67e78]:
+              - generic [ref=f67e79]: 位置
+              - textbox [ref=f67e80]: C 棟 1 樓
+            - generic [ref=f67e81]:
+              - generic [ref=f67e82]: 容納人數
+              - spinbutton [ref=f67e83]: "12"
+            - generic [ref=f67e84]:
+              - generic [ref=f67e85]: 設備
+              - textbox "投影機、視訊設備…" [ref=f67e86]: 白板
+            - generic [ref=f67e87]:
+              - checkbox "啟用中" [checked] [ref=f67e88]
+              - generic [ref=f67e89]: 啟用中
+          - generic [ref=f67e90]:
+            - button "取消" [ref=f67e91] [cursor=pointer]
+            - button "儲存" [ref=f67e92] [cursor=pointer]

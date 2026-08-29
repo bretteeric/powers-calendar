@@ -1,0 +1,122 @@
+- generic [ref=f23e1]:
+  - navigation [ref=f23e2]:
+    - generic [ref=f23e3]:
+      - link [ref=f23e179] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f23e5]:
+        - list [ref=f23e6]:
+          - listitem [ref=f23e7]:
+            - link [ref=f23e180] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f23e9]:
+            - link [ref=f23e181] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f23e11]:
+            - link [ref=f23e182] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f23e13]:
+            - link [ref=f23e183] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - list [ref=f23e15]:
+          - listitem [ref=f23e16]:
+            - link [ref=f23e184] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f23e18]:
+    - generic [ref=f23e19]:
+      - heading [level=1] [ref=f23e185]: 會議廳資源時間軸
+      - generic [ref=f23e22]:
+        - generic [ref=f23e23]:
+          - generic [ref=f23e24]:
+            - button [ref=f23e186] [cursor=pointer]: ‹
+            - button [ref=f23e187] [cursor=pointer]: ›
+          - textbox [ref=f23e27]: 2026-08-29
+          - generic [ref=f23e28]:
+            - generic [ref=f23e29]: 最少可容納
+            - spinbutton [ref=f23e188]
+            - generic [ref=f23e31]: 人
+        - generic [ref=f23e33]:
+          - generic [ref=f23e36]:
+            - generic [ref=f23e37]: "00"
+            - generic [ref=f23e39]: "02"
+            - generic [ref=f23e41]: "04"
+            - generic [ref=f23e43]: "06"
+            - generic [ref=f23e45]: "08"
+            - generic [ref=f23e47]: "10"
+            - generic [ref=f23e49]: "12"
+            - generic [ref=f23e51]: "14"
+            - generic [ref=f23e53]: "16"
+            - generic [ref=f23e55]: "18"
+            - generic [ref=f23e57]: "20"
+            - generic [ref=f23e59]: "22"
+          - generic [ref=f23e61]:
+            - generic [ref=f23e62]:
+              - generic [ref=f23e63]: A 棟 3F 大會議廳
+              - generic [ref=f23e64]: 40 人・A 棟 3 樓
+            - generic [ref=f23e189]: 任務18時間軸測試會議
+          - generic [ref=f23e67]:
+            - generic [ref=f23e68]: A 棟 3F 小會議室
+            - generic [ref=f23e69]: 8 人・A 棟 3 樓
+          - generic [ref=f23e72]:
+            - generic [ref=f23e73]: B 棟 2F 討論室
+            - generic [ref=f23e74]: 6 人・B 棟 2 樓
+        - dialog [ref=f23e76]:
+          - generic [ref=f23e77]:
+            - generic [ref=f23e78]:
+              - heading [level=5] [ref=f23e193]: 建立事件
+              - button [active] [ref=f23e80] [cursor=pointer]
+            - generic [ref=f23e81]:
+              - generic [ref=f23e82]:
+                - generic [ref=f23e83]: 標題
+                - textbox [ref=f23e84]: 衝突測試會議
+              - generic [ref=f23e85]:
+                - generic [ref=f23e86]: 說明
+                - textbox [ref=f23e87]
+              - generic [ref=f23e88]:
+                - generic [ref=f23e89]:
+                  - generic [ref=f23e90]: 開始
+                  - textbox [ref=f23e91]: 2026-08-29T10:30
+                - generic [ref=f23e92]:
+                  - generic [ref=f23e93]: 結束
+                  - textbox [ref=f23e94]: 2026-08-29T11:30
+              - generic [ref=f23e95]:
+                - checkbox [ref=f23e194]
+                - generic [ref=f23e97]: 全天事件（00:00–23:59）
+              - generic [ref=f23e98]:
+                - generic [ref=f23e99]: 會議廳
+                - combobox [ref=f23e100]
+              - generic [ref=f23e101]:
+                - generic [ref=f23e102]: 與會者
+                - listbox [ref=f23e103]
+                - generic [ref=f23e104]: 按住 Ctrl／Cmd 可複選。
+              - generic [ref=f23e176]:
+                - generic [ref=f23e177]: 重複
+                - combobox [ref=f23e178]
+            - generic [ref=f23e111]:
+              - button [ref=f23e195] [cursor=pointer]: 取消
+              - button [ref=f23e196] [cursor=pointer]: 儲存
+  - dialog [ref=f23e198]:
+    - generic [ref=f23e199]: "!"
+    - heading "會議廳於下列時段已被預約" [level=2] [ref=f23e201]
+    - generic [ref=f23e202]:
+      - table [ref=f23e204]:
+        - rowgroup [ref=f23e205]:
+          - row [ref=f23e206]:
+            - columnheader "會議廳" [ref=f23e207]
+            - columnheader "時段" [ref=f23e208]
+            - columnheader "事件" [ref=f23e209]
+            - columnheader "預約人" [ref=f23e210]
+        - rowgroup [ref=f23e211]:
+          - row [ref=f23e212]:
+            - cell "A 棟 3F 大會議廳" [ref=f23e213]
+            - cell "8/29 10:00 – 11:00" [ref=f23e214]
+            - cell "任務18時間軸測試會議" [ref=f23e215]
+            - cell "系統管理員" [ref=f23e216]
+      - paragraph [ref=f23e217]: 整筆預約未寫入，請調整時段後重新送出。
+    - text: "!"
+    - button "OK" [ref=f23e219] [cursor=pointer]

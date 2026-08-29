@@ -1,0 +1,143 @@
+- generic [ref=f122e1]:
+  - navigation [ref=f122e2]:
+    - generic [ref=f122e3]:
+      - link "公司行事曆" [ref=f122e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f122e5]:
+        - list [ref=f122e6]:
+          - listitem [ref=f122e7]:
+            - link "我的行事曆" [ref=f122e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f122e9]:
+            - link "會議廳時間軸" [ref=f122e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f122e11]:
+            - link "會議廳管理" [ref=f122e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f122e13]:
+            - link "員工管理" [ref=f122e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f122e17] [cursor=pointer]
+        - list [ref=f122e18]:
+          - listitem [ref=f122e19]:
+            - link "系統管理員" [ref=f122e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f122e21]:
+    - generic [ref=f122e24]:
+      - generic [ref=f122e25]:
+        - generic [ref=f122e26]:
+          - button "‹" [ref=f122e27] [cursor=pointer]
+          - button "今天" [ref=f122e28] [cursor=pointer]
+          - button "›" [ref=f122e29] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f122e30]
+        - generic [ref=f122e31]:
+          - button "月" [ref=f122e32] [cursor=pointer]
+          - button "週" [ref=f122e33] [cursor=pointer]
+          - button "日" [ref=f122e34] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f122e35] [cursor=pointer]
+      - generic [ref=f122e36]:
+        - generic [ref=f122e37]:
+          - generic [ref=f122e38]: 日
+          - generic [ref=f122e39]: 一
+          - generic [ref=f122e40]: 二
+          - generic [ref=f122e41]: 三
+          - generic [ref=f122e42]: 四
+          - generic [ref=f122e43]: 五
+          - generic [ref=f122e44]: 六
+        - generic [ref=f122e45]:
+          - generic [ref=f122e46] [cursor=pointer]: "26"
+          - generic [ref=f122e48] [cursor=pointer]: "27"
+          - generic [ref=f122e50] [cursor=pointer]: "28"
+          - generic [ref=f122e52] [cursor=pointer]: "29"
+          - generic [ref=f122e54] [cursor=pointer]: "30"
+          - generic [ref=f122e56] [cursor=pointer]: "31"
+          - generic [ref=f122e58] [cursor=pointer]: "1"
+          - generic [ref=f122e60] [cursor=pointer]: "2"
+          - generic [ref=f122e62] [cursor=pointer]: "3"
+          - generic [ref=f122e64] [cursor=pointer]: "4"
+          - generic [ref=f122e66] [cursor=pointer]: "5"
+          - generic [ref=f122e68] [cursor=pointer]: "6"
+          - generic [ref=f122e70] [cursor=pointer]: "7"
+          - generic [ref=f122e72] [cursor=pointer]: "8"
+          - generic [ref=f122e74] [cursor=pointer]: "9"
+          - generic [ref=f122e76] [cursor=pointer]: "10"
+          - generic [ref=f122e78] [cursor=pointer]: "11"
+          - generic [ref=f122e80] [cursor=pointer]: "12"
+          - generic [ref=f122e82] [cursor=pointer]: "13"
+          - generic [ref=f122e84] [cursor=pointer]: "14"
+          - generic [ref=f122e86] [cursor=pointer]: "15"
+          - generic [ref=f122e88] [cursor=pointer]: "16"
+          - generic [ref=f122e90] [cursor=pointer]: "17"
+          - generic [ref=f122e92] [cursor=pointer]: "18"
+          - generic [ref=f122e94] [cursor=pointer]: "19"
+          - generic [ref=f122e96] [cursor=pointer]:
+            - generic [ref=f122e97]: "20"
+            - generic "專案啟動會議" [ref=f122e98]: 09:00 專案啟動會議
+            - generic "每週重複測試" [ref=f122e99]: 11:00 每週重複測試
+          - generic [ref=f122e100] [cursor=pointer]: "21"
+          - generic [ref=f122e102] [cursor=pointer]: "22"
+          - generic [ref=f122e104] [cursor=pointer]: "23"
+          - generic [ref=f122e106] [cursor=pointer]: "24"
+          - generic [ref=f122e108] [cursor=pointer]: "25"
+          - generic [ref=f122e110] [cursor=pointer]: "26"
+          - generic [ref=f122e112] [cursor=pointer]:
+            - generic [ref=f122e113]: "27"
+            - generic "每週重複測試" [ref=f122e114]: 09:00 每週重複測試
+          - generic [ref=f122e115] [cursor=pointer]: "28"
+          - generic [ref=f122e117] [cursor=pointer]: "29"
+          - generic [ref=f122e119] [cursor=pointer]: "30"
+          - generic [ref=f122e121] [cursor=pointer]: "31"
+          - generic [ref=f122e123] [cursor=pointer]: "1"
+          - generic [ref=f122e125] [cursor=pointer]: "2"
+          - generic [ref=f122e127] [cursor=pointer]:
+            - generic [ref=f122e128]: "3"
+            - generic "每週重複測試" [ref=f122e129]: 14:00 每週重複測試
+          - generic [ref=f122e130] [cursor=pointer]: "4"
+          - generic [ref=f122e132] [cursor=pointer]: "5"
+      - dialog [active] [ref=f122e134]:
+        - generic [ref=f122e135]:
+          - generic [ref=f122e136]:
+            - heading "建立事件" [level=5] [ref=f122e137]
+            - button [ref=f122e138] [cursor=pointer]
+          - generic [ref=f122e139]:
+            - generic [ref=f122e140]:
+              - generic [ref=f122e141]: 標題
+              - textbox [ref=f122e142]
+            - generic [ref=f122e143]:
+              - generic [ref=f122e144]: 說明
+              - textbox [ref=f122e145]
+            - generic [ref=f122e146]:
+              - generic [ref=f122e147]:
+                - generic [ref=f122e148]: 開始
+                - textbox [ref=f122e149]: 2026-08-29T09:00
+              - generic [ref=f122e150]:
+                - generic [ref=f122e151]: 結束
+                - textbox [ref=f122e152]: 2026-08-29T10:00
+            - generic [ref=f122e153]:
+              - checkbox "全天事件（00:00–23:59）" [ref=f122e154]
+              - generic [ref=f122e155]: 全天事件（00:00–23:59）
+            - generic [ref=f122e156]:
+              - generic [ref=f122e157]: 會議廳
+              - combobox [ref=f122e158]:
+                - option "不指定（純個人事件，不占用資源）" [selected]
+                - option "A 棟 3F 大會議廳（40 人）・A 棟 3 樓"
+                - option "A 棟 3F 小會議室（8 人）・A 棟 3 樓"
+                - option "B 棟 2F 討論室（6 人）・B 棟 2 樓"
+            - generic [ref=f122e159]:
+              - generic [ref=f122e160]: 與會者
+              - listbox [ref=f122e161]:
+                - option "測試員工乙（E9001）" [ref=f122e162]
+                - option "任務20新員工（T2001）・管理部" [ref=f122e163]
+                - option "測試員工19（T9001）" [ref=f122e164]
+              - generic [ref=f122e165]: 按住 Ctrl／Cmd 可複選。
+            - generic [ref=f122e169]:
+              - generic [ref=f122e170]: 重複
+              - combobox [ref=f122e171]:
+                - option "不重複" [selected]
+                - option "每天"
+                - option "每週"
+                - option "每月"
+                - option "每年"
+          - generic [ref=f122e172]:
+            - button "取消" [ref=f122e173] [cursor=pointer]
+            - button "儲存" [ref=f122e174] [cursor=pointer]

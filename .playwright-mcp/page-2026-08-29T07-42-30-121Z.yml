@@ -1,0 +1,106 @@
+- generic [ref=f94e1]:
+  - navigation [ref=f94e2]:
+    - generic [ref=f94e3]:
+      - link [ref=f94e241] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f94e5]:
+        - list [ref=f94e6]:
+          - listitem [ref=f94e7]:
+            - link [ref=f94e242] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f94e9]:
+            - link [ref=f94e243] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f94e11]:
+            - link [ref=f94e244] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f94e13]:
+            - link [ref=f94e245] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f94e246] [cursor=pointer]: 🔔
+        - list [ref=f94e18]:
+          - listitem [ref=f94e19]:
+            - link [ref=f94e247] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f94e21]:
+    - generic [ref=f94e24]:
+      - generic [ref=f94e25]:
+        - heading [level=1] [ref=f94e248]: 員工管理
+        - button [ref=f94e249] [cursor=pointer]: ＋ 新增帳號
+      - table [ref=f94e29]:
+        - rowgroup [ref=f94e30]:
+          - row [ref=f94e250]:
+            - columnheader [ref=f94e251]: 員工編號
+            - columnheader [ref=f94e252]: 姓名
+            - columnheader [ref=f94e253]: Email
+            - columnheader [ref=f94e254]: 部門
+            - columnheader [ref=f94e255]: 角色
+            - columnheader [ref=f94e256]: 狀態
+            - columnheader [ref=f94e257]: 操作
+        - rowgroup [ref=f94e39]:
+          - row [ref=f94e258]:
+            - cell [ref=f94e259]: A0001
+            - cell [ref=f94e260]: 系統管理員
+            - cell [ref=f94e261]: admin@corp.local
+            - cell [ref=f94e262]: 資訊部
+            - cell [ref=f94e263]:
+              - generic [ref=f94e46]: 系統管理員
+            - cell [ref=f94e264]:
+              - generic [ref=f94e48]: 啟用中
+            - cell [ref=f94e265]:
+              - button [ref=f94e266] [cursor=pointer]: 編輯
+              - button [ref=f94e267] [cursor=pointer]: 重設密碼
+              - button [ref=f94e268] [cursor=pointer]: 停用
+          - row [ref=f94e269]:
+            - cell [ref=f94e270]: E9001
+            - cell [ref=f94e271]: 測試員工乙
+            - cell [ref=f94e272]: e9001@corp.local
+            - cell [ref=f94e273]: —
+            - cell [ref=f94e274]:
+              - generic [ref=f94e59]: 一般員工
+            - cell [ref=f94e275]:
+              - generic [ref=f94e61]: 啟用中
+            - cell [ref=f94e276]:
+              - button [ref=f94e277] [cursor=pointer]: 編輯
+              - button [ref=f94e278] [cursor=pointer]: 重設密碼
+              - button [ref=f94e279] [cursor=pointer]: 停用
+          - row [ref=f94e280]:
+            - cell [ref=f94e281]: T2001
+            - cell [ref=f94e282]: 任務20新員工
+            - cell [ref=f94e283]: t2001@corp.local
+            - cell [ref=f94e284]: 管理部
+            - cell [ref=f94e285]:
+              - generic [ref=f94e72]: 一般員工
+            - cell [ref=f94e286]:
+              - generic [ref=f94e74]: 已停用
+            - cell [ref=f94e287]:
+              - button [ref=f94e288] [cursor=pointer]: 編輯
+              - button [ref=f94e289] [cursor=pointer]: 重設密碼
+              - button [ref=f94e290] [cursor=pointer]: 啟用
+          - row [ref=f94e291]:
+            - cell [ref=f94e292]: T9001
+            - cell [ref=f94e293]: 測試員工19
+            - cell [ref=f94e294]: test19@corp.local
+            - cell [ref=f94e295]: —
+            - cell [ref=f94e296]:
+              - generic [ref=f94e85]: 一般員工
+            - cell [ref=f94e297]:
+              - generic [ref=f94e87]: 啟用中
+            - cell [ref=f94e298]:
+              - button [ref=f94e299] [cursor=pointer]: 編輯
+              - button [ref=f94e300] [cursor=pointer]: 重設密碼
+              - button [ref=f94e301] [cursor=pointer]: 停用
+  - dialog [ref=f94e303]:
+    - generic [ref=f94e304]: "?"
+    - heading "要啟用 任務20新員工 的帳號嗎？" [level=2] [ref=f94e306]
+    - generic [ref=f94e307]: 啟用後可以再次登入。
+    - text: "!"
+    - generic [ref=f94e308]:
+      - button "確定" [active] [ref=f94e309] [cursor=pointer]
+      - button "取消" [ref=f94e310] [cursor=pointer]

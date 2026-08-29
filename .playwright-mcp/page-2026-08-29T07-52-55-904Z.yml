@@ -1,0 +1,90 @@
+- generic [active] [ref=f104e1]:
+  - navigation [ref=f104e2]:
+    - generic [ref=f104e3]:
+      - link "公司行事曆" [ref=f104e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f104e5]:
+        - list [ref=f104e6]:
+          - listitem [ref=f104e7]:
+            - link "我的行事曆" [ref=f104e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f104e9]:
+            - link "會議廳時間軸" [ref=f104e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f104e11]:
+            - link "會議廳管理" [ref=f104e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f104e13]:
+            - link "員工管理" [ref=f104e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f104e17] [cursor=pointer]
+        - list [ref=f104e18]:
+          - listitem [ref=f104e19]:
+            - link "系統管理員" [ref=f104e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f104e21]:
+    - generic [ref=f104e24]:
+      - generic [ref=f104e25]:
+        - generic [ref=f104e26]:
+          - button "‹" [ref=f104e27] [cursor=pointer]
+          - button "今天" [ref=f104e28] [cursor=pointer]
+          - button "›" [ref=f104e29] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f104e30]
+        - generic [ref=f104e31]:
+          - button "月" [ref=f104e32] [cursor=pointer]
+          - button "週" [ref=f104e33] [cursor=pointer]
+          - button "日" [ref=f104e34] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f104e35] [cursor=pointer]
+      - generic [ref=f104e36]:
+        - generic [ref=f104e37]:
+          - generic [ref=f104e38]: 日
+          - generic [ref=f104e39]: 一
+          - generic [ref=f104e40]: 二
+          - generic [ref=f104e41]: 三
+          - generic [ref=f104e42]: 四
+          - generic [ref=f104e43]: 五
+          - generic [ref=f104e44]: 六
+        - generic [ref=f104e45]:
+          - generic [ref=f104e46] [cursor=pointer]: "26"
+          - generic [ref=f104e48] [cursor=pointer]: "27"
+          - generic [ref=f104e50] [cursor=pointer]: "28"
+          - generic [ref=f104e52] [cursor=pointer]: "29"
+          - generic [ref=f104e54] [cursor=pointer]: "30"
+          - generic [ref=f104e56] [cursor=pointer]: "31"
+          - generic [ref=f104e58] [cursor=pointer]: "1"
+          - generic [ref=f104e60] [cursor=pointer]: "2"
+          - generic [ref=f104e62] [cursor=pointer]: "3"
+          - generic [ref=f104e64] [cursor=pointer]: "4"
+          - generic [ref=f104e66] [cursor=pointer]: "5"
+          - generic [ref=f104e68] [cursor=pointer]: "6"
+          - generic [ref=f104e70] [cursor=pointer]: "7"
+          - generic [ref=f104e72] [cursor=pointer]: "8"
+          - generic [ref=f104e74] [cursor=pointer]: "9"
+          - generic [ref=f104e76] [cursor=pointer]: "10"
+          - generic [ref=f104e78] [cursor=pointer]: "11"
+          - generic [ref=f104e80] [cursor=pointer]: "12"
+          - generic [ref=f104e82] [cursor=pointer]: "13"
+          - generic [ref=f104e84] [cursor=pointer]: "14"
+          - generic [ref=f104e86] [cursor=pointer]: "15"
+          - generic [ref=f104e88] [cursor=pointer]: "16"
+          - generic [ref=f104e90] [cursor=pointer]: "17"
+          - generic [ref=f104e92] [cursor=pointer]: "18"
+          - generic [ref=f104e94] [cursor=pointer]: "19"
+          - generic [ref=f104e96] [cursor=pointer]: "20"
+          - generic [ref=f104e98] [cursor=pointer]: "21"
+          - generic [ref=f104e100] [cursor=pointer]: "22"
+          - generic [ref=f104e102] [cursor=pointer]: "23"
+          - generic [ref=f104e104] [cursor=pointer]: "24"
+          - generic [ref=f104e106] [cursor=pointer]: "25"
+          - generic [ref=f104e108] [cursor=pointer]: "26"
+          - generic [ref=f104e110] [cursor=pointer]: "27"
+          - generic [ref=f104e112] [cursor=pointer]: "28"
+          - generic [ref=f104e114] [cursor=pointer]: "29"
+          - generic [ref=f104e116] [cursor=pointer]: "30"
+          - generic [ref=f104e118] [cursor=pointer]: "31"
+          - generic [ref=f104e120] [cursor=pointer]: "1"
+          - generic [ref=f104e122] [cursor=pointer]: "2"
+          - generic [ref=f104e124] [cursor=pointer]: "3"
+          - generic [ref=f104e126] [cursor=pointer]: "4"
+          - generic [ref=f104e128] [cursor=pointer]: "5"
+      - generic [ref=f104e130]: 載入中…

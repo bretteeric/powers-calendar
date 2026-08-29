@@ -1,0 +1,25 @@
+- generic [active] [ref=f46e1]:
+  - main [ref=f46e2]:
+    - generic [ref=f46e5]:
+      - generic [ref=f46e6]:
+        - heading [level=1] [ref=f46e24]: 公司行事曆與會議廳預約
+        - paragraph [ref=f46e8]: 管理個人日程、預約會議廳，同一間會議廳的同一時段永遠不會被重複預約。
+        - list [ref=f46e9]:
+          - listitem [ref=f46e10]: ・月／週／日三種檢視，一眼看完整週行程
+          - listitem [ref=f46e11]: ・會議廳資源時間軸，空檔一目了然
+          - listitem [ref=f46e12]: ・可訂閱的 .ics 網址，行事曆軟體直接同步
+      - generic [ref=f46e14]:
+        - heading [level=2] [ref=f46e25]: 登入
+        - generic [ref=f46e16]:
+          - generic [ref=f46e17]:
+            - generic [ref=f46e18]: 員工編號
+            - textbox [ref=f46e19]: T9001
+          - generic [ref=f46e20]:
+            - generic [ref=f46e21]: 密碼
+            - textbox [ref=f46e22]: Test@12345
+          - button [ref=f46e26] [cursor=pointer]: 登入
+  - dialog [ref=f46e28]:
+    - heading "操作失敗" [level=2] [ref=f46e33]
+    - generic [ref=f46e34]: 員工編號或密碼錯誤
+    - text: "!"
+    - button "OK" [disabled] [ref=f46e36]

@@ -1,0 +1,114 @@
+- generic [ref=f86e1]:
+  - navigation [ref=f86e2]:
+    - generic [ref=f86e3]:
+      - link "公司行事曆" [ref=f86e163] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f86e5]:
+        - list [ref=f86e6]:
+          - listitem [ref=f86e7]:
+            - link "我的行事曆" [ref=f86e164] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f86e9]:
+            - link "會議廳時間軸" [ref=f86e165] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f86e11]:
+            - link "會議廳管理" [ref=f86e166] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f86e13]:
+            - link "員工管理" [ref=f86e167] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f86e168] [cursor=pointer]
+        - list [ref=f86e18]:
+          - listitem [ref=f86e19]:
+            - link "系統管理員" [ref=f86e169] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f86e21]:
+    - generic [ref=f86e24]:
+      - generic [ref=f86e25]:
+        - heading "員工管理" [level=1] [ref=f86e170]
+        - button "＋ 新增帳號" [ref=f86e171] [cursor=pointer]
+      - table [ref=f86e29]:
+        - rowgroup [ref=f86e30]:
+          - row [ref=f86e172]:
+            - columnheader "員工編號" [ref=f86e173]
+            - columnheader "姓名" [ref=f86e174]
+            - columnheader "Email" [ref=f86e175]
+            - columnheader "部門" [ref=f86e176]
+            - columnheader "角色" [ref=f86e177]
+            - columnheader "狀態" [ref=f86e178]
+            - columnheader "操作" [ref=f86e179]
+        - rowgroup [ref=f86e39]:
+          - row [ref=f86e180]:
+            - cell "A0001" [ref=f86e181]
+            - cell "系統管理員" [ref=f86e182]
+            - cell "admin@corp.local" [ref=f86e183]
+            - cell "資訊部" [ref=f86e184]
+            - cell "系統管理員" [ref=f86e185]
+            - cell "啟用中" [ref=f86e186]
+            - cell [ref=f86e187]:
+              - button "編輯" [ref=f86e188] [cursor=pointer]
+              - button "重設密碼" [ref=f86e189] [cursor=pointer]
+              - button "停用" [ref=f86e190] [cursor=pointer]
+          - row [ref=f86e191]:
+            - cell "E9001" [ref=f86e192]
+            - cell "測試員工乙" [ref=f86e193]
+            - cell "e9001@corp.local" [ref=f86e194]
+            - cell "—" [ref=f86e195]
+            - cell "一般員工" [ref=f86e196]
+            - cell "啟用中" [ref=f86e197]
+            - cell [ref=f86e198]:
+              - button "編輯" [ref=f86e199] [cursor=pointer]
+              - button "重設密碼" [ref=f86e200] [cursor=pointer]
+              - button "停用" [ref=f86e201] [cursor=pointer]
+          - row [ref=f86e202]:
+            - cell "T2001" [ref=f86e203]
+            - cell "任務20新員工" [ref=f86e204]
+            - cell "t2001@corp.local" [ref=f86e205]
+            - cell "管理部" [ref=f86e206]
+            - cell "一般員工" [ref=f86e207]
+            - cell "已停用" [ref=f86e208]
+            - cell [ref=f86e209]:
+              - button "編輯" [ref=f86e210] [cursor=pointer]
+              - button "重設密碼" [ref=f86e211] [cursor=pointer]
+              - button "啟用" [ref=f86e212] [cursor=pointer]
+          - row [ref=f86e213]:
+            - cell "T9001" [ref=f86e214]
+            - cell "測試員工19" [ref=f86e215]
+            - cell "test19@corp.local" [ref=f86e216]
+            - cell "—" [ref=f86e217]
+            - cell "一般員工" [ref=f86e218]
+            - cell "啟用中" [ref=f86e219]
+            - cell [ref=f86e220]:
+              - button "編輯" [ref=f86e221] [cursor=pointer]
+              - button "重設密碼" [ref=f86e222] [cursor=pointer]
+              - button "停用" [ref=f86e223] [cursor=pointer]
+      - dialog [active] [ref=f86e224]:
+        - generic [ref=f86e225]:
+          - generic [ref=f86e226]:
+            - heading "編輯帳號" [level=5] [ref=f86e227]
+            - button [ref=f86e228] [cursor=pointer]
+          - generic [ref=f86e229]:
+            - generic [ref=f86e230]:
+              - generic [ref=f86e231]: 姓名
+              - textbox [ref=f86e232]: 系統管理員
+            - generic [ref=f86e233]:
+              - generic [ref=f86e234]: Email
+              - textbox [ref=f86e235]: admin@corp.local
+            - generic [ref=f86e236]:
+              - generic [ref=f86e237]: 部門
+              - combobox [ref=f86e238]:
+                - option "未指定"
+                - option "業務部"
+                - option "管理部"
+                - option "資訊部" [selected]
+            - generic [ref=f86e239]:
+              - generic [ref=f86e240]: 角色
+              - combobox [ref=f86e241]:
+                - option "一般員工" [selected]
+                - option "系統管理員"
+            - generic [ref=f86e242]:
+              - checkbox "啟用中" [checked] [ref=f86e243]
+              - generic [ref=f86e244]: 啟用中
+          - generic [ref=f86e245]:
+            - button "取消" [ref=f86e246] [cursor=pointer]
+            - button "儲存" [ref=f86e247] [cursor=pointer]

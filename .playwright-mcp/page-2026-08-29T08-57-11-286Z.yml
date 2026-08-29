@@ -1,0 +1,114 @@
+- generic [ref=f137e1]:
+  - navigation [ref=f137e2]:
+    - generic [ref=f137e3]:
+      - link "公司行事曆" [ref=f137e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f137e5]:
+        - list [ref=f137e6]:
+          - listitem [ref=f137e7]:
+            - link "我的行事曆" [ref=f137e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f137e9]:
+            - link "會議廳時間軸" [ref=f137e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f137e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f137e14]: "1"
+        - list [ref=f137e15]:
+          - listitem [ref=f137e16]:
+            - link "任務20新員工" [ref=f137e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f137e18]:
+    - generic [ref=f137e21]:
+      - generic [ref=f137e22]:
+        - generic [ref=f137e23]:
+          - button "‹" [ref=f137e24] [cursor=pointer]
+          - button "今天" [ref=f137e25] [cursor=pointer]
+          - button "›" [ref=f137e26] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f137e27]
+        - generic [ref=f137e28]:
+          - button "月" [ref=f137e29] [cursor=pointer]
+          - button "週" [ref=f137e30] [cursor=pointer]
+          - button "日" [ref=f137e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f137e32] [cursor=pointer]
+      - generic [ref=f137e33]:
+        - generic [ref=f137e34]:
+          - generic [ref=f137e35]: 日
+          - generic [ref=f137e36]: 一
+          - generic [ref=f137e37]: 二
+          - generic [ref=f137e38]: 三
+          - generic [ref=f137e39]: 四
+          - generic [ref=f137e40]: 五
+          - generic [ref=f137e41]: 六
+        - generic [ref=f137e42]:
+          - generic [ref=f137e43] [cursor=pointer]: "26"
+          - generic [ref=f137e45] [cursor=pointer]: "27"
+          - generic [ref=f137e47] [cursor=pointer]: "28"
+          - generic [ref=f137e49] [cursor=pointer]: "29"
+          - generic [ref=f137e51] [cursor=pointer]: "30"
+          - generic [ref=f137e53] [cursor=pointer]: "31"
+          - generic [ref=f137e55] [cursor=pointer]: "1"
+          - generic [ref=f137e57] [cursor=pointer]: "2"
+          - generic [ref=f137e59] [cursor=pointer]: "3"
+          - generic [ref=f137e61] [cursor=pointer]: "4"
+          - generic [ref=f137e63] [cursor=pointer]: "5"
+          - generic [ref=f137e65] [cursor=pointer]: "6"
+          - generic [ref=f137e67] [cursor=pointer]: "7"
+          - generic [ref=f137e69] [cursor=pointer]: "8"
+          - generic [ref=f137e71] [cursor=pointer]: "9"
+          - generic [ref=f137e73] [cursor=pointer]: "10"
+          - generic [ref=f137e75] [cursor=pointer]: "11"
+          - generic [ref=f137e77] [cursor=pointer]: "12"
+          - generic [ref=f137e79] [cursor=pointer]: "13"
+          - generic [ref=f137e81] [cursor=pointer]: "14"
+          - generic [ref=f137e83] [cursor=pointer]: "15"
+          - generic [ref=f137e85] [cursor=pointer]: "16"
+          - generic [ref=f137e87] [cursor=pointer]: "17"
+          - generic [ref=f137e89] [cursor=pointer]: "18"
+          - generic [ref=f137e91] [cursor=pointer]: "19"
+          - generic [ref=f137e93] [cursor=pointer]: "20"
+          - generic [ref=f137e95] [cursor=pointer]: "21"
+          - generic [ref=f137e97] [cursor=pointer]: "22"
+          - generic [ref=f137e99] [cursor=pointer]: "23"
+          - generic [ref=f137e101] [cursor=pointer]: "24"
+          - generic [ref=f137e103] [cursor=pointer]: "25"
+          - generic [ref=f137e105] [cursor=pointer]: "26"
+          - generic [ref=f137e107] [cursor=pointer]: "27"
+          - generic [ref=f137e109] [cursor=pointer]: "28"
+          - generic [ref=f137e111] [cursor=pointer]:
+            - generic [ref=f137e112]: "29"
+            - generic "驗收21c-邊界情況" [ref=f137e113]: 09:00 驗收21c-邊界情況
+          - generic [ref=f137e114] [cursor=pointer]:
+            - generic [ref=f137e115]: "30"
+            - generic "驗收21c-邊界情況" [ref=f137e116]: 09:00 驗收21c-邊界情況
+          - generic [ref=f137e117] [cursor=pointer]: "31"
+          - generic [ref=f137e119] [cursor=pointer]: "1"
+          - generic [ref=f137e121] [cursor=pointer]:
+            - generic [ref=f137e122]: "2"
+            - generic "驗收21-個人事件" [ref=f137e123]: 14:00 驗收21-個人事件
+          - generic [ref=f137e124] [cursor=pointer]: "3"
+          - generic [ref=f137e126] [cursor=pointer]: "4"
+          - generic [ref=f137e128] [cursor=pointer]: "5"
+      - dialog [active] [ref=f137e130]:
+        - generic [ref=f137e131]:
+          - generic [ref=f137e132]:
+            - heading "驗收21c-邊界情況" [level=5] [ref=f137e133]
+            - button [ref=f137e134] [cursor=pointer]
+          - generic [ref=f137e136]:
+            - term [ref=f137e137]: 時間
+            - definition [ref=f137e138]: 8/29 09:00 – 10:00
+            - term [ref=f137e139]: 會議廳
+            - definition [ref=f137e140]: 未指定（純個人事件）
+            - term [ref=f137e141]: 預約人
+            - definition [ref=f137e142]: 任務20新員工
+            - term [ref=f137e143]: 重複
+            - definition [ref=f137e144]: 此事件屬於一個重複系列
+            - term [ref=f137e145]: 與會者
+            - definition [ref=f137e146]: 無
+          - generic [ref=f137e147]:
+            - button "下載 .ics" [ref=f137e148] [cursor=pointer]
+            - generic [ref=f137e149]:
+              - button "編輯這一筆" [ref=f137e150] [cursor=pointer]
+              - button "編輯整個系列" [ref=f137e151] [cursor=pointer]
+              - button "取消這一筆" [ref=f137e152] [cursor=pointer]
+              - button "取消整個系列" [ref=f137e153] [cursor=pointer]

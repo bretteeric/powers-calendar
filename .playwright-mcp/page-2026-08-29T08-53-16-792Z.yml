@@ -1,0 +1,164 @@
+- generic [ref=f133e1]:
+  - navigation [ref=f133e2]:
+    - generic [ref=f133e3]:
+      - link "公司行事曆" [ref=f133e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f133e5]:
+        - list [ref=f133e6]:
+          - listitem [ref=f133e7]:
+            - link "我的行事曆" [ref=f133e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f133e9]:
+            - link "會議廳時間軸" [ref=f133e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f133e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f133e14]: "1"
+        - list [ref=f133e15]:
+          - listitem [ref=f133e16]:
+            - link "任務20新員工" [ref=f133e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f133e18]:
+    - generic [ref=f133e21]:
+      - generic [ref=f133e22]:
+        - generic [ref=f133e23]:
+          - button "‹" [ref=f133e24] [cursor=pointer]
+          - button "今天" [ref=f133e25] [cursor=pointer]
+          - button "›" [ref=f133e26] [cursor=pointer]
+        - heading "2026 年 12 月" [level=1] [ref=f133e332]
+        - generic [ref=f133e28]:
+          - button "月" [ref=f133e29] [cursor=pointer]
+          - button "週" [ref=f133e30] [cursor=pointer]
+          - button "日" [ref=f133e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f133e32] [cursor=pointer]
+      - generic [ref=f133e33]:
+        - generic [ref=f133e34]:
+          - generic [ref=f133e35]: 日
+          - generic [ref=f133e36]: 一
+          - generic [ref=f133e37]: 二
+          - generic [ref=f133e38]: 三
+          - generic [ref=f133e39]: 四
+          - generic [ref=f133e40]: 五
+          - generic [ref=f133e41]: 六
+        - generic [ref=f133e42]:
+          - generic [ref=f133e303] [cursor=pointer]: "29"
+          - generic [ref=f133e305] [cursor=pointer]: "30"
+          - generic [ref=f133e307] [cursor=pointer]: "1"
+          - generic [ref=f133e309] [cursor=pointer]: "2"
+          - generic [ref=f133e311] [cursor=pointer]: "3"
+          - generic [ref=f133e313] [cursor=pointer]: "4"
+          - generic [ref=f133e315] [cursor=pointer]: "5"
+          - generic [ref=f133e317] [cursor=pointer]: "6"
+          - generic [ref=f133e319] [cursor=pointer]: "7"
+          - generic [ref=f133e321] [cursor=pointer]: "8"
+          - generic [ref=f133e323] [cursor=pointer]:
+            - generic [ref=f133e324]: "9"
+            - generic "驗收21-每月第二個星期三" [ref=f133e325]: 15:00 驗收21-每月第二個星期三
+          - generic [ref=f133e326] [cursor=pointer]: "10"
+          - generic [ref=f133e328] [cursor=pointer]: "11"
+          - generic [ref=f133e330] [cursor=pointer]: "12"
+          - generic [ref=f133e333] [cursor=pointer]: "13"
+          - generic [ref=f133e335] [cursor=pointer]: "14"
+          - generic [ref=f133e337] [cursor=pointer]: "15"
+          - generic [ref=f133e339] [cursor=pointer]: "16"
+          - generic [ref=f133e341] [cursor=pointer]: "17"
+          - generic [ref=f133e343] [cursor=pointer]: "18"
+          - generic [ref=f133e345] [cursor=pointer]: "19"
+          - generic [ref=f133e347] [cursor=pointer]: "20"
+          - generic [ref=f133e349] [cursor=pointer]: "21"
+          - generic [ref=f133e351] [cursor=pointer]: "22"
+          - generic [ref=f133e353] [cursor=pointer]: "23"
+          - generic [ref=f133e355] [cursor=pointer]: "24"
+          - generic [ref=f133e357] [cursor=pointer]: "25"
+          - generic [ref=f133e359] [cursor=pointer]: "26"
+          - generic [ref=f133e361] [cursor=pointer]: "27"
+          - generic [ref=f133e363] [cursor=pointer]: "28"
+          - generic [ref=f133e365] [cursor=pointer]: "29"
+          - generic [ref=f133e367] [cursor=pointer]: "30"
+          - generic [ref=f133e369] [cursor=pointer]: "31"
+          - generic [ref=f133e371] [cursor=pointer]: "1"
+          - generic [ref=f133e373] [cursor=pointer]: "2"
+          - generic [ref=f133e375] [cursor=pointer]: "3"
+          - generic [ref=f133e377] [cursor=pointer]: "4"
+          - generic [ref=f133e379] [cursor=pointer]: "5"
+          - generic [ref=f133e381] [cursor=pointer]: "6"
+          - generic [ref=f133e383] [cursor=pointer]: "7"
+          - generic [ref=f133e385] [cursor=pointer]: "8"
+          - generic [ref=f133e387] [cursor=pointer]: "9"
+      - dialog [active] [ref=f133e414]:
+        - generic [ref=f133e415]:
+          - generic [ref=f133e416]:
+            - heading "編輯整個系列" [level=5] [ref=f133e417]
+            - button [ref=f133e418] [cursor=pointer]
+          - generic [ref=f133e419]:
+            - generic [ref=f133e420]:
+              - generic [ref=f133e421]: 標題
+              - textbox [ref=f133e422]: 驗收21-每月第二個星期三
+            - generic [ref=f133e423]:
+              - generic [ref=f133e424]: 說明
+              - textbox [ref=f133e425]
+            - generic [ref=f133e426]:
+              - generic [ref=f133e427]:
+                - generic [ref=f133e428]: 開始
+                - textbox [ref=f133e429]: 2026-09-09T15:00
+              - generic [ref=f133e430]:
+                - generic [ref=f133e431]: 結束
+                - textbox [ref=f133e432]: 2026-09-09T16:00
+            - generic [ref=f133e433]:
+              - checkbox "全天事件（00:00–23:59）" [ref=f133e434]
+              - generic [ref=f133e435]: 全天事件（00:00–23:59）
+            - generic [ref=f133e436]:
+              - generic [ref=f133e437]: 會議廳
+              - combobox [ref=f133e438]:
+                - option "不指定（純個人事件，不占用資源）" [selected]
+                - option "A 棟 3F 大會議廳（40 人）・A 棟 3 樓"
+                - option "A 棟 3F 小會議室（8 人）・A 棟 3 樓"
+                - option "B 棟 2F 討論室（6 人）・B 棟 2 樓"
+                - option "測試會議廳-T20-已編輯（20 人）・C 棟 1 樓"
+            - generic [ref=f133e439]:
+              - generic [ref=f133e440]: 與會者
+              - listbox [ref=f133e441]:
+                - option "系統管理員（A0001）・資訊部" [ref=f133e442]
+                - option "測試員工乙（E9001）" [ref=f133e443]
+                - option "測試員工19（T9001）" [ref=f133e444]
+              - generic [ref=f133e445]: 按住 Ctrl／Cmd 可複選。
+            - generic [ref=f133e447]:
+              - generic [ref=f133e448]:
+                - generic [ref=f133e449]:
+                  - generic [ref=f133e450]: 重複
+                  - combobox [ref=f133e451]:
+                    - option "不重複"
+                    - option "每天"
+                    - option "每週"
+                    - option "每月" [selected]
+                    - option "每年"
+                - generic [ref=f133e452]:
+                  - generic [ref=f133e453]: 間隔
+                  - generic [ref=f133e454]:
+                    - generic [ref=f133e455]: 每
+                    - spinbutton [ref=f133e456]: "1"
+                    - generic [ref=f133e457]: 個月
+              - generic [ref=f133e458]:
+                - generic [ref=f133e459]:
+                  - radio "每月 日" [ref=f133e460]
+                  - generic [ref=f133e461]: 每月 日
+                - generic [ref=f133e462]:
+                  - radio "每月第二個星期三" [checked] [ref=f133e463]
+                  - generic [ref=f133e464]: 每月第二個星期三
+                - generic [ref=f133e465]:
+                  - checkbox "改用「每月最後一個」" [ref=f133e466]
+                  - generic [ref=f133e467]: 改用「每月最後一個」
+              - generic [ref=f133e468]:
+                - generic [ref=f133e469]: 結束條件（必填）
+                - generic [ref=f133e470]:
+                  - generic [ref=f133e472]:
+                    - radio [ref=f133e474]
+                    - textbox [disabled] [ref=f133e475]
+                  - generic [ref=f133e477]:
+                    - radio [checked] [ref=f133e479]
+                    - spinbutton "重複次數" [ref=f133e480]: "4"
+                    - generic [ref=f133e481]: 次
+                - generic [ref=f133e482]: 重複事件必須有結束日期或次數，且展開後不得超過 730 次。
+          - generic [ref=f133e483]:
+            - button "取消" [ref=f133e484] [cursor=pointer]
+            - button "儲存" [ref=f133e485] [cursor=pointer]

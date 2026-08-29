@@ -1,0 +1,96 @@
+- generic [active] [ref=f122e1]:
+  - navigation [ref=f122e2]:
+    - generic [ref=f122e3]:
+      - link "公司行事曆" [ref=f122e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f122e5]:
+        - list [ref=f122e6]:
+          - listitem [ref=f122e7]:
+            - link "我的行事曆" [ref=f122e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f122e9]:
+            - link "會議廳時間軸" [ref=f122e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f122e11]:
+            - link "會議廳管理" [ref=f122e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f122e13]:
+            - link "員工管理" [ref=f122e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f122e17] [cursor=pointer]
+        - list [ref=f122e18]:
+          - listitem [ref=f122e19]:
+            - link "系統管理員" [ref=f122e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f122e21]:
+    - generic [ref=f122e24]:
+      - generic [ref=f122e25]:
+        - generic [ref=f122e26]:
+          - button "‹" [ref=f122e27] [cursor=pointer]
+          - button "今天" [ref=f122e28] [cursor=pointer]
+          - button "›" [ref=f122e29] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f122e30]
+        - generic [ref=f122e31]:
+          - button "月" [ref=f122e32] [cursor=pointer]
+          - button "週" [ref=f122e33] [cursor=pointer]
+          - button "日" [ref=f122e34] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f122e35] [cursor=pointer]
+      - generic [ref=f122e36]:
+        - generic [ref=f122e37]:
+          - generic [ref=f122e38]: 日
+          - generic [ref=f122e39]: 一
+          - generic [ref=f122e40]: 二
+          - generic [ref=f122e41]: 三
+          - generic [ref=f122e42]: 四
+          - generic [ref=f122e43]: 五
+          - generic [ref=f122e44]: 六
+        - generic [ref=f122e45]:
+          - generic [ref=f122e46] [cursor=pointer]: "26"
+          - generic [ref=f122e48] [cursor=pointer]: "27"
+          - generic [ref=f122e50] [cursor=pointer]: "28"
+          - generic [ref=f122e52] [cursor=pointer]: "29"
+          - generic [ref=f122e54] [cursor=pointer]: "30"
+          - generic [ref=f122e56] [cursor=pointer]: "31"
+          - generic [ref=f122e58] [cursor=pointer]: "1"
+          - generic [ref=f122e60] [cursor=pointer]: "2"
+          - generic [ref=f122e62] [cursor=pointer]: "3"
+          - generic [ref=f122e64] [cursor=pointer]: "4"
+          - generic [ref=f122e66] [cursor=pointer]: "5"
+          - generic [ref=f122e68] [cursor=pointer]: "6"
+          - generic [ref=f122e70] [cursor=pointer]: "7"
+          - generic [ref=f122e72] [cursor=pointer]: "8"
+          - generic [ref=f122e74] [cursor=pointer]: "9"
+          - generic [ref=f122e76] [cursor=pointer]: "10"
+          - generic [ref=f122e78] [cursor=pointer]: "11"
+          - generic [ref=f122e80] [cursor=pointer]: "12"
+          - generic [ref=f122e82] [cursor=pointer]: "13"
+          - generic [ref=f122e84] [cursor=pointer]: "14"
+          - generic [ref=f122e86] [cursor=pointer]: "15"
+          - generic [ref=f122e88] [cursor=pointer]: "16"
+          - generic [ref=f122e90] [cursor=pointer]: "17"
+          - generic [ref=f122e92] [cursor=pointer]: "18"
+          - generic [ref=f122e94] [cursor=pointer]: "19"
+          - generic [ref=f122e96] [cursor=pointer]:
+            - generic [ref=f122e97]: "20"
+            - generic "專案啟動會議" [ref=f122e98]: 09:00 專案啟動會議
+            - generic "每週重複測試" [ref=f122e99]: 11:00 每週重複測試
+          - generic [ref=f122e100] [cursor=pointer]: "21"
+          - generic [ref=f122e102] [cursor=pointer]: "22"
+          - generic [ref=f122e104] [cursor=pointer]: "23"
+          - generic [ref=f122e106] [cursor=pointer]: "24"
+          - generic [ref=f122e108] [cursor=pointer]: "25"
+          - generic [ref=f122e110] [cursor=pointer]: "26"
+          - generic [ref=f122e112] [cursor=pointer]:
+            - generic [ref=f122e113]: "27"
+            - generic "每週重複測試" [ref=f122e114]: 09:00 每週重複測試
+          - generic [ref=f122e115] [cursor=pointer]: "28"
+          - generic [ref=f122e117] [cursor=pointer]: "29"
+          - generic [ref=f122e119] [cursor=pointer]: "30"
+          - generic [ref=f122e121] [cursor=pointer]: "31"
+          - generic [ref=f122e123] [cursor=pointer]: "1"
+          - generic [ref=f122e125] [cursor=pointer]: "2"
+          - generic [ref=f122e127] [cursor=pointer]:
+            - generic [ref=f122e128]: "3"
+            - generic "每週重複測試" [ref=f122e129]: 14:00 每週重複測試
+          - generic [ref=f122e130] [cursor=pointer]: "4"
+          - generic [ref=f122e132] [cursor=pointer]: "5"

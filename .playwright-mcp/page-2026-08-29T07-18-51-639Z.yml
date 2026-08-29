@@ -1,0 +1,93 @@
+- generic [active] [ref=f67e1]:
+  - navigation [ref=f67e2]:
+    - generic [ref=f67e3]:
+      - link [ref=f67e443] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f67e5]:
+        - list [ref=f67e6]:
+          - listitem [ref=f67e7]:
+            - link [ref=f67e444] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f67e9]:
+            - link [ref=f67e445] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+          - listitem [ref=f67e11]:
+            - link [ref=f67e446] [cursor=pointer]:
+              - /url: /Admin/Rooms
+              - text: 會議廳管理
+          - listitem [ref=f67e13]:
+            - link [ref=f67e447] [cursor=pointer]:
+              - /url: /Admin/Users
+              - text: 員工管理
+        - button [ref=f67e448] [cursor=pointer]: 🔔
+        - list [ref=f67e18]:
+          - listitem [ref=f67e19]:
+            - link [ref=f67e449] [cursor=pointer]:
+              - /url: "#"
+              - text: 系統管理員
+  - main [ref=f67e21]:
+    - generic [ref=f67e24]:
+      - generic [ref=f67e25]:
+        - heading [level=1] [ref=f67e450]: 會議廳管理
+        - button [ref=f67e451] [cursor=pointer]: ＋ 新增會議廳
+      - table [ref=f67e29]:
+        - rowgroup [ref=f67e30]:
+          - row [ref=f67e452]:
+            - columnheader [ref=f67e453]: 名稱
+            - columnheader [ref=f67e454]: 位置
+            - columnheader [ref=f67e455]: 容納人數
+            - columnheader [ref=f67e456]: 設備
+            - columnheader [ref=f67e457]: 狀態
+            - columnheader [ref=f67e458]: 操作
+        - rowgroup [ref=f67e38]:
+          - row [ref=f67e459]:
+            - cell [ref=f67e460]: A 棟 3F 大會議廳
+            - cell [ref=f67e461]: A 棟 3 樓
+            - cell [ref=f67e462]: "40"
+            - cell [ref=f67e463]: 投影機、視訊設備、白板
+            - cell [ref=f67e464]:
+              - generic [ref=f67e45]: 啟用中
+            - cell [ref=f67e465]:
+              - button [ref=f67e466] [cursor=pointer]: 編輯
+              - button [ref=f67e467] [cursor=pointer]: 停用
+          - row [ref=f67e468]:
+            - cell [ref=f67e469]: A 棟 3F 小會議室
+            - cell [ref=f67e470]: A 棟 3 樓
+            - cell [ref=f67e471]: "8"
+            - cell [ref=f67e472]: 電視螢幕
+            - cell [ref=f67e473]:
+              - generic [ref=f67e55]: 啟用中
+            - cell [ref=f67e474]:
+              - button [ref=f67e475] [cursor=pointer]: 編輯
+              - button [ref=f67e476] [cursor=pointer]: 停用
+          - row [ref=f67e477]:
+            - cell [ref=f67e478]: B 棟 2F 討論室
+            - cell [ref=f67e479]: B 棟 2 樓
+            - cell [ref=f67e480]: "6"
+            - cell [ref=f67e481]: 白板
+            - cell [ref=f67e482]:
+              - generic [ref=f67e65]: 啟用中
+            - cell [ref=f67e483]:
+              - button [ref=f67e484] [cursor=pointer]: 編輯
+              - button [ref=f67e485] [cursor=pointer]: 停用
+          - row [ref=f67e486]:
+            - cell [ref=f67e487]: 測試會議廳-T20-已編輯
+            - cell [ref=f67e488]: C 棟 1 樓
+            - cell [ref=f67e489]: "20"
+            - cell [ref=f67e490]: 白板
+            - cell [ref=f67e491]:
+              - generic [ref=f67e143]: 已停用
+            - cell [ref=f67e492]:
+              - button [ref=f67e493] [cursor=pointer]: 編輯
+              - button [ref=f67e494] [cursor=pointer]: 啟用
+  - dialog [ref=f67e496]:
+    - generic [ref=f67e497]: "?"
+    - heading "要停用這間會議廳嗎？" [level=2] [ref=f67e499]
+    - generic [ref=f67e500]: 停用後不可新增預約，既有預約仍會保留。
+    - text: "!"
+    - generic [ref=f67e501]:
+      - button "確定" [disabled] [ref=f67e502]
+      - button "取消" [disabled] [ref=f67e503]

@@ -1,0 +1,43 @@
+- generic [active] [ref=f33e1]:
+  - navigation [ref=f33e2]:
+    - generic [ref=f33e3]:
+      - link "公司行事曆" [ref=f33e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f33e5]:
+        - list [ref=f33e6]:
+          - listitem [ref=f33e7]:
+            - link "我的行事曆" [ref=f33e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f33e9]:
+            - link "會議廳時間軸" [ref=f33e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f33e11]:
+            - link "會議廳管理" [ref=f33e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f33e13]:
+            - link "員工管理" [ref=f33e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f33e17] [cursor=pointer]
+        - list [ref=f33e18]:
+          - listitem [ref=f33e19]:
+            - link "系統管理員" [ref=f33e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f33e21]:
+    - generic [ref=f33e24]:
+      - generic [ref=f33e25]:
+        - heading "公司行事曆與會議廳預約" [level=1] [ref=f33e26]
+        - paragraph [ref=f33e27]: 管理個人日程、預約會議廳，同一間會議廳的同一時段永遠不會被重複預約。
+        - list [ref=f33e28]:
+          - listitem [ref=f33e29]: ・月／週／日三種檢視，一眼看完整週行程
+          - listitem [ref=f33e30]: ・會議廳資源時間軸，空檔一目了然
+          - listitem [ref=f33e31]: ・可訂閱的 .ics 網址，行事曆軟體直接同步
+      - generic [ref=f33e33]:
+        - heading "登入" [level=2] [ref=f33e34]
+        - generic [ref=f33e35]:
+          - generic [ref=f33e36]:
+            - generic [ref=f33e37]: 員工編號
+            - textbox [ref=f33e38]
+          - generic [ref=f33e39]:
+            - generic [ref=f33e40]: 密碼
+            - textbox [ref=f33e41]
+          - button "登入" [ref=f33e42] [cursor=pointer]

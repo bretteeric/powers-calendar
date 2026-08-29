@@ -1,0 +1,100 @@
+- generic [ref=f135e1]:
+  - navigation [ref=f135e2]:
+    - generic [ref=f135e3]:
+      - link [ref=f135e252] [cursor=pointer]:
+        - /url: /
+        - text: 公司行事曆
+      - generic [ref=f135e5]:
+        - list [ref=f135e6]:
+          - listitem [ref=f135e7]:
+            - link [ref=f135e253] [cursor=pointer]:
+              - /url: /
+              - text: 我的行事曆
+          - listitem [ref=f135e9]:
+            - link [ref=f135e254] [cursor=pointer]:
+              - /url: /Rooms
+              - text: 會議廳時間軸
+        - button [ref=f135e255] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f135e14]: "1"
+        - list [ref=f135e15]:
+          - listitem [ref=f135e16]:
+            - link [ref=f135e256] [cursor=pointer]:
+              - /url: "#"
+              - text: 任務20新員工
+  - main [ref=f135e18]:
+    - generic [ref=f135e21]:
+      - generic [ref=f135e22]:
+        - generic [ref=f135e23]:
+          - button [ref=f135e257] [cursor=pointer]: ‹
+          - button [ref=f135e258] [cursor=pointer]: 今天
+          - button [ref=f135e259] [cursor=pointer]: ›
+        - heading [level=1] [ref=f135e260]: 2026 年 9 月
+        - generic [ref=f135e28]:
+          - button [ref=f135e261] [cursor=pointer]: 月
+          - button [ref=f135e262] [cursor=pointer]: 週
+          - button [ref=f135e263] [cursor=pointer]: 日
+        - button [ref=f135e264] [cursor=pointer]: ＋ 新增事件
+      - generic [ref=f135e33]:
+        - generic [ref=f135e34]:
+          - generic [ref=f135e35]: 日
+          - generic [ref=f135e36]: 一
+          - generic [ref=f135e37]: 二
+          - generic [ref=f135e38]: 三
+          - generic [ref=f135e39]: 四
+          - generic [ref=f135e40]: 五
+          - generic [ref=f135e41]: 六
+        - generic [ref=f135e42]:
+          - generic [ref=f135e113] [cursor=pointer]: "30"
+          - generic [ref=f135e115] [cursor=pointer]: "31"
+          - generic [ref=f135e117] [cursor=pointer]: "1"
+          - generic [ref=f135e119] [cursor=pointer]:
+            - generic [ref=f135e120]: "2"
+            - generic [ref=f135e265]: 14:00 驗收21-個人事件
+          - generic [ref=f135e122] [cursor=pointer]: "3"
+          - generic [ref=f135e124] [cursor=pointer]: "4"
+          - generic [ref=f135e126] [cursor=pointer]: "5"
+          - generic [ref=f135e129] [cursor=pointer]: "6"
+          - generic [ref=f135e131] [cursor=pointer]:
+            - generic [ref=f135e132]: "7"
+            - generic [ref=f135e266]: 10:00 驗收21b-標準3複驗
+          - generic [ref=f135e134] [cursor=pointer]: "8"
+          - generic [ref=f135e136] [cursor=pointer]:
+            - generic [ref=f135e137]: "9"
+            - generic [ref=f135e267]: 17:00 驗收21-每月第二個星期三
+          - generic [ref=f135e139] [cursor=pointer]: "10"
+          - generic [ref=f135e141] [cursor=pointer]: "11"
+          - generic [ref=f135e143] [cursor=pointer]: "12"
+          - generic [ref=f135e145] [cursor=pointer]: "13"
+          - generic [ref=f135e147] [cursor=pointer]: "14"
+          - generic [ref=f135e149] [cursor=pointer]: "15"
+          - generic [ref=f135e151] [cursor=pointer]: "16"
+          - generic [ref=f135e153] [cursor=pointer]: "17"
+          - generic [ref=f135e155] [cursor=pointer]: "18"
+          - generic [ref=f135e157] [cursor=pointer]: "19"
+          - generic [ref=f135e159] [cursor=pointer]: "20"
+          - generic [ref=f135e161] [cursor=pointer]: "21"
+          - generic [ref=f135e163] [cursor=pointer]: "22"
+          - generic [ref=f135e165] [cursor=pointer]: "23"
+          - generic [ref=f135e167] [cursor=pointer]: "24"
+          - generic [ref=f135e169] [cursor=pointer]: "25"
+          - generic [ref=f135e171] [cursor=pointer]: "26"
+          - generic [ref=f135e173] [cursor=pointer]: "27"
+          - generic [ref=f135e175] [cursor=pointer]: "28"
+          - generic [ref=f135e177] [cursor=pointer]: "29"
+          - generic [ref=f135e179] [cursor=pointer]: "30"
+          - generic [ref=f135e181] [cursor=pointer]: "1"
+          - generic [ref=f135e183] [cursor=pointer]: "2"
+          - generic [ref=f135e185] [cursor=pointer]: "3"
+          - generic [ref=f135e187] [cursor=pointer]: "4"
+          - generic [ref=f135e189] [cursor=pointer]:
+            - generic [ref=f135e190]: "5"
+            - generic [ref=f135e268]: 14:00 驗收21b-標準3複驗
+          - generic [ref=f135e192] [cursor=pointer]: "6"
+          - generic [ref=f135e194] [cursor=pointer]: "7"
+          - generic [ref=f135e196] [cursor=pointer]: "8"
+          - generic [ref=f135e198] [cursor=pointer]: "9"
+          - generic [ref=f135e200] [cursor=pointer]: "10"
+  - dialog [active] [ref=f135e270]:
+    - heading "已儲存" [level=2] [ref=f135e278]
+    - text: "!"

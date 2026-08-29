@@ -1,0 +1,26 @@
+- generic [active] [ref=f105e1]:
+  - navigation [ref=f105e2]:
+    - generic [ref=f105e3]:
+      - link "公司行事曆" [ref=f105e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f105e5]:
+        - list [ref=f105e6]:
+          - listitem [ref=f105e7]:
+            - link "我的行事曆" [ref=f105e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f105e9]:
+            - link "會議廳時間軸" [ref=f105e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f105e11]:
+            - link "會議廳管理" [ref=f105e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f105e13]:
+            - link "員工管理" [ref=f105e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - button "🔔" [ref=f105e17] [cursor=pointer]
+        - list [ref=f105e18]:
+          - listitem [ref=f105e19]:
+            - link "系統管理員" [ref=f105e20] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f105e21]:
+    - heading "個人設定" [level=1] [ref=f105e23]

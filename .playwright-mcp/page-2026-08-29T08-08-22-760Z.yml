@@ -1,0 +1,87 @@
+- generic [active] [ref=f131e1]:
+  - navigation [ref=f131e2]:
+    - generic [ref=f131e3]:
+      - link "公司行事曆" [ref=f131e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f131e5]:
+        - list [ref=f131e6]:
+          - listitem [ref=f131e7]:
+            - link "我的行事曆" [ref=f131e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f131e9]:
+            - link "會議廳時間軸" [ref=f131e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f131e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f131e14]: "1"
+        - list [ref=f131e15]:
+          - listitem [ref=f131e16]:
+            - link "任務20新員工" [ref=f131e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f131e18]:
+    - generic [ref=f131e21]:
+      - generic [ref=f131e22]:
+        - generic [ref=f131e23]:
+          - button "‹" [ref=f131e24] [cursor=pointer]
+          - button "今天" [ref=f131e25] [cursor=pointer]
+          - button "›" [ref=f131e26] [cursor=pointer]
+        - heading "2026 年 8 月" [level=1] [ref=f131e27]
+        - generic [ref=f131e28]:
+          - button "月" [ref=f131e29] [cursor=pointer]
+          - button "週" [ref=f131e30] [cursor=pointer]
+          - button "日" [ref=f131e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f131e32] [cursor=pointer]
+      - generic [ref=f131e33]:
+        - generic [ref=f131e34]:
+          - generic [ref=f131e35]: 日
+          - generic [ref=f131e36]: 一
+          - generic [ref=f131e37]: 二
+          - generic [ref=f131e38]: 三
+          - generic [ref=f131e39]: 四
+          - generic [ref=f131e40]: 五
+          - generic [ref=f131e41]: 六
+        - generic [ref=f131e42]:
+          - generic [ref=f131e43] [cursor=pointer]: "26"
+          - generic [ref=f131e45] [cursor=pointer]: "27"
+          - generic [ref=f131e47] [cursor=pointer]: "28"
+          - generic [ref=f131e49] [cursor=pointer]: "29"
+          - generic [ref=f131e51] [cursor=pointer]: "30"
+          - generic [ref=f131e53] [cursor=pointer]: "31"
+          - generic [ref=f131e55] [cursor=pointer]: "1"
+          - generic [ref=f131e57] [cursor=pointer]: "2"
+          - generic [ref=f131e59] [cursor=pointer]: "3"
+          - generic [ref=f131e61] [cursor=pointer]: "4"
+          - generic [ref=f131e63] [cursor=pointer]: "5"
+          - generic [ref=f131e65] [cursor=pointer]: "6"
+          - generic [ref=f131e67] [cursor=pointer]: "7"
+          - generic [ref=f131e69] [cursor=pointer]: "8"
+          - generic [ref=f131e71] [cursor=pointer]: "9"
+          - generic [ref=f131e73] [cursor=pointer]: "10"
+          - generic [ref=f131e75] [cursor=pointer]: "11"
+          - generic [ref=f131e77] [cursor=pointer]: "12"
+          - generic [ref=f131e79] [cursor=pointer]: "13"
+          - generic [ref=f131e81] [cursor=pointer]: "14"
+          - generic [ref=f131e83] [cursor=pointer]: "15"
+          - generic [ref=f131e85] [cursor=pointer]: "16"
+          - generic [ref=f131e87] [cursor=pointer]: "17"
+          - generic [ref=f131e89] [cursor=pointer]: "18"
+          - generic [ref=f131e91] [cursor=pointer]: "19"
+          - generic [ref=f131e93] [cursor=pointer]: "20"
+          - generic [ref=f131e95] [cursor=pointer]: "21"
+          - generic [ref=f131e97] [cursor=pointer]: "22"
+          - generic [ref=f131e99] [cursor=pointer]: "23"
+          - generic [ref=f131e101] [cursor=pointer]: "24"
+          - generic [ref=f131e103] [cursor=pointer]: "25"
+          - generic [ref=f131e105] [cursor=pointer]: "26"
+          - generic [ref=f131e107] [cursor=pointer]: "27"
+          - generic [ref=f131e109] [cursor=pointer]: "28"
+          - generic [ref=f131e111] [cursor=pointer]: "29"
+          - generic [ref=f131e113] [cursor=pointer]: "30"
+          - generic [ref=f131e115] [cursor=pointer]: "31"
+          - generic [ref=f131e117] [cursor=pointer]: "1"
+          - generic [ref=f131e119] [cursor=pointer]:
+            - generic [ref=f131e120]: "2"
+            - generic "驗收21-個人事件" [ref=f131e121]: 14:00 驗收21-個人事件
+          - generic [ref=f131e122] [cursor=pointer]: "3"
+          - generic [ref=f131e124] [cursor=pointer]: "4"
+          - generic [ref=f131e126] [cursor=pointer]: "5"

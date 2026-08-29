@@ -1,0 +1,67 @@
+- generic [ref=f48e1]:
+  - navigation [ref=f48e2]:
+    - generic [ref=f48e3]:
+      - link "公司行事曆" [ref=f48e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f48e5]:
+        - list [ref=f48e6]:
+          - listitem [ref=f48e7]:
+            - link "我的行事曆" [ref=f48e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f48e9]:
+            - link "會議廳時間軸" [ref=f48e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f48e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f48e14]: "1"
+        - list [ref=f48e15]:
+          - listitem [ref=f48e16]:
+            - link "測試員工19" [ref=f48e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f48e18]:
+    - generic [ref=f48e21]:
+      - generic [ref=f48e22]:
+        - generic [ref=f48e23]:
+          - button "‹" [ref=f48e24] [cursor=pointer]
+          - button "今天" [ref=f48e25] [cursor=pointer]
+          - button "›" [ref=f48e26] [cursor=pointer]
+        - heading "2026/8/23 – 8/29" [level=1] [ref=f48e127]
+        - generic [ref=f48e28]:
+          - button "月" [ref=f48e29] [cursor=pointer]
+          - button "週" [active] [ref=f48e30] [cursor=pointer]
+          - button "日" [ref=f48e31] [cursor=pointer]
+        - button "＋ 新增事件" [ref=f48e32] [cursor=pointer]
+      - generic [ref=f48e33]:
+        - generic [ref=f48e128]:
+          - generic [ref=f48e130]: 8/23（日）
+          - generic [ref=f48e131]: 8/24（一）
+          - generic [ref=f48e132]: 8/25（二）
+          - generic [ref=f48e133]: 8/26（三）
+          - generic [ref=f48e134]: 8/27（四）
+          - generic [ref=f48e135]: 8/28（五）
+          - generic [ref=f48e136]: 8/29（六）
+        - generic [ref=f48e138]:
+          - generic [ref=f48e139]: 00:00
+          - generic [ref=f48e140]: 01:00
+          - generic [ref=f48e141]: 02:00
+          - generic [ref=f48e142]: 03:00
+          - generic [ref=f48e143]: 04:00
+          - generic [ref=f48e144]: 05:00
+          - generic [ref=f48e145]: 06:00
+          - generic [ref=f48e146]: 07:00
+          - generic [ref=f48e147]: 08:00
+          - generic [ref=f48e148]: 09:00
+          - generic [ref=f48e149]: 10:00
+          - generic [ref=f48e150]: 11:00
+          - generic [ref=f48e151]: 12:00
+          - generic [ref=f48e152]: 13:00
+          - generic [ref=f48e153]: 14:00
+          - generic [ref=f48e154]: 15:00
+          - generic [ref=f48e155]: 16:00
+          - generic [ref=f48e156]: 17:00
+          - generic [ref=f48e157]: 18:00
+          - generic [ref=f48e158]: 19:00
+          - generic [ref=f48e159]: 20:00
+          - generic [ref=f48e160]: 21:00
+          - generic [ref=f48e161]: 22:00
+          - generic [ref=f48e162]: 23:00

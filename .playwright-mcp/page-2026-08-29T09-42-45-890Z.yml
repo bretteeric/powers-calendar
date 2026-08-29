@@ -1,0 +1,37 @@
+- generic [active] [ref=f138e1]:
+  - navigation [ref=f138e2]:
+    - generic [ref=f138e3]:
+      - link "公司行事曆" [ref=f138e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f138e5]:
+        - list [ref=f138e6]:
+          - listitem [ref=f138e7]:
+            - link "我的行事曆" [ref=f138e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f138e9]:
+            - link "會議廳時間軸" [ref=f138e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔" [ref=f138e13] [cursor=pointer]
+        - list [ref=f138e14]:
+          - listitem [ref=f138e15]:
+            - link "任務20新員工" [ref=f138e16] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f138e17]:
+    - generic [ref=f138e20]:
+      - generic [ref=f138e21]:
+        - heading "公司行事曆與會議廳預約" [level=1] [ref=f138e22]
+        - paragraph [ref=f138e23]: 管理個人日程、預約會議廳，同一間會議廳的同一時段永遠不會被重複預約。
+        - list [ref=f138e24]:
+          - listitem [ref=f138e25]: ・月／週／日三種檢視，一眼看完整週行程
+          - listitem [ref=f138e26]: ・會議廳資源時間軸，空檔一目了然
+          - listitem [ref=f138e27]: ・可訂閱的 .ics 網址，行事曆軟體直接同步
+      - generic [ref=f138e29]:
+        - heading "登入" [level=2] [ref=f138e30]
+        - generic [ref=f138e31]:
+          - generic [ref=f138e32]:
+            - generic [ref=f138e33]: 員工編號
+            - textbox [ref=f138e34]
+          - generic [ref=f138e35]:
+            - generic [ref=f138e36]: 密碼
+            - textbox [ref=f138e37]
+          - button "登入" [ref=f138e38] [cursor=pointer]

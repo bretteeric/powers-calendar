@@ -1,0 +1,66 @@
+- generic [active] [ref=f32e1]:
+  - navigation [ref=f32e2]:
+    - generic [ref=f32e3]:
+      - link "公司行事曆" [ref=f32e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f32e5]:
+        - list [ref=f32e6]:
+          - listitem [ref=f32e7]:
+            - link "我的行事曆" [ref=f32e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f32e9]:
+            - link "會議廳時間軸" [ref=f32e10] [cursor=pointer]:
+              - /url: /Rooms
+          - listitem [ref=f32e11]:
+            - link "會議廳管理" [ref=f32e12] [cursor=pointer]:
+              - /url: /Admin/Rooms
+          - listitem [ref=f32e13]:
+            - link "員工管理" [ref=f32e14] [cursor=pointer]:
+              - /url: /Admin/Users
+        - list [ref=f32e15]:
+          - listitem [ref=f32e16]:
+            - link "系統管理員" [ref=f32e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f32e18]:
+    - generic [ref=f32e19]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f32e20]
+      - generic [ref=f32e22]:
+        - generic [ref=f32e23]:
+          - generic [ref=f32e24]:
+            - button "‹" [ref=f32e25] [cursor=pointer]
+            - button "›" [ref=f32e26] [cursor=pointer]
+          - textbox [ref=f32e27]: 2026-08-29
+          - generic [ref=f32e28]:
+            - generic [ref=f32e29]: 最少可容納
+            - spinbutton "不限" [ref=f32e30]
+            - generic [ref=f32e31]: 人
+        - generic [ref=f32e32]:
+          - generic [ref=f32e35]:
+            - generic [ref=f32e36]: "00"
+            - generic [ref=f32e38]: "02"
+            - generic [ref=f32e40]: "04"
+            - generic [ref=f32e42]: "06"
+            - generic [ref=f32e44]: "08"
+            - generic [ref=f32e46]: "10"
+            - generic [ref=f32e48]: "12"
+            - generic [ref=f32e50]: "14"
+            - generic [ref=f32e52]: "16"
+            - generic [ref=f32e54]: "18"
+            - generic [ref=f32e56]: "20"
+            - generic [ref=f32e58]: "22"
+          - generic [ref=f32e60]:
+            - generic [ref=f32e61]:
+              - generic [ref=f32e62]: A 棟 3F 大會議廳
+              - generic [ref=f32e63]: 40 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 大會議廳" [ref=f32e64]
+          - generic [ref=f32e65]:
+            - generic [ref=f32e66]:
+              - generic [ref=f32e67]: A 棟 3F 小會議室
+              - generic [ref=f32e68]: 8 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 小會議室" [ref=f32e69]
+          - generic [ref=f32e70]:
+            - generic [ref=f32e71]:
+              - generic [ref=f32e72]: B 棟 2F 討論室
+              - generic [ref=f32e73]: 6 人・B 棟 2 樓
+            - generic "點一下即可預約 B 棟 2F 討論室" [ref=f32e74]:
+              - generic "乙員工的測試會議（測試員工乙）" [ref=f32e75] [cursor=pointer]: 乙員工的測試會議

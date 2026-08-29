@@ -1,0 +1,108 @@
+- generic [ref=f50e1]:
+  - navigation [ref=f50e2]:
+    - generic [ref=f50e3]:
+      - link "公司行事曆" [ref=f50e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f50e5]:
+        - list [ref=f50e6]:
+          - listitem [ref=f50e7]:
+            - link "我的行事曆" [ref=f50e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f50e9]:
+            - link "會議廳時間軸" [ref=f50e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f50e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f50e14]: "1"
+        - list [ref=f50e15]:
+          - listitem [ref=f50e16]:
+            - link "測試員工19" [ref=f50e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f50e18]:
+    - generic [ref=f50e19]:
+      - heading "會議廳資源時間軸" [level=1] [ref=f50e20]
+      - generic [ref=f50e22]:
+        - generic [ref=f50e23]:
+          - generic [ref=f50e24]:
+            - button "‹" [ref=f50e25] [cursor=pointer]
+            - button "›" [ref=f50e26] [cursor=pointer]
+          - textbox [ref=f50e27]: 2026-08-29
+          - generic [ref=f50e28]:
+            - generic [ref=f50e29]: 最少可容納
+            - spinbutton "不限" [ref=f50e30]
+            - generic [ref=f50e31]: 人
+        - generic [ref=f50e33]:
+          - generic [ref=f50e36]:
+            - generic [ref=f50e37]: "00"
+            - generic [ref=f50e39]: "02"
+            - generic [ref=f50e41]: "04"
+            - generic [ref=f50e43]: "06"
+            - generic [ref=f50e45]: "08"
+            - generic [ref=f50e47]: "10"
+            - generic [ref=f50e49]: "12"
+            - generic [ref=f50e51]: "14"
+            - generic [ref=f50e53]: "16"
+            - generic [ref=f50e55]: "18"
+            - generic [ref=f50e57]: "20"
+            - generic [ref=f50e59]: "22"
+          - generic [ref=f50e61]:
+            - generic [ref=f50e62]:
+              - generic [ref=f50e63]: A 棟 3F 大會議廳
+              - generic [ref=f50e64]: 40 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 大會議廳" [ref=f50e65]
+          - generic [ref=f50e66]:
+            - generic [ref=f50e67]:
+              - generic [ref=f50e68]: A 棟 3F 小會議室
+              - generic [ref=f50e69]: 8 人・A 棟 3 樓
+            - generic "點一下即可預約 A 棟 3F 小會議室" [ref=f50e70]
+          - generic [ref=f50e71]:
+            - generic [ref=f50e72]:
+              - generic [ref=f50e73]: B 棟 2F 討論室
+              - generic [ref=f50e74]: 6 人・B 棟 2 樓
+            - generic "點一下即可預約 B 棟 2F 討論室" [ref=f50e75]
+        - dialog [active] [ref=f50e76]:
+          - generic [ref=f50e77]:
+            - generic [ref=f50e78]:
+              - heading "建立事件" [level=5] [ref=f50e79]
+              - button [ref=f50e80] [cursor=pointer]
+            - generic [ref=f50e81]:
+              - generic [ref=f50e82]:
+                - generic [ref=f50e83]: 標題
+                - textbox [ref=f50e84]
+              - generic [ref=f50e85]:
+                - generic [ref=f50e86]: 說明
+                - textbox [ref=f50e87]
+              - generic [ref=f50e88]:
+                - generic [ref=f50e89]:
+                  - generic [ref=f50e90]: 開始
+                  - textbox [ref=f50e91]: 2026-08-29T11:00
+                - generic [ref=f50e92]:
+                  - generic [ref=f50e93]: 結束
+                  - textbox [ref=f50e94]: 2026-08-29T12:00
+              - generic [ref=f50e95]:
+                - checkbox "全天事件（00:00–23:59）" [ref=f50e96]
+                - generic [ref=f50e97]: 全天事件（00:00–23:59）
+              - generic [ref=f50e98]:
+                - generic [ref=f50e99]: 會議廳
+                - combobox [ref=f50e100]:
+                  - option "不指定（純個人事件，不占用資源）"
+                  - option "A 棟 3F 大會議廳（40 人）・A 棟 3 樓" [selected]
+                  - option "A 棟 3F 小會議室（8 人）・A 棟 3 樓"
+                  - option "B 棟 2F 討論室（6 人）・B 棟 2 樓"
+              - generic [ref=f50e101]:
+                - generic [ref=f50e102]: 與會者
+                - listbox [ref=f50e103]:
+                  - option "系統管理員（A0001）・資訊部" [ref=f50e104]
+                  - option "測試員工乙（E9001）" [ref=f50e105]
+                - generic [ref=f50e106]: 按住 Ctrl／Cmd 可複選。
+              - generic [ref=f50e110]:
+                - generic [ref=f50e111]: 重複
+                - combobox [ref=f50e112]:
+                  - option "不重複" [selected]
+                  - option "每天"
+                  - option "每週"
+                  - option "每月"
+                  - option "每年"
+            - generic [ref=f50e113]:
+              - button "取消" [ref=f50e114] [cursor=pointer]
+              - button "儲存" [ref=f50e115] [cursor=pointer]

@@ -1,0 +1,57 @@
+- generic [active] [ref=f43e1]:
+  - navigation [ref=f43e2]:
+    - generic [ref=f43e3]:
+      - link "公司行事曆" [ref=f43e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f43e5]:
+        - list [ref=f43e6]:
+          - listitem [ref=f43e7]:
+            - link "我的行事曆" [ref=f43e8] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f43e9]:
+            - link "會議廳時間軸" [ref=f43e10] [cursor=pointer]:
+              - /url: /Rooms
+        - button "🔔 1" [ref=f43e13] [cursor=pointer]:
+          - text: 🔔
+          - generic [ref=f43e14]: "1"
+        - list [ref=f43e15]:
+          - listitem [ref=f43e16]:
+            - link "測試員工19" [ref=f43e17] [cursor=pointer]:
+              - /url: "#"
+  - main [ref=f43e18]:
+    - generic [ref=f43e19]:
+      - heading "個人設定" [level=1] [ref=f43e20]
+      - generic [ref=f43e22]:
+        - generic [ref=f43e24]:
+          - heading "個人資料" [level=2] [ref=f43e25]
+          - generic [ref=f43e26]:
+            - term [ref=f43e27]: 員工編號
+            - definition [ref=f43e28]: T9001
+            - term [ref=f43e29]: 姓名
+            - definition [ref=f43e30]: 測試員工19
+            - term [ref=f43e31]: Email
+            - definition [ref=f43e32]: test19@corp.local
+            - term [ref=f43e33]: 部門
+            - definition [ref=f43e34]: 未指定
+            - term [ref=f43e35]: 角色
+            - definition [ref=f43e36]: 一般員工
+          - separator [ref=f43e37]
+          - heading "訂閱行事曆" [level=2] [ref=f43e38]
+          - paragraph [ref=f43e39]: 把下面的網址加進 Outlook 或 Google 行事曆的「訂閱」功能，即可自動同步你的行程。
+          - generic [ref=f43e40]:
+            - textbox [ref=f43e41]: http://localhost:5088/feeds/88Jd6X8b2y-wb4c4nVKiKp286FOgS8laQ98erdkiEF4.ics
+            - button "複製" [ref=f43e42] [cursor=pointer]
+          - button "重新產生訂閱網址" [ref=f43e43] [cursor=pointer]
+        - generic [ref=f43e45]:
+          - heading "修改密碼" [level=2] [ref=f43e46]
+          - generic [ref=f43e47]:
+            - generic [ref=f43e48]:
+              - generic [ref=f43e49]: 目前密碼
+              - textbox [ref=f43e50]
+            - generic [ref=f43e51]:
+              - generic [ref=f43e52]: 新密碼（至少 8 個字元）
+              - textbox [ref=f43e53]
+            - generic [ref=f43e54]:
+              - generic [ref=f43e55]: 再輸入一次新密碼
+              - textbox [ref=f43e56]
+            - button "更新密碼" [ref=f43e57] [cursor=pointer]
