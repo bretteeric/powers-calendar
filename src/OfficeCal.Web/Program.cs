@@ -32,7 +32,8 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IEventService, EventService>();
-// 任務 11–14 會在此陸續加入 IRoomService、IIcsService、IUserService
+builder.Services.AddScoped<IRoomService, RoomService>();
+// 任務 13–14 會在此陸續加入 IIcsService、IUserService
 
 // 與 GlobalExceptionMiddleware 一致的信封序列化設定：Cookie 驗證事件在 DI 容器組裝階段
 // 執行，拿不到 MVC 的 JsonOptions，所以在這裡自建一份同樣是 camelCase 的設定共用。
