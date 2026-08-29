@@ -25,9 +25,11 @@ builder.Services.AddSingleton<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IEventOccurrenceRepository, EventOccurrenceRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 
 builder.Services.AddScoped<IRecurrenceService, RecurrenceService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 // 任務 9–14 會在此陸續加入 INotificationService、IEventService、IRoomService、IIcsService、IUserService
 
 // 與 GlobalExceptionMiddleware 一致的信封序列化設定：Cookie 驗證事件在 DI 容器組裝階段
