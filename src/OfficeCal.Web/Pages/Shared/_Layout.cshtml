@@ -1,0 +1,79 @@
+@{
+    var isAuthenticated = User.Identity?.IsAuthenticated == true;
+    var isAdmin = User.IsInRole("Admin");
+}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] － 公司行事曆與會議廳預約</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+@if (isAuthenticated)
+{
+    <nav class="navbar navbar-expand-lg navbar-oc sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-bold text-primary" href="/">公司行事曆</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navMain"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navMain">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">我的行事曆</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Rooms">會議廳時間軸</a></li>
+                    @if (isAdmin)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Admin/Rooms">會議廳管理</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Admin/Users">員工管理</a></li>
+                    }
+                </ul>
+                <div id="notification-center" class="me-3"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            @User.Identity!.Name
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/Settings">個人設定</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#" id="logout-link">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+}
+
+<main>
+    @RenderBody()
+</main>
+
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/vue.global.prod.js"></script>
+<script src="~/js/axios.min.js"></script>
+<script src="~/js/sweetalert2.all.min.js"></script>
+<script src="~/js/app/api.js" asp-append-version="true"></script>
+@if (isAuthenticated)
+{
+    <script src="~/js/app/recurrence-editor.js" asp-append-version="true"></script>
+    <script src="~/js/app/event-modal.js" asp-append-version="true"></script>
+    <script src="~/js/app/event-detail-modal.js" asp-append-version="true"></script>
+    <script src="~/js/app/notifications.js" asp-append-version="true"></script>
+    <script>
+        Vue.createApp({ components: { NotificationCenter: window.NotificationCenter },
+                        template: '<notification-center></notification-center>' })
+           .mount('#notification-center');
+
+        document.getElementById('logout-link').addEventListener('click', async function (e) {
+            e.preventDefault();
+            await window.api.post('/api/v1/auth/logout');
+            window.location.href = '/Login';
+        });
+    </script>
+}
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

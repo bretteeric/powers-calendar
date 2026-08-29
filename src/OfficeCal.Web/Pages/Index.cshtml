@@ -1,0 +1,19 @@
+@page
+@using System.Security.Claims
+@model OfficeCal.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "我的行事曆";
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+<div class="container-fluid px-4 py-4">
+    <div id="calendar-app">
+        <calendar-page :current-user-id="@userId"></calendar-page>
+    </div>
+</div>
+
+@section Scripts {
+<script src="~/js/app/calendar.js" asp-append-version="true"></script>
+<script>
+    Vue.createApp({ components: { CalendarPage: window.CalendarPage } }).mount('#calendar-app');
+</script>
+}

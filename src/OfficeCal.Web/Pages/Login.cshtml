@@ -1,0 +1,81 @@
+@page
+@model OfficeCal.Web.Pages.LoginModel
+@{
+    ViewData["Title"] = "登入";
+    Layout = "_Layout";
+}
+
+<section class="oc-hero py-5">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <h1 class="display-5 mb-3">公司行事曆與會議廳預約</h1>
+                <p class="lead mb-4 opacity-75">
+                    管理個人日程、預約會議廳，同一間會議廳的同一時段永遠不會被重複預約。
+                </p>
+                <ul class="list-unstyled opacity-75">
+                    <li class="mb-2">・月／週／日三種檢視，一眼看完整週行程</li>
+                    <li class="mb-2">・會議廳資源時間軸，空檔一目了然</li>
+                    <li class="mb-2">・可訂閱的 .ics 網址，行事曆軟體直接同步</li>
+                </ul>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="card card-oc shadow-lg p-4" id="login-app">
+                    <h2 class="h4 mb-3 text-dark">登入</h2>
+                    <form @@submit.prevent="submit">
+                        <div class="mb-3">
+                            <label class="form-label text-dark">員工編號</label>
+                            <input class="form-control" v-model.trim="employeeNo" autofocus
+                                   autocomplete="username" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-dark">密碼</label>
+                            <input class="form-control" type="password" v-model="password"
+                                   autocomplete="current-password" />
+                        </div>
+                        <button class="btn btn-primary w-100 py-2" :disabled="loading">
+                            {{ loading ? '登入中…' : '登入' }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() { return { employeeNo: '', password: '', loading: false }; },
+        methods: {
+            async submit() {
+                if (!this.employeeNo || !this.password) {
+                    Swal.fire('請輸入完整資料', '員工編號與密碼都要填', 'info');
+                    return;
+                }
+                this.loading = true;
+                try {
+                    await window.api.post('/api/v1/auth/login',
+                        { employeeNo: this.employeeNo, password: this.password });
+                    // returnUrl 直接來自查詢字串。不驗證就賦值給 location.href 是開放重導：
+                    // ?returnUrl=https://evil.example 在使用者眼中仍是合法的公司網址，
+                    // 登入後卻被送到仿冒頁——標準的釣魚前置。
+                    // 只接受本站相對路徑：以 / 開頭，且第二個字元不是 / 也不是 \。
+                    // //evil.example 是協定相對網址；/\evil.example 會被瀏覽器把 \ 正規化成 /
+                    // 而變成同一回事。兩者都跨到別的網域，Url.IsLocalUrl 也是這樣判的。
+                    const params = new URLSearchParams(window.location.search);
+                    const rt = params.get('returnUrl');
+                    const isLocal = !!rt && rt.startsWith('/')
+                        && !rt.startsWith('//') && !rt.startsWith('/\\');
+                    window.location.href = isLocal ? rt : '/';
+                } catch (e) {
+                    // 攔截器已顯示訊息
+                } finally {
+                    this.loading = false;
+                }
+            },
+        },
+    }).mount('#login-app');
+</script>
+}
