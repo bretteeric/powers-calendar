@@ -102,11 +102,12 @@ dotnet test --filter "FullyQualifiedName~ConcurrentBookingTests"
 ```
 （`title` 皆為「驗收21-每月第二個星期三」，`eventId` 皆為 18，`roomId` 皆為 null，省略以節省篇幅）
 
-Occurrence ID 歸戶（依建立／修改順序推斷，與觀察一致）：
+Occurrence ID 歸戶（已對照 `BookingService.CreateOccurrencesAsync` 原始碼確認，非單純推測）：`CreateOccurrencesAsync` 的順序是「取鎖 → `EnsureNoSelfOverlap` → `FindConflictsAsync` → 衝突就 `throw ConflictException`」，寫入 `EventOccurrences.Add` 在衝突檢查**之後**才執行。標準 2 的衝突事件（驗收21-衝突測試B）在衝突檢查那一步就丟例外，從未執行到 `Add`，因此沒有消耗任何 occurrence 的 identity 值。據此：
 - 39, 40：標準 1、2 建立的兩筆事件的 occurrence。
-- 41：標準 2 的衝突事件（驗收21-衝突測試B）曾嘗試寫入但因 409 rollback，SQL Server identity 欄位不因 rollback 而重用，此號被跳過未實際使用。
-- 42–44：本系列第一次建立時依序產生的 4 筆 occurrence 中的頭兩筆／首批（Sep9、**Oct14=42**、Nov11=43、Dec9=44——42 在單獨編輯 Oct14 時被原地更新為 16:00，`isModified=true`）。
-- 43：Nov11 的原始 occurrence，被「取消這一筆」標記為 `IsCancelled=true`（因此不出現在上面的清單裡，清單只回傳未取消的 occurrence）。
+- 41–44：本系列第一次建立時依序產生的 4 筆 occurrence，依 slots 順序對應 **41=Sep9、42=Oct14、43=Nov11、44=Dec9**。
+- 42：Oct14 的原始 occurrence，在「編輯這一筆」時被原地更新為 16:00–17:00、`IsModified=true`（`MoveOccurrenceAsync` 只改 `StartAt`/`EndAt`/`IsModified`，不改 `OriginalStartAt`——這點是下面根因分析的關鍵）。
+- 43：Nov11 的原始 occurrence，被「取消這一筆」標記為 `IsCancelled=true`（因此不出現在 API 清單裡，清單只回傳未取消的 occurrence）。
+- 41、44：Sep9、Dec9 的原始 occurrence，兩者都未被單獨處理過，在整系列編輯時被判定為非 survivor 而 `RemoveRange` 刪除。
 - 45–48：**整系列編輯這一次動作產生的全新連號批次**——對 9/9、10/14、11/11、12/9 四個日期**各自都新建了一筆 occurrence**，而不是只對「未被單獨處理」的 9/9、12/9 建新的、對 10/14、11/11 略過。
 
 兩個具體錯誤：
@@ -121,6 +122,22 @@ feed（`.ics`，見標準 7 一節下載到的 T2001 訂閱網址內容）同步
 受影響資料刻意保留在資料庫中（Event id 18 及其 occurrence 42/45/46/47/48），作為修復循環的重現證據，未清理。
 
 （特別排除誤判可能性：全部日期皆晚於今天 2026-08-29，因此不可能是「重新展開不改動已發生過的 occurrence」那條刻意規則造成的——那條規則只保護過去的 occurrence，這裡四個日期全部是未來。）
+
+**根因定位（供修復循環參考，本次驗收未動手修改）：** `src/OfficeCal.Services/BookingService.cs` 的 `ReExpandSeriesAsync`（約第 51–108 行）：
+
+```csharp
+var survivors = existing
+    .Where(o => o.StartAt <= now || o.IsModified || o.IsCancelled)
+    .ToList();
+...
+var keptOriginalStarts = survivors.Select(o => o.OriginalStartAt).ToHashSet();
+
+var newSlots = slots
+    .Where(s => s.Start > now && !keptOriginalStarts.Contains(s.Start))
+    .ToList();
+```
+
+`survivors` 的篩選邏輯本身是對的（保留已發生過的、被單獨修改的、被單獨取消的）。問題在去重那一步：`keptOriginalStarts` 是 survivor 的 `OriginalStartAt`（該 occurrence **第一次建立時**的原始時間，`MoveOccurrenceAsync`—— 即「編輯這一筆」的實作，見同檔案約第 111–127 行——只更新 `StartAt`/`EndAt`/`IsModified`，從不更新 `OriginalStartAt`），而拿來比對的 `s.Start` 卻是**這次整系列編輯之後、新算出來的 slot 時間**。本次驗收把系列時間從 13:00 整批改成 15:00，於是 survivor 的 `OriginalStartAt`（10/14＝13:00、11/11＝13:00）永遠不會等於新 slot 的 `s.Start`（10/14＝15:00、11/11＝15:00）——只要整系列編輯有改動「時間」這個欄位，這個 `Contains` 比對幾乎必然落空，等於去重邏輯在這個情境下完全失效。正確的比對應該是「日期是否已有 survivor」（例如比對 `s.Start.Date` 是否命中某個 survivor 的 `OriginalStartAt.Date`，或用規則的第 N 次發生索引比對），而不是比較兩個本來就注定不同的絕對時間值。
 
 ### 標準 5 —— 併發測試連續 50 輪皆為「恰好一個成功」　**通過**
 
@@ -230,7 +247,7 @@ Assert.Equal(new DateTime(2026, 9, 2, 6, 0, 0, DateTimeKind.Utc), start.AsUtc); 
 | 8 | 管理員維護會議廳／員工、強制取消他人預約並通知 | 通過 |
 | 9 | 全部單元測試與整合測試通過 | 通過（125/125） |
 
-**狀態：BLOCKED。** 標準 4 不通過，證據確鑿（API 層與 `.ics` feed 雙重確認），問題出在「編輯整個系列」的 occurrence 重新展開邏輯：對已被單獨修改或單獨取消的 occurrence 日期，沒有跳過重建，導致重複事件與已取消 occurrence 復活。受影響的資料（Event id 18 極其 occurrence 42/45/46/47/48）刻意保留在開發資料庫中作為重現證據，未清理。
+**狀態：BLOCKED。** 標準 4 不通過，證據確鑿（API 層與 `.ics` feed 雙重確認），問題出在「編輯整個系列」的 occurrence 重新展開邏輯：對已被單獨修改或單獨取消的 occurrence 日期，沒有跳過重建，導致重複事件與已取消 occurrence 復活。受影響的資料（Event id 18 及其 occurrence 42/45/46/47/48）刻意保留在開發資料庫中作為重現證據，未清理。根因已定位在 `BookingService.ReExpandSeriesAsync` 的去重比對（見標準 4 一節的「根因定位」），修復循環可直接對照修改，預期不需要再重新除錯定位問題點。
 
 依任務簡報指示，本驗收未自行修復此問題，交由人類夥伴裁定是否開啟修復循環（大概率會回到負責「系列編輯 scope 語意」的任務，即與 `EventService`／`BookingService` 中處理 series 重新展開的程式碼相關的任務）。
 
