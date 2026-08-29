@@ -17,6 +17,11 @@
         users: [],
         attendeeWarnings: [],
         form: this.blank(),
+        // 掛在 <recurrence-editor :key="editorKey"> 上。每次開彈窗（openCreate／openEdit）
+        // 遞增一次，強制 Vue 銷毀並重新掛載該子元件，把它內部的區域狀態
+        // （例如「使用者是否手動要求每月最後一個」的意圖旗標）歸零，避免跨事件殘留。
+        // 只在開彈窗時遞增，不要在彈窗內的其他互動（如模式切換）時動它。
+        editorKey: 0,
       };
     },
     mounted() {
@@ -56,6 +61,7 @@
         this.canEdit = true;
         this.isRecurring = false;
         this.attendeeWarnings = [];
+        this.editorKey++;
         this.form = this.blank();
         if (start) this.form.startAt = window.api.toLocalIso(start).slice(0, 16);
         if (end) this.form.endAt = window.api.toLocalIso(end).slice(0, 16);
@@ -73,6 +79,7 @@
         this.canEdit = detail.canEdit;
         this.isRecurring = !!detail.recurrence;
         this.attendeeWarnings = [];
+        this.editorKey++;
 
         this.form = {
           title: scope === 'single' ? occurrence.title : detail.title,
@@ -200,7 +207,8 @@
         </div>
 
         <div class="mb-2" v-if="!singleLocked">
-          <recurrence-editor v-model="form.recurrence" :start-date="startDate"></recurrence-editor>
+          <recurrence-editor :key="editorKey" v-model="form.recurrence"
+                              :start-date="startDate"></recurrence-editor>
         </div>
         <div class="alert alert-info py-2 px-3 small mb-0" v-if="singleLocked">
           只會修改這一次發生，其餘各次不受影響。
