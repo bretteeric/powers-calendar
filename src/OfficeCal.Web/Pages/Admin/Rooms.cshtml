@@ -1,0 +1,13 @@
+@page
+@model OfficeCal.Web.Pages.Admin.RoomsModel
+@{ ViewData["Title"] = "會議廳管理"; }
+<div class="container-fluid px-4 py-4">
+    <div id="admin-rooms-app"><admin-rooms-page></admin-rooms-page></div>
+</div>
+
+@section Scripts {
+<script src="~/js/app/admin-rooms.js" asp-append-version="true"></script>
+<script>
+    Vue.createApp({ components: { AdminRoomsPage: window.AdminRoomsPage } }).mount('#admin-rooms-app');
+</script>
+}

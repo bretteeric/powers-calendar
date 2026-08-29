@@ -1,0 +1,13 @@
+@page
+@model OfficeCal.Web.Pages.Admin.UsersModel
+@{ ViewData["Title"] = "員工管理"; }
+<div class="container-fluid px-4 py-4">
+    <div id="admin-users-app"><admin-users-page></admin-users-page></div>
+</div>
+
+@section Scripts {
+<script src="~/js/app/admin-users.js" asp-append-version="true"></script>
+<script>
+    Vue.createApp({ components: { AdminUsersPage: window.AdminUsersPage } }).mount('#admin-users-app');
+</script>
+}
