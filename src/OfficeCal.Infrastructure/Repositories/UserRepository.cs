@@ -9,7 +9,7 @@ public class UserRepository : IUserRepository
     public UserRepository(OfficeCalDbContext db) => _db = db;
 
     public Task<User?> GetByEmployeeNoAsync(string employeeNo, CancellationToken ct = default)
-        => _db.Users.FirstOrDefaultAsync(u => u.EmployeeNo == employeeNo, ct);
+        => _db.Users.Include(u => u.Department).FirstOrDefaultAsync(u => u.EmployeeNo == employeeNo, ct);
 
     public Task<User?> GetByIdAsync(int id, CancellationToken ct = default)
         => _db.Users.Include(u => u.Department).FirstOrDefaultAsync(u => u.Id == id, ct);
