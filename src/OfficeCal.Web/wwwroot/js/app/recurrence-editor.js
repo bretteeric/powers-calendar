@@ -28,6 +28,14 @@
         const nth = Math.floor((d.getDate() - 1) / 7) + 1;
         return ['第一個', '第二個', '第三個', '第四個'][nth - 1] || '第四個';
       },
+      // 起始日在 29–31 號時，該星期在當月必然只有「最後一個」這個位置成立
+      // （Day+7 必超出當月天數），後端 ValidateStartMatches 恆要求 bySetPosition=-1，
+      // 沒有其他合法值可選，因此 UI 上鎖定不可取消勾選。
+      mustUseLastPosition() {
+        const d = this.startAsDate;
+        const nth = Math.floor((d.getDate() - 1) / 7) + 1;
+        return nth > 4;
+      },
     },
     watch: {
       modelValue: {
@@ -62,8 +70,8 @@
         const dow = WEEKDAYS[d.getDay()].value;
         const nth = Math.floor((d.getDate() - 1) / 7) + 1;
 
-        if (this.freq === 'Weekly' && this.p.byWeekDays.length === 0) this.p.byWeekDays = [dow];
-        if (this.freq === 'Weekly' && !this.p.byWeekDays.includes(dow)) this.p.byWeekDays = [dow];
+        // 補進起始日對應的星期，保留使用者已勾選的其他星期（不要整組覆蓋掉）。
+        if (this.freq === 'Weekly' && !this.p.byWeekDays.includes(dow)) this.p.byWeekDays.push(dow);
 
         if (this.freq === 'Monthly') {
           this.p.byMonthDay = d.getDate();
@@ -83,6 +91,13 @@
         if (this.freq === 'None') { this.$emit('update:modelValue', null); return; }
         this.p.frequency = this.freq;
         this.p.interval = this.p.interval || 1;
+        this.syncToStart();
+        this.emit();
+      },
+      // 每月的兩種模式互切時，先用 syncToStart() 依起始日補齊該模式所需的欄位
+      // （byMonthDay 或 bySetPosition/byPositionWeekDay），避免帶著另一模式殘留的
+      // null 直接 emit——那會被 Number(null) 轉成 0，後端 Validate 一律拒絕。
+      onMonthlyModeChange() {
         this.syncToStart();
         this.emit();
       },
@@ -160,12 +175,12 @@
   <div class="mt-3" v-if="freq === 'Monthly'">
     <div class="form-check">
       <input class="form-check-input" type="radio" id="mm-day" value="DayOfMonth"
-             v-model="p.monthlyMode" @change="emit" />
+             v-model="p.monthlyMode" @change="onMonthlyModeChange" />
       <label class="form-check-label small" for="mm-day">每月 {{ p.byMonthDay }} 日</label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="radio" id="mm-nth" value="WeekDayOfMonth"
-             v-model="p.monthlyMode" @change="emit" />
+             v-model="p.monthlyMode" @change="onMonthlyModeChange" />
       <label class="form-check-label small" for="mm-nth">
         每月{{ p.bySetPosition === -1 ? '最後一個' : nthLabel }}星期{{
           weekdays.find(w => w.value === p.byPositionWeekDay)
@@ -175,6 +190,7 @@
     <div class="form-check ms-4" v-if="p.monthlyMode === 'WeekDayOfMonth'">
       <input class="form-check-input" type="checkbox" id="mm-last"
              :checked="p.bySetPosition === -1"
+             :disabled="mustUseLastPosition"
              @change="p.bySetPosition = $event.target.checked ? -1
                         : Math.floor((startAsDate.getDate() - 1) / 7) + 1; emit()" />
       <label class="form-check-label small" for="mm-last">改用「每月最後一個」</label>
