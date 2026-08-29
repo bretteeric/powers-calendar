@@ -94,11 +94,28 @@
         this.syncToStart();
         this.emit();
       },
-      // 每月的兩種模式互切時，先用 syncToStart() 依起始日補齊該模式所需的欄位
-      // （byMonthDay 或 bySetPosition/byPositionWeekDay），避免帶著另一模式殘留的
-      // null 直接 emit——那會被 Number(null) 轉成 0，後端 Validate 一律拒絕。
+      // 每月的兩種模式互切時，只補齊「目標模式所需、但目前缺失或非法」的欄位，
+      // 不要整段重算——否則會覆蓋使用者手動勾選的「每月最後一個」
+      // （bySetPosition=-1 在 nth<=4 時本來就是合法值，不該被切走再切回時洗掉）。
+      // 唯一硬約束：起始日 >= 29 號（nth>4）時 bySetPosition 必須是 -1，
+      // 這條優先於「保留現值」。
       onMonthlyModeChange() {
-        this.syncToStart();
+        const d = this.startAsDate;
+        const dow = WEEKDAYS[d.getDay()].value;
+        const nth = Math.floor((d.getDate() - 1) / 7) + 1;
+
+        if (this.p.monthlyMode === 'DayOfMonth') {
+          const validDay = Number.isInteger(this.p.byMonthDay)
+            && this.p.byMonthDay >= 1 && this.p.byMonthDay <= 31;
+          if (!validDay) this.p.byMonthDay = d.getDate();
+        } else {
+          if (!this.p.byPositionWeekDay) this.p.byPositionWeekDay = dow;
+          if (nth > 4) {
+            this.p.bySetPosition = -1;
+          } else if (![1, 2, 3, 4, -1].includes(this.p.bySetPosition)) {
+            this.p.bySetPosition = nth;
+          }
+        }
         this.emit();
       },
       toggleWeekday(v) {
