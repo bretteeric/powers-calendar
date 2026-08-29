@@ -49,8 +49,11 @@ await db.Database.MigrateAsync();
   `dotnet ef database update`，並把 `SeedAsync` 內的 `MigrateAsync()` 拿掉。
 - 多台站台同時啟動時，EF Core 會以 `sp_getapplock`（`__EFMigrationsLock`）互斥，
   不會並行套用同一份 migration；但仍建議部署時先讓單一執行個體完成啟動。
-- 種子資料（部門名稱、三間會議廳）是否符合實際組織——不符合的話請在上線後
-  透過管理後台調整，不要改 `DbSeeder`（那會影響既有測試）。
+- 種子資料是否符合實際組織。**會議廳**可在上線後透過管理後台調整
+  （`/Admin/Rooms`，對應 `POST`／`PUT /api/v1/rooms`）。
+  **部門則沒有管理介面**——`DepartmentsController` 只有 `GET`，也沒有對應的後台頁面，
+  三個種子部門（資訊部／業務部／管理部）若不符合實際組織，只能直接改資料庫，
+  或另外開發部門維護功能。請勿為此改 `DbSeeder`（那會影響既有測試）。
 
 ---
 
