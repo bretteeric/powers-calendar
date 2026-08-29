@@ -61,7 +61,12 @@
     <script src="~/js/app/recurrence-editor.js" asp-append-version="true"></script>
     <script src="~/js/app/event-modal.js" asp-append-version="true"></script>
     <script src="~/js/app/event-detail-modal.js" asp-append-version="true"></script>
+    <script src="~/js/app/notifications.js" asp-append-version="true"></script>
     <script>
+        Vue.createApp({ components: { NotificationCenter: window.NotificationCenter },
+                        template: '<notification-center></notification-center>' })
+           .mount('#notification-center');
+
         document.getElementById('logout-link').addEventListener('click', async function (e) {
             e.preventDefault();
             await window.api.post('/api/v1/auth/logout');

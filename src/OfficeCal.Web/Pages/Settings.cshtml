@@ -1,0 +1,14 @@
+@page
+@model OfficeCal.Web.Pages.SettingsModel
+@{ ViewData["Title"] = "個人設定"; }
+<div class="container py-4">
+    <h1 class="h5 mb-3">個人設定</h1>
+    <div id="settings-app"><settings-page></settings-page></div>
+</div>
+
+@section Scripts {
+<script src="~/js/app/settings.js" asp-append-version="true"></script>
+<script>
+    Vue.createApp({ components: { SettingsPage: window.SettingsPage } }).mount('#settings-app');
+</script>
+}
