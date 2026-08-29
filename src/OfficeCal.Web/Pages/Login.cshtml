@@ -58,8 +58,17 @@
                 try {
                     await window.api.post('/api/v1/auth/login',
                         { employeeNo: this.employeeNo, password: this.password });
+                    // returnUrl 直接來自查詢字串。不驗證就賦值給 location.href 是開放重導：
+                    // ?returnUrl=https://evil.example 在使用者眼中仍是合法的公司網址，
+                    // 登入後卻被送到仿冒頁——標準的釣魚前置。
+                    // 只接受本站相對路徑：以 / 開頭，且第二個字元不是 / 也不是 \。
+                    // //evil.example 是協定相對網址；/\evil.example 會被瀏覽器把 \ 正規化成 /
+                    // 而變成同一回事。兩者都跨到別的網域，Url.IsLocalUrl 也是這樣判的。
                     const params = new URLSearchParams(window.location.search);
-                    window.location.href = params.get('returnUrl') || '/';
+                    const rt = params.get('returnUrl');
+                    const isLocal = !!rt && rt.startsWith('/')
+                        && !rt.startsWith('//') && !rt.startsWith('/\\');
+                    window.location.href = isLocal ? rt : '/';
                 } catch (e) {
                     // 攔截器已顯示訊息
                 } finally {
