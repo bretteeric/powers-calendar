@@ -14,7 +14,10 @@ namespace OfficeCal.Web.Controllers;
 public class EventsController : ControllerBase
 {
     private readonly IEventService _events;
-    public EventsController(IEventService events) => _events = events;
+    private readonly IIcsService _ics;
+
+    public EventsController(IEventService events, IIcsService ics)
+        => (_events, _ics) = (events, ics);
 
     /// <summary>把查詢字串的 mode 轉成列舉。未指定時視為 series。</summary>
     private static EditMode ParseMode(string? mode) => (mode ?? "series").ToLowerInvariant() switch
@@ -72,4 +75,13 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> CheckAttendeesAsync([FromBody] AttendeeConflictRequest req,
                                                           CancellationToken ct)
         => Ok(ApiResponse.Ok(await _events.CheckAttendeesAsync(req, ct)));
+
+    /// <summary>回傳原始 .ics 文字，不套用統一信封——行事曆軟體要的是檔案本身。</summary>
+    [HttpGet("{id:int}/ics")]
+    public async Task<IActionResult> ExportIcsAsync(int id, CancellationToken ct)
+    {
+        var ics = await _ics.ExportEventAsync(id, ct);
+        return File(System.Text.Encoding.UTF8.GetBytes(ics), "text/calendar; charset=utf-8",
+                    $"event-{id}.ics");
+    }
 }
