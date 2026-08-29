@@ -43,6 +43,36 @@ public class ApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
         return new OfficeCalDbContext(options);
     }
 
+    /// <summary>建立（或取得）一個員工帳號，密碼固定為 EmployeePassword。</summary>
+    public const string EmployeePassword = "Employee@12345";
+
+    public async Task<int> EnsureEmployeeAsync(string employeeNo, string displayName,
+                                               OfficeCal.Core.Enums.UserRole role
+                                                   = OfficeCal.Core.Enums.UserRole.Employee)
+    {
+        using var scope = Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<OfficeCalDbContext>();
+        var pwd = scope.ServiceProvider
+                       .GetRequiredService<OfficeCal.Services.IPasswordService>();
+
+        var existing = await db.Users.FirstOrDefaultAsync(u => u.EmployeeNo == employeeNo);
+        if (existing is not null) return existing.Id;
+
+        var user = new OfficeCal.Core.Entities.User
+        {
+            EmployeeNo = employeeNo,
+            DisplayName = displayName,
+            Email = $"{employeeNo.ToLowerInvariant()}@corp.local",
+            Role = role,
+            IcsFeedToken = pwd.NewFeedToken(),
+            IsActive = true,
+        };
+        user.PasswordHash = pwd.Hash(user, EmployeePassword);
+        db.Users.Add(user);
+        await db.SaveChangesAsync();
+        return user.Id;
+    }
+
     /// <summary>回傳一個已登入的 HttpClient。</summary>
     public async Task<HttpClient> LoginAsync(string employeeNo, string password)
     {
