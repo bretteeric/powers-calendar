@@ -62,10 +62,17 @@ public class BookingService : IBookingService
 
         // 去重時要比對「全部」保留列的 OriginalStartAt，不只是被修改／取消的那些：
         // 已發生過的那幾次同樣是一次發生，不可以再長出第二列。
-        var keptOriginalStarts = survivors.Select(o => o.OriginalStartAt).ToHashSet();
+        //
+        // 比對的粒度是「日曆日」而非精確時間。OriginalStartAt 記錄的是這次發生原本屬於系列的
+        // 哪個位置，單筆編輯（MoveOccurrenceAsync）從不更新它；一旦整系列編輯改動了時間
+        // （例如 10:00 → 11:00），新 slot 的 Start 與保留列的 OriginalStartAt 就注定不相等，
+        // 精確比對必然落空，會讓同一天長出第二列、或讓被單獨取消的那次以新時間復活。
+        // 本系統的重複頻率只有 Daily／Weekly／Monthly／Yearly，沒有日內頻率，因此一個系列在
+        // 每個日曆日至多產生一次 occurrence——日曆日是系列內有效且唯一的實例身分。
+        var keptOriginalDates = survivors.Select(o => o.OriginalStartAt.Date).ToHashSet();
 
         var newSlots = slots
-            .Where(s => s.Start > now && !keptOriginalStarts.Contains(s.Start))
+            .Where(s => s.Start > now && !keptOriginalDates.Contains(s.Start.Date))
             .ToList();
 
         // 系列換會議廳時，保留下來的未來 occurrence 也要搬過去（見任務 7 假設 1）
