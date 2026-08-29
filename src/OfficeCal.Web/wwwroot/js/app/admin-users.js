@@ -48,17 +48,30 @@
           title: `重設 ${u.displayName} 的密碼`,
           input: 'password',
           inputLabel: '新密碼（至少 8 個字元）',
+          inputValidator: (value) => (value && value.length < 8 ? '密碼至少 8 個字元' : undefined),
           showCancelButton: true, confirmButtonText: '重設', cancelButtonText: '取消',
         });
         if (!result.isConfirmed || !result.value) return;
-        await window.api.post(`/api/v1/users/${u.id}/reset-password`, { newPassword: result.value });
-        Swal.fire({ icon: 'success', title: '已重設密碼', timer: 1400, showConfirmButton: false });
+        try {
+          await window.api.post(`/api/v1/users/${u.id}/reset-password`, { newPassword: result.value });
+          Swal.fire({ icon: 'success', title: '已重設密碼', timer: 1400, showConfirmButton: false });
+        } catch (e) {
+          // 攔截器已顯示訊息
+        }
       },
       async toggleActive(u) {
+        const next = !u.isActive;
+        const ok = await Swal.fire({
+          icon: 'question',
+          title: next ? `要啟用 ${u.displayName} 的帳號嗎？` : `要停用 ${u.displayName} 的帳號嗎？`,
+          text: next ? '啟用後可以再次登入。' : '停用後對方無法再登入，且下一次操作即會被立即登出。',
+          showCancelButton: true, confirmButtonText: '確定', cancelButtonText: '取消',
+        });
+        if (!ok.isConfirmed) return;
         try {
           await window.api.put('/api/v1/users/' + u.id, {
             displayName: u.displayName, email: u.email, departmentId: u.departmentId,
-            role: u.role, isActive: !u.isActive,
+            role: u.role, isActive: next,
           });
           await this.load();
         } catch (e) {
