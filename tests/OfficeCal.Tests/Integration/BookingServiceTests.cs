@@ -161,4 +161,74 @@ public class BookingServiceTests
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => NewService(ctx).CreateOccurrencesAsync(ev, new[] { new TimeSlot(T(14, 10), T(14, 11)) }));
     }
+
+    [Fact]
+    public async Task 取消單一次發生只影響那一筆()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var ev = NewEvent(owner, room, T(7, 10), T(7, 11), "週一產品例會");
+        ctx.Events.Add(ev);
+        await ctx.SaveChangesAsync();
+
+        var occ1 = new EventOccurrence
+        {
+            EventId = ev.Id, OriginalStartAt = T(7, 10), StartAt = T(7, 10), EndAt = T(7, 11), RoomId = room.Id,
+        };
+        var occ2 = new EventOccurrence
+        {
+            EventId = ev.Id, OriginalStartAt = T(14, 10), StartAt = T(14, 10), EndAt = T(14, 11), RoomId = room.Id,
+        };
+        ctx.EventOccurrences.AddRange(occ1, occ2);
+        await ctx.SaveChangesAsync();
+
+        await NewService(ctx).CancelOccurrenceAsync(occ1);
+
+        await using var verify = _db.CreateContext();
+        var cancelled = await verify.EventOccurrences.SingleAsync(o => o.Id == occ1.Id);
+        var other = await verify.EventOccurrences.SingleAsync(o => o.Id == occ2.Id);
+        Assert.True(cancelled.IsCancelled);
+        Assert.False(other.IsCancelled);
+        var eventAfter = await verify.Events.SingleAsync(e => e.Id == ev.Id);
+        Assert.Equal(EventStatus.Active, eventAfter.Status);
+    }
+
+    [Fact]
+    public async Task 取消整個系列會同時改動Event與所有occurrence()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var ev = NewEvent(owner, room, T(7, 10), T(7, 11), "週一產品例會");
+        ctx.Events.Add(ev);
+        await ctx.SaveChangesAsync();
+
+        ctx.EventOccurrences.AddRange(
+            new EventOccurrence
+            {
+                EventId = ev.Id, OriginalStartAt = T(7, 10), StartAt = T(7, 10), EndAt = T(7, 11), RoomId = room.Id,
+            },
+            new EventOccurrence
+            {
+                EventId = ev.Id, OriginalStartAt = T(14, 10), StartAt = T(14, 10), EndAt = T(14, 11), RoomId = room.Id,
+            },
+            new EventOccurrence
+            {
+                EventId = ev.Id, OriginalStartAt = T(21, 10), StartAt = T(21, 10), EndAt = T(21, 11), RoomId = room.Id,
+            });
+        await ctx.SaveChangesAsync();
+
+        await NewService(ctx).CancelSeriesAsync(ev);
+
+        await using var verify = _db.CreateContext();
+        var eventAfter = await verify.Events.SingleAsync(e => e.Id == ev.Id);
+        Assert.Equal(EventStatus.Cancelled, eventAfter.Status);
+
+        var occurrences = await verify.EventOccurrences.Where(o => o.EventId == ev.Id).ToListAsync();
+        Assert.Equal(3, occurrences.Count);
+        Assert.All(occurrences, o => Assert.True(o.IsCancelled));
+    }
 }
