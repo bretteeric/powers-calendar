@@ -72,10 +72,15 @@ public class UserService : IUserService
         var email = req.Email.Trim();
         var newRole = ParseRole(req.Role);
 
+        // 沒送 isActive 不等於「維持原狀」，也不等於「啟用」——這個欄位承載權限，
+        // 缺少時必須讓呼叫端明確補上，不能替他猜一個值。
+        var isActive = req.IsActive
+                       ?? throw new ValidationException("必須指定帳號啟用狀態（isActive）");
+
         // 任務 14 審查重要 3：這是唯一能移除 Admin 身分的端點，若允許自我停用／自我降級，
         // 一旦系統只剩一名 Admin 就會失去所有管理入口，且無應用層復原路徑（DbSeeder 只補
         // 「帳號不存在」，不會把既有帳號改回 Admin）。擋掉對自己的操作即可保證此情境不會發生。
-        if (id == _me.UserId && (!req.IsActive || newRole != UserRole.Admin))
+        if (id == _me.UserId && (!isActive || newRole != UserRole.Admin))
             throw new ValidationException("不能停用或降級自己的帳號");
 
         if (await _db.Users.AnyAsync(u => u.Email == email && u.Id != id, ct))
@@ -85,7 +90,7 @@ public class UserService : IUserService
         user.Email = email;
         user.DepartmentId = req.DepartmentId;
         user.Role = newRole;
-        user.IsActive = req.IsActive;   // 停用帳號不能登入，既有事件保留
+        user.IsActive = isActive;   // 停用帳號不能登入，既有事件保留
         await _db.SaveChangesAsync(ct);
     }
 

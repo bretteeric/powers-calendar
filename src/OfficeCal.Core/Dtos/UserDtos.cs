@@ -31,13 +31,21 @@ public class CreateUserRequest
     public string Password { get; set; } = "";
 }
 
+/// <summary>
+/// 這個請求承載權限：Role 與 IsActive 是唯一能移除 Admin 身分、唯一能停用帳號的入口。
+/// 因此兩者的預設值都刻意指向「不可用」而不是「安全的一般值」——[Required] 對已有非空
+/// 預設值的 string 形同虛設，若 Role 預設 "Employee"、IsActive 預設 true，只帶
+/// displayName + email 的 PUT 就會靜默把 Admin 降級、把已停用帳號重新啟用。
+/// Role = "" 讓 [Required] 擋下；IsActive 用 bool? 讓「沒送」與「送 false」可以區分，
+/// 由 UserService 要求非 null。
+/// </summary>
 public class UpdateUserRequest
 {
     [Required][StringLength(50)] public string DisplayName { get; set; } = "";
     [Required][EmailAddress][StringLength(100)] public string Email { get; set; } = "";
     public int? DepartmentId { get; set; }
-    [Required] public string Role { get; set; } = "Employee";
-    public bool IsActive { get; set; } = true;
+    [Required] public string Role { get; set; } = "";
+    public bool? IsActive { get; set; }
 }
 
 public class ResetPasswordRequest

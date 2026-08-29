@@ -243,4 +243,36 @@ public class UsersApiTests
         var stillWorks = await self.GetAsync("/api/v1/users");
         Assert.Equal(HttpStatusCode.OK, stillWorks.StatusCode);
     }
+
+    // --- 最終審查重要 2：UpdateUserRequest 的預設值指向危險側 ---
+    // [Required] 對已有非空預設值的 string 屬性形同虛設，因此只帶 displayName + email 的
+    // PUT 會靜默套用「Employee／啟用」這組預設值——把 Admin 降級、把已停用帳號重新啟用。
+
+    [Fact]
+    public async Task 省略角色或啟用狀態的更新回四百且帳號不被改動()
+    {
+        var id = await _api.EnsureEmployeeAsync("E310", "欄位沒送齊的管理員",
+            OfficeCal.Core.Enums.UserRole.Admin);
+        var admin = await _api.LoginAsync(DbSeeder.AdminEmployeeNo, DbSeeder.AdminInitialPassword);
+
+        // 刻意用匿名物件而不是 UpdateUserRequest：要送出「欄位不存在」的 JSON
+        var noRole = await admin.PutAsJsonAsync($"/api/v1/users/{id}",
+            new { displayName = "欄位沒送齊的管理員", email = "e310@corp.local", isActive = true });
+        Assert.Equal(HttpStatusCode.BadRequest, noRole.StatusCode);
+
+        var noIsActive = await admin.PutAsJsonAsync($"/api/v1/users/{id}",
+            new { displayName = "欄位沒送齊的管理員", email = "e310@corp.local", role = "Admin" });
+        Assert.Equal(HttpStatusCode.BadRequest, noIsActive.StatusCode);
+
+        var neither = await admin.PutAsJsonAsync($"/api/v1/users/{id}",
+            new { displayName = "欄位沒送齊的管理員", email = "e310@corp.local" });
+        Assert.Equal(HttpStatusCode.BadRequest, neither.StatusCode);
+
+        // 三次都被擋下，角色與啟用狀態都沒被動過
+        var list = await admin.GetFromJsonAsync<ApiResponse<List<UserAdminDto>>>(
+            "/api/v1/users", ApiFactory.Json);
+        var target = list!.Data!.Single(u => u.Id == id);
+        Assert.Equal("Admin", target.Role);
+        Assert.True(target.IsActive);
+    }
 }
