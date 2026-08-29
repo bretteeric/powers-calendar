@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OfficeCal.Core.Common;
 using OfficeCal.Core.Dtos;
 using OfficeCal.Core.Entities;
 using OfficeCal.Core.Enums;
@@ -13,10 +14,11 @@ public class BookingService : IBookingService
     private readonly OfficeCalDbContext _db;
     private readonly IRoomRepository _rooms;
     private readonly IEventOccurrenceRepository _occurrences;
+    private readonly TimeProvider _clock;
 
     public BookingService(OfficeCalDbContext db, IRoomRepository rooms,
-                          IEventOccurrenceRepository occurrences)
-        => (_db, _rooms, _occurrences) = (db, rooms, occurrences);
+                          IEventOccurrenceRepository occurrences, TimeProvider clock)
+        => (_db, _rooms, _occurrences, _clock) = (db, rooms, occurrences, clock);
 
     public async Task CreateOccurrencesAsync(Event ev, IReadOnlyList<TimeSlot> slots,
                                              CancellationToken ct = default)
@@ -42,6 +44,92 @@ public class BookingService : IBookingService
             });
         }
 
+        await _db.SaveChangesAsync(ct);
+    }
+
+    public async Task ReExpandSeriesAsync(Event ev, IReadOnlyList<TimeSlot> slots,
+                                          CancellationToken ct = default)
+    {
+        var now = TaipeiTime.Now(_clock);
+        var existing = await _occurrences.GetTrackedByEventAsync(ev.Id, ct);
+
+        // 保留：已發生過的（不回頭改寫歷史）、被單獨修改的、被單獨取消的
+        var survivors = existing
+            .Where(o => o.StartAt <= now || o.IsModified || o.IsCancelled)
+            .ToList();
+        var toDelete = existing.Except(survivors).ToList();
+
+        // 去重時要比對「全部」保留列的 OriginalStartAt，不只是被修改／取消的那些：
+        // 已發生過的那幾次同樣是一次發生，不可以再長出第二列。
+        var keptOriginalStarts = survivors.Select(o => o.OriginalStartAt).ToHashSet();
+
+        var newSlots = slots
+            .Where(s => s.Start > now && !keptOriginalStarts.Contains(s.Start))
+            .ToList();
+
+        // 系列換會議廳時，保留下來的未來 occurrence 也要搬過去（見任務 7 假設 1）
+        var movedSurvivors = survivors
+            .Where(o => o.StartAt > now && !o.IsCancelled && o.RoomId != ev.RoomId)
+            .ToList();
+
+        if (ev.RoomId is int roomId)
+        {
+            await LockRoomForWriteAsync(roomId, ct);
+
+            var toCheck = newSlots
+                .Concat(movedSurvivors.Select(o => new TimeSlot(o.StartAt, o.EndAt)))
+                .ToList();
+
+            if (toCheck.Count > 0)
+            {
+                var conflicts = await FindConflictsAsync(roomId, toCheck, excludeEventId: ev.Id, ct);
+                if (conflicts.Count > 0)
+                    throw new ConflictException("會議廳於下列時段已被預約", conflicts);
+            }
+        }
+
+        _db.EventOccurrences.RemoveRange(toDelete);
+        foreach (var o in movedSurvivors) o.RoomId = ev.RoomId;
+
+        foreach (var s in newSlots)
+        {
+            _db.EventOccurrences.Add(new EventOccurrence
+            {
+                EventId = ev.Id,
+                OriginalStartAt = s.Start,
+                StartAt = s.Start,
+                EndAt = s.End,
+                RoomId = ev.RoomId,
+            });
+        }
+
+        await _db.SaveChangesAsync(ct);
+    }
+
+    public async Task MoveOccurrenceAsync(EventOccurrence occ, DateTime newStart, DateTime newEnd,
+                                          CancellationToken ct = default)
+    {
+        if (newEnd <= newStart) throw new ValidationException("結束時間必須晚於開始時間");
+
+        if (occ.RoomId is int roomId)
+        {
+            await LockRoomForWriteAsync(roomId, ct);
+            var conflicts = await FindConflictsAsync(
+                roomId, new[] { new TimeSlot(newStart, newEnd) }, excludeEventId: occ.EventId, ct);
+            if (conflicts.Count > 0) throw new ConflictException("會議廳於下列時段已被預約", conflicts);
+        }
+
+        occ.StartAt = newStart;
+        occ.EndAt = newEnd;
+        occ.IsModified = true;
+        await _db.SaveChangesAsync(ct);
+    }
+
+    public async Task SetOccurrenceTitleAsync(EventOccurrence occ, string? title,
+                                              CancellationToken ct = default)
+    {
+        occ.TitleOverride = string.IsNullOrWhiteSpace(title) ? null : title.Trim();
+        occ.IsModified = true;
         await _db.SaveChangesAsync(ct);
     }
 

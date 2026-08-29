@@ -20,7 +20,8 @@ public class BookingServiceTests
     private static DateTime T(int day, int hour) => new(2026, 9, day, hour, 0, 0);
 
     private static BookingService NewService(OfficeCalDbContext ctx)
-        => new(ctx, new RoomRepository(ctx), new EventOccurrenceRepository(ctx));
+        => new(ctx, new RoomRepository(ctx), new EventOccurrenceRepository(ctx),
+               new FixedTimeProvider(new DateTime(2026, 9, 1, 0, 0, 0)));
 
     private static Event NewEvent(User owner, Room? room, DateTime start, DateTime end,
                                   string title = "新會議")

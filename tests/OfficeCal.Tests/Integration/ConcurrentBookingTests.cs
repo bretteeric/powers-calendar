@@ -23,7 +23,7 @@ public class ConcurrentBookingTests
     {
         await using var ctx = _db.CreateContext();
         var booking = new BookingService(ctx, new RoomRepository(ctx),
-                                         new EventOccurrenceRepository(ctx));
+                                         new EventOccurrenceRepository(ctx), TimeProvider.System);
         await gate;   // 兩個執行緒在此對齊，盡可能同時衝進交易
 
         await using var tx = await ctx.Database.BeginTransactionAsync();
