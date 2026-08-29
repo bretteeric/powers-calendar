@@ -136,6 +136,48 @@ public class BookingServiceTests
     }
 
     [Fact]
+    public async Task 自我重疊的slots在掛會議廳時丟例外且不寫入任何資料()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+
+        // 模擬「每日重複但長度 26 小時」展開出的兩個 slot：第二筆的起點落在第一筆結束之前
+        var ev = NewEvent(owner, room, T(7, 10), T(8, 12), "跨日重複會議");
+        var slots = new[]
+        {
+            new TimeSlot(T(7, 10), T(8, 12)),
+            new TimeSlot(T(8, 10), T(9, 12)),
+        };
+
+        await Assert.ThrowsAsync<ValidationException>(() => BookAsync(ctx, ev, slots));
+
+        await using var verify = _db.CreateContext();
+        Assert.Equal(0, await verify.Events.CountAsync());
+        Assert.Equal(0, await verify.EventOccurrences.CountAsync());
+    }
+
+    [Fact]
+    public async Task 不掛會議廳時自我重疊的slots仍可成功寫入()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+
+        var ev = NewEvent(owner, null, T(7, 10), T(8, 12), "跨日重複的純個人事件");
+        var slots = new[]
+        {
+            new TimeSlot(T(7, 10), T(8, 12)),
+            new TimeSlot(T(8, 10), T(9, 12)),
+        };
+
+        await BookAsync(ctx, ev, slots);
+
+        Assert.Equal(2, await ctx.EventOccurrences.CountAsync());
+    }
+
+    [Fact]
     public async Task 停用的會議廳不可新增預約()
     {
         await _db.ResetAsync();

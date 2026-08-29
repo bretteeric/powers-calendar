@@ -41,7 +41,7 @@ public class EventService : IEventService
         var (startAt, endAt) = Normalize(req.StartAt, req.EndAt, req.IsAllDay);
         var rrule = BuildRrule(req.Recurrence, startAt);
         var slots = _recurrence.Expand(rrule, startAt, endAt);
-        var attendeeIds = await ValidateAttendeesAsync(req.AttendeeIds, ct);
+        var attendeeIds = await ValidateAttendeesAsync(req.AttendeeIds, _me.UserId, ct);
         var now = TaipeiTime.Now(_clock);
 
         await using var tx = await _db.Database.BeginTransactionAsync(ct);
@@ -213,7 +213,7 @@ public class EventService : IEventService
         var (start, end) = Normalize(req.StartAt, req.EndAt, req.IsAllDay);
         var rrule = BuildRrule(req.Recurrence, start);
         var slots = _recurrence.Expand(rrule, start, end);
-        var attendeeIds = await ValidateAttendeesAsync(req.AttendeeIds, ct);
+        var attendeeIds = await ValidateAttendeesAsync(req.AttendeeIds, ev.OwnerId, ct);
 
         var originalAttendees = ev.Attendees.Select(a => a.UserId).ToHashSet();
         var timeChanged = ev.StartAt != start || ev.EndAt != end || ev.RecurrenceRule != rrule;
@@ -330,9 +330,9 @@ public class EventService : IEventService
         return _recurrence.ToRrule(pattern);
     }
 
-    private async Task<List<int>> ValidateAttendeesAsync(List<int> ids, CancellationToken ct)
+    private async Task<List<int>> ValidateAttendeesAsync(List<int> ids, int ownerId, CancellationToken ct)
     {
-        var distinct = ids.Distinct().Where(id => id != _me.UserId).ToList();
+        var distinct = ids.Distinct().Where(id => id != ownerId).ToList();
         if (distinct.Count == 0) return distinct;
 
         var found = await _users.GetByIdsAsync(distinct, ct);

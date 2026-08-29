@@ -28,6 +28,7 @@ public class BookingService : IBookingService
         if (ev.RoomId is int roomId)
         {
             await LockRoomForWriteAsync(roomId, ct);
+            EnsureNoSelfOverlap(slots);
             var conflicts = await FindConflictsAsync(roomId, slots, excludeEventId: ev.Id, ct);
             if (conflicts.Count > 0) throw new ConflictException("會議廳於下列時段已被預約", conflicts);
         }
@@ -79,6 +80,8 @@ public class BookingService : IBookingService
             var toCheck = newSlots
                 .Concat(movedSurvivors.Select(o => new TimeSlot(o.StartAt, o.EndAt)))
                 .ToList();
+
+            EnsureNoSelfOverlap(toCheck);
 
             if (toCheck.Count > 0)
             {
@@ -163,6 +166,20 @@ public class BookingService : IBookingService
 
         if (!room.IsActive)
             throw new ValidationException($"會議廳「{room.Name}」已停用，無法新增預約");
+    }
+
+    /// <summary>
+    /// 檢查同一批 slots 之間是否互相重疊。重複規則的長度若超過間隔（例如每日重複但長度 26 小時），
+    /// 展開結果會自我重疊；這批 slot 從未彼此比對過，會全部寫進同一間會議廳。
+    /// </summary>
+    private static void EnsureNoSelfOverlap(IReadOnlyList<TimeSlot> slots)
+    {
+        var ordered = slots.OrderBy(s => s.Start).ToList();
+        for (var i = 1; i < ordered.Count; i++)
+            if (OverlapChecker.Overlaps(ordered[i - 1].Start, ordered[i - 1].End,
+                                        ordered[i].Start, ordered[i].End))
+                throw new ValidationException(
+                    "重複規則產生了互相重疊的時段，請縮短事件長度或加大重複間隔");
     }
 
     private async Task<List<ConflictDetail>> FindConflictsAsync(

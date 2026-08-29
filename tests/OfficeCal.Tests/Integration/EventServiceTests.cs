@@ -264,4 +264,143 @@ public class EventServiceTests
         Assert.DoesNotContain("頭尾相接不算", b.Titles);
         Assert.Equal(0, result.Single(r => r.UserId == free.Id).ConflictCount);
     }
+
+    [Fact]
+    public async Task 非擁有者非Admin不能取消他人事件()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var stranger = await TestData.AddUserAsync(ctx, "E002", "路人");
+        var ev = await TestData.AddBookedEventAsync(ctx, owner, null, D(7, 9), D(7, 10));
+
+        var (svc, _) = NewService(ctx, stranger);
+
+        await Assert.ThrowsAsync<ForbiddenException>(
+            () => svc.CancelAsync(ev.Id, EditMode.Series, null));
+    }
+
+    [Fact]
+    public async Task 擁有者取消自己的事件走EventCancelled而非ForcedCancellation()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var guest = await TestData.AddUserAsync(ctx, "E002", "王小明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var ev = await TestData.AddBookedEventAsync(ctx, owner, room, D(7, 10), D(7, 11), "季度檢討會");
+        ctx.EventAttendees.Add(new EventAttendee { EventId = ev.Id, UserId = guest.Id });
+        await ctx.SaveChangesAsync();
+
+        var (svc, _) = NewService(ctx, owner);
+        await svc.CancelAsync(ev.Id, EditMode.Series, null);
+
+        await using var verify = _db.CreateContext();
+        var notes = await verify.Notifications.ToListAsync();
+        Assert.Single(notes);
+        Assert.Equal(NotificationType.EventCancelled, notes[0].Type);
+        Assert.Equal(guest.Id, notes[0].UserId);
+    }
+
+    /// <summary>
+    /// 覆蓋 UpdateSeriesAsync 的完整路徑：重新展開 occurrence、增刪與會者、兩種通知分流。
+    /// 同時涵蓋修法 3：Admin 編輯他人事件，名單含 Admin 自己時，Admin 的與會者列不能被靜默移除。
+    /// </summary>
+    [Fact]
+    public async Task UpdateSeriesAsync完整路徑重新展開同步與會者並分流通知()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var admin = await TestData.AddUserAsync(ctx, "A0001", "系統管理員", UserRole.Admin);
+        var staying = await TestData.AddUserAsync(ctx, "E002", "留下來的王小明");
+        var leaving = await TestData.AddUserAsync(ctx, "E003", "離開的李小華");
+        var joining = await TestData.AddUserAsync(ctx, "E004", "新加入的林大寶");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+
+        // owner 建立週一例行會議，與會者含 admin 自己、staying、leaving
+        var (ownerSvc, _) = NewService(ctx, owner);
+        var recurrence = new RecurrencePatternDto
+        {
+            Frequency = RecurrenceFrequency.Weekly, Interval = 1,
+            ByWeekDays = new() { DayOfWeek.Monday },
+            EndMode = RecurrenceEndMode.Count, Count = 4,
+        };
+        var createReq = Req("週一產品例會", room.Id, 7, 10, admin.Id, staying.Id, leaving.Id);
+        createReq.Recurrence = recurrence;
+        var eventId = await ownerSvc.CreateAsync(createReq);
+
+        // admin（非擁有者）編輯這個系列：改時間、拿掉 leaving、加入 joining，名單仍含 admin 自己
+        await using var ctx2 = _db.CreateContext();
+        var (adminSvc, _) = NewService(ctx2, admin);
+        var updateReq = new UpdateEventRequest
+        {
+            Title = "週一產品例會", RoomId = room.Id,
+            StartAt = D(7, 14), EndAt = D(7, 15),
+            AttendeeIds = new() { admin.Id, staying.Id, joining.Id },
+            Recurrence = recurrence,
+        };
+        await adminSvc.UpdateAsync(eventId, EditMode.Series, updateReq);
+
+        await using var verify = _db.CreateContext();
+
+        // occurrence 已重新展開到新時間
+        var occStarts = await verify.EventOccurrences.Where(o => o.EventId == eventId)
+                                                      .Select(o => o.StartAt).ToListAsync();
+        Assert.Equal(4, occStarts.Count);
+        Assert.All(occStarts, s => Assert.Equal(14, s.Hour));
+
+        // EventAttendee 已同步：admin 自己沒被靜默移除、leaving 被移除、joining 被加入
+        var attendeeIds = await verify.EventAttendees.Where(a => a.EventId == eventId)
+                                                      .Select(a => a.UserId).ToListAsync();
+        Assert.Contains(admin.Id, attendeeIds);
+        Assert.Contains(staying.Id, attendeeIds);
+        Assert.Contains(joining.Id, attendeeIds);
+        Assert.DoesNotContain(leaving.Id, attendeeIds);
+
+        // 通知分流：建立時 3 筆 AddedToEvent（admin/staying/leaving），
+        // 更新時留下來的舊與會者（admin、staying）收 EventUpdated，新加入的（joining）收 AddedToEvent
+        var notes = await verify.Notifications.Where(n => n.EventId == eventId).ToListAsync();
+        var addedNotes = notes.Where(n => n.Type == NotificationType.AddedToEvent).ToList();
+        var updatedNotes = notes.Where(n => n.Type == NotificationType.EventUpdated).ToList();
+
+        Assert.Equal(4, addedNotes.Count);
+        Assert.Contains(addedNotes, n => n.UserId == joining.Id);
+
+        Assert.Equal(2, updatedNotes.Count);
+        Assert.Contains(updatedNotes, n => n.UserId == admin.Id);
+        Assert.Contains(updatedNotes, n => n.UserId == staying.Id);
+        Assert.DoesNotContain(updatedNotes, n => n.UserId == leaving.Id);
+        Assert.DoesNotContain(updatedNotes, n => n.UserId == joining.Id);
+    }
+
+    [Fact]
+    public async Task 系列僅改標題不產生通知()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var guest = await TestData.AddUserAsync(ctx, "E002", "王小明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var (svc, _) = NewService(ctx, owner);
+
+        var id = await svc.CreateAsync(Req("週一產品例會", room.Id, 7, 10, guest.Id));
+
+        await using var ctx2 = _db.CreateContext();
+        var (svc2, _) = NewService(ctx2, owner);
+        var req = new UpdateEventRequest
+        {
+            Title = "改過的標題", RoomId = room.Id,
+            StartAt = D(7, 10), EndAt = D(7, 11),
+            AttendeeIds = new() { guest.Id },
+        };
+        await svc2.UpdateAsync(id, EditMode.Series, req);
+
+        await using var verify = _db.CreateContext();
+        Assert.Equal("改過的標題", (await verify.Events.FindAsync(id))!.Title);
+
+        var notes = await verify.Notifications.ToListAsync();
+        Assert.Single(notes);   // 只有建立時的那一筆 AddedToEvent，更新時沒有新增
+        Assert.Equal(NotificationType.AddedToEvent, notes[0].Type);
+    }
 }
