@@ -52,6 +52,12 @@ public class AuthApiTests
             .WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
         var res = await client.GetAsync("/api/v1/me");
         Assert.Equal(HttpStatusCode.Unauthorized, res.StatusCode);
+
+        // 規格 3：所有 /api/v1/* 回應都要走統一信封，401/403 也不例外。
+        // 這條斷言就是護欄——只查狀態碼會漏掉 body 是空的這種缺口。
+        var body = await res.Content.ReadFromJsonAsync<ApiResponse<object>>(ApiFactory.Json);
+        Assert.False(body!.Success);
+        Assert.False(string.IsNullOrWhiteSpace(body.Message));
     }
 
     [Fact]
@@ -64,19 +70,24 @@ public class AuthApiTests
             await db.SaveChangesAsync();
         }
 
-        var client = _api.CreateClient();
-        var res = await client.PostAsJsonAsync("/api/v1/auth/login",
-            new LoginRequest
-            {
-                EmployeeNo = DbSeeder.AdminEmployeeNo,
-                Password = DbSeeder.AdminInitialPassword,
-            });
-        Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
-
-        await using (var db = _api.CreateContext())
+        try
         {
+            var client = _api.CreateClient();
+            var res = await client.PostAsJsonAsync("/api/v1/auth/login",
+                new LoginRequest
+                {
+                    EmployeeNo = DbSeeder.AdminEmployeeNo,
+                    Password = DbSeeder.AdminInitialPassword,
+                });
+            Assert.Equal(HttpStatusCode.BadRequest, res.StatusCode);
+        }
+        finally
+        {
+            // 還原，避免影響同集合的其他測試——放在 finally 裡，即使上面的斷言失敗
+            // 也不會讓管理員帳號永久停用在共享的 [Collection("Api")] 資料庫中。
+            await using var db = _api.CreateContext();
             var u = await db.Users.FirstAsync(x => x.EmployeeNo == DbSeeder.AdminEmployeeNo);
-            u.IsActive = true;   // 還原，避免影響同集合的其他測試
+            u.IsActive = true;
             await db.SaveChangesAsync();
         }
     }

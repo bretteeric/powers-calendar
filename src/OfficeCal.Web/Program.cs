@@ -30,6 +30,10 @@ builder.Services.AddScoped<IRecurrenceService, RecurrenceService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 // 任務 9–14 會在此陸續加入 INotificationService、IEventService、IRoomService、IIcsService、IUserService
 
+// 與 GlobalExceptionMiddleware 一致的信封序列化設定：Cookie 驗證事件在 DI 容器組裝階段
+// 執行，拿不到 MVC 的 JsonOptions，所以在這裡自建一份同樣是 camelCase 的設定共用。
+var authEnvelopeJson = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(o =>
     {
@@ -39,21 +43,25 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         o.ExpireTimeSpan = TimeSpan.FromHours(12);
         o.SlidingExpiration = true;
         o.LoginPath = "/Login";
-        o.Events.OnRedirectToLogin = ctx =>
+        o.Events.OnRedirectToLogin = async ctx =>
         {
-            // API 路徑不重導，直接回 401 讓前端攔截器處理
+            // API 路徑不重導，直接回統一信封的 401 讓前端攔截器處理（規格 3：所有 /api/v1/* 回應都走信封）
             if (ctx.Request.Path.StartsWithSegments("/api"))
             {
                 ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                return Task.CompletedTask;
+                ctx.Response.ContentType = "application/json; charset=utf-8";
+                await ctx.Response.WriteAsync(
+                    JsonSerializer.Serialize(ApiResponse.Fail("請先登入"), authEnvelopeJson));
+                return;
             }
             ctx.Response.Redirect(ctx.RedirectUri);
-            return Task.CompletedTask;
         };
-        o.Events.OnRedirectToAccessDenied = ctx =>
+        o.Events.OnRedirectToAccessDenied = async ctx =>
         {
             ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
-            return Task.CompletedTask;
+            ctx.Response.ContentType = "application/json; charset=utf-8";
+            await ctx.Response.WriteAsync(
+                JsonSerializer.Serialize(ApiResponse.Fail("沒有權限執行此操作"), authEnvelopeJson));
         };
     });
 
