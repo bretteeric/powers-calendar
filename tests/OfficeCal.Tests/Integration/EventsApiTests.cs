@@ -118,4 +118,55 @@ public class EventsApiTests
         var res = await client.PostAsJsonAsync("/api/v1/events", Req("匿名事件", null, 2, 9));
         Assert.Equal(HttpStatusCode.Unauthorized, res.StatusCode);
     }
+
+    [Fact]
+    public async Task 事件明細依可見性規則決定能否讀取()
+    {
+        var admin = await _api.LoginAsync(DbSeeder.AdminEmployeeNo, DbSeeder.AdminInitialPassword);
+        var roomId = await FirstRoomIdAsync();
+
+        var roomEvent = await admin.PostAsJsonAsync("/api/v1/events", Req("掛會議廳的事件", roomId, 12, 10));
+        var roomEventId =
+            (await roomEvent.Content.ReadFromJsonAsync<ApiResponse<int>>(ApiFactory.Json))!.Data;
+
+        var personalEvent = await admin.PostAsJsonAsync("/api/v1/events", Req("純個人事件", null, 13, 10));
+        var personalEventId =
+            (await personalEvent.Content.ReadFromJsonAsync<ApiResponse<int>>(ApiFactory.Json))!.Data;
+
+        await _api.EnsureEmployeeAsync("E102", "陳小美");
+        var employee = await _api.LoginAsync("E102", ApiFactory.EmployeePassword);
+
+        var roomDetail = await employee.GetAsync($"/api/v1/events/{roomEventId}");
+        Assert.Equal(HttpStatusCode.OK, roomDetail.StatusCode);
+        var roomBody = await roomDetail.Content.ReadFromJsonAsync<ApiResponse<EventDetailDto>>(ApiFactory.Json);
+        Assert.Equal("掛會議廳的事件", roomBody!.Data!.Title);
+        Assert.False(roomBody.Data.CanEdit);
+
+        var personalDetail = await employee.GetAsync($"/api/v1/events/{personalEventId}");
+        Assert.Equal(HttpStatusCode.Forbidden, personalDetail.StatusCode);
+    }
+
+    [Fact]
+    public async Task 檢查與會者衝突回傳次數與標題()
+    {
+        var employeeId = await _api.EnsureEmployeeAsync("E103", "林小強");
+        var employee = await _api.LoginAsync("E103", ApiFactory.EmployeePassword);
+
+        var create = await employee.PostAsJsonAsync("/api/v1/events", Req("既有排程", null, 14, 10));
+        Assert.Equal(HttpStatusCode.OK, create.StatusCode);
+
+        var admin = await _api.LoginAsync(DbSeeder.AdminEmployeeNo, DbSeeder.AdminInitialPassword);
+        var checkReq = new AttendeeConflictRequest
+        {
+            AttendeeIds = new List<int> { employeeId },
+            Slots = new List<TimeSlotDto> { new() { StartAt = D(14, 10), EndAt = D(14, 11) } },
+        };
+        var res = await admin.PostAsJsonAsync("/api/v1/events/check-attendees", checkReq);
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+
+        var body = await res.Content.ReadFromJsonAsync<ApiResponse<List<AttendeeConflictDto>>>(ApiFactory.Json);
+        var hit = body!.Data!.Single(d => d.UserId == employeeId);
+        Assert.True(hit.ConflictCount > 0);
+        Assert.Contains("既有排程", hit.Titles);
+    }
 }
