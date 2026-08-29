@@ -78,7 +78,10 @@
       setView(v) { this.view = v; this.load(); },
       move(step) {
         const d = new Date(this.anchor);
-        if (this.view === 'month') d.setMonth(d.getMonth() + step);
+        // 月導覽必須先把「日」歸一再換月：29–31 日直接 setMonth 會在目標月份天數不足時
+        // 溢位到下個月，使用者點一次「›」就跳過整個月。月檢視的 rangeStart 本來就只取
+        // 年／月，不依賴「日」，歸一不影響顯示。
+        if (this.view === 'month') { d.setDate(1); d.setMonth(d.getMonth() + step); }
         else if (this.view === 'week') d.setDate(d.getDate() + step * 7);
         else d.setDate(d.getDate() + step);
         this.anchor = d;
@@ -137,7 +140,7 @@
         <div v-for="n in dayNames" :key="n" class="text-center small text-muted py-2">{{ n }}</div>
       </div>
       <div class="oc-month">
-        <div v-for="d in monthCells" :key="d.toISOString()"
+        <div v-for="d in monthCells" :key="d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()"
              class="oc-month-cell"
              :class="{ 'is-other-month': isOtherMonth(d), 'is-today': isToday(d) }"
              @click="quickCreate(d, null)">
@@ -156,7 +159,7 @@
     <template v-else>
       <div class="d-flex border-bottom">
         <div style="width:56px"></div>
-        <div v-for="d in weekCells" :key="d.toISOString()"
+        <div v-for="d in weekCells" :key="d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()"
              class="flex-fill text-center small py-2"
              :class="{ 'fw-bold text-primary': isToday(d) }">
           {{ d.getMonth() + 1 }}/{{ d.getDate() }}（{{ dayNames[d.getDay()] }}）
@@ -168,7 +171,7 @@
             {{ String(h).padStart(2,'0') }}:00
           </div>
         </div>
-        <div v-for="d in weekCells" :key="d.toISOString()" class="flex-fill oc-grid">
+        <div v-for="d in weekCells" :key="d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()" class="flex-fill oc-grid">
           <div v-for="h in hours" :key="h" class="oc-hour-row" @click="quickCreate(d, h)"></div>
           <div v-for="o in itemsOn(d)" :key="o.occurrenceId"
                class="oc-slot" :style="slotStyle(o)" @click.stop="openDetail(o)">
