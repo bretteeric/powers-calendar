@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] － 公司行事曆與會議廳預約</title>
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
 @if (isAuthenticated)
@@ -55,7 +55,7 @@
 <script src="~/js/vue.global.prod.js"></script>
 <script src="~/js/axios.min.js"></script>
 <script src="~/js/sweetalert2.all.min.js"></script>
-<script src="~/js/app/api.js"></script>
+<script src="~/js/app/api.js" asp-append-version="true"></script>
 @if (isAuthenticated)
 {
     <script>

@@ -51,6 +51,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         o.ExpireTimeSpan = TimeSpan.FromHours(12);
         o.SlidingExpiration = true;
         o.LoginPath = "/Login";
+        // 任務 15 審查修復：預設查詢字串鍵是 "ReturnUrl"（大寫 R），但 wwwroot/js/app/api.js
+        // 的 401 攔截器與 Login.cshtml 都是照規格逐字寫的小寫 "returnUrl"。改這裡而不是改
+        // 前端，讓「未登入直接開受保護頁面」與「session 到期時 401 攔截器導回登入頁」兩條
+        // 路徑共用同一個查詢字串鍵，登入後才能正確回跳原本要去的頁面。
+        o.ReturnUrlParameter = "returnUrl";
         o.Events.OnRedirectToLogin = async ctx =>
         {
             // API 路徑不重導，直接回統一信封的 401 讓前端攔截器處理（規格 3：所有 /api/v1/* 回應都走信封）
