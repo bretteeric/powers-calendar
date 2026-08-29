@@ -37,9 +37,18 @@
         this.date = window.api.toLocalIso(d).slice(0, 10);
         this.load();
       },
+      /**
+       * iso 的時刻換算成「以目前檢視日期 0 時為基準」的分鐘數。跨日事件會因此
+       * 落在 [0, DAY_MINUTES) 之外（負值＝早於當日、超過 DAY_MINUTES＝晚於當日），
+       * 讓 slotStyle 既有的 clamp 能真正發揮作用，而不是把跨日事件誤畫成當日內的
+       * 極小色塊。純比較日期（不含時分），避免時區位移造成的誤差。
+       */
       minutesOf(iso) {
         const d = new Date(iso);
-        return d.getHours() * 60 + d.getMinutes();
+        const view = window.api.parseDate(this.date);
+        const occDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        const dayDiff = Math.round((occDay - view) / 86400000);
+        return dayDiff * DAY_MINUTES + d.getHours() * 60 + d.getMinutes();
       },
       slotStyle(b) {
         const start = Math.max(0, this.minutesOf(b.startAt));
