@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OfficeCal.Web.Pages;
 
-[Authorize]
-public class IndexModel : PageModel
+[AllowAnonymous]
+public class LoginModel : PageModel
 {
     public void OnGet() { }
 }
