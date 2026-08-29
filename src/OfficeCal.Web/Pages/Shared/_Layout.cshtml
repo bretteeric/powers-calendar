@@ -58,6 +58,9 @@
 <script src="~/js/app/api.js" asp-append-version="true"></script>
 @if (isAuthenticated)
 {
+    <script src="~/js/app/recurrence-editor.js" asp-append-version="true"></script>
+    <script src="~/js/app/event-modal.js" asp-append-version="true"></script>
+    <script src="~/js/app/event-detail-modal.js" asp-append-version="true"></script>
     <script>
         document.getElementById('logout-link').addEventListener('click', async function (e) {
             e.preventDefault();
