@@ -19,7 +19,10 @@
     },
     emits: ['update:modelValue'],
     data() {
-      return { weekdays: WEEKDAYS, freq: 'None', p: this.defaults() };
+      // wantsLastPosition：使用者是否手動要求「每月最後一個」的意圖旗標。
+      // 獨立於 p 之外，讓它在 modelValue 因 v-model 往返而重建 p 時不會被沖掉——
+      // 只有使用者主動取消勾選、或 startDate 改變這兩個明確動作才會清除它。
+      return { weekdays: WEEKDAYS, freq: 'None', p: this.defaults(), wantsLastPosition: false };
     },
     computed: {
       startAsDate() { return window.api.parseDate(this.startDate); },
@@ -44,10 +47,26 @@
           if (!v) { this.freq = 'None'; this.p = this.defaults(); return; }
           this.freq = v.frequency;
           this.p = Object.assign(this.defaults(), v);
+          // 附帶觀察：如果載入的既有系列本身就手動設定過「最後一個」
+          // （nth<=4 卻仍是 -1，不是月底硬約束造成的），把這份意圖記到旗標，
+          // 這樣之後模式互切往返時才不會忘記使用者原本的選擇。
+          // 只在條件成立時設為 true，絕不在此處設為 false——
+          // 這裡也會收到自己 emit 出去又透過 v-model 繞回來的值（例如切到
+          // DayOfMonth 模式時 bySetPosition 為 null），若因此清掉旗標，
+          // 就會在往返循環中把使用者的意圖悄悄弄丟，症狀還會更難診斷。
+          if (v.frequency === 'Monthly' && v.monthlyMode === 'WeekDayOfMonth' && v.bySetPosition === -1) {
+            const nth = Math.floor((this.startAsDate.getDate() - 1) / 7) + 1;
+            if (nth <= 4) this.wantsLastPosition = true;
+          }
         },
       },
-      // 起始日改變時，重新推導與起始日繫結的欄位（後端會驗證兩者必須一致）
-      startDate() { if (this.freq !== 'None') { this.syncToStart(); this.emit(); } },
+      // 起始日改變時，重新推導與起始日繫結的欄位（後端會驗證兩者必須一致）。
+      // 起始日變了視為新的排程意圖，「最後一個」的旗標也一併清除
+      // （這是旗標僅有的兩個清除時機之一，另一個是使用者主動取消勾選）。
+      startDate() {
+        this.wantsLastPosition = false;
+        if (this.freq !== 'None') { this.syncToStart(); this.emit(); }
+      },
     },
     methods: {
       defaults() {
@@ -111,11 +130,25 @@
         } else {
           if (!this.p.byPositionWeekDay) this.p.byPositionWeekDay = dow;
           if (nth > 4) {
+            // 月底硬約束優先於一切，包含旗標。
+            this.p.bySetPosition = -1;
+          } else if (this.wantsLastPosition) {
+            // 使用者先前手動要求過「最後一個」，切回這個模式時還原，不要重算成 nth。
             this.p.bySetPosition = -1;
           } else if (![1, 2, 3, 4, -1].includes(this.p.bySetPosition)) {
             this.p.bySetPosition = nth;
           }
         }
+        this.emit();
+      },
+      // 「改用每月最後一個」核取方塊的變更處理：同時更新旗標與 bySetPosition。
+      // 這是旗標僅有的兩個設定/清除時機之一（另一個在 modelValue watcher 裡設定 true、
+      // startDate watcher 裡清除）。
+      onToggleLastPosition(checked) {
+        this.wantsLastPosition = checked;
+        this.p.bySetPosition = checked
+          ? -1
+          : Math.floor((this.startAsDate.getDate() - 1) / 7) + 1;
         this.emit();
       },
       toggleWeekday(v) {
@@ -208,8 +241,7 @@
       <input class="form-check-input" type="checkbox" id="mm-last"
              :checked="p.bySetPosition === -1"
              :disabled="mustUseLastPosition"
-             @change="p.bySetPosition = $event.target.checked ? -1
-                        : Math.floor((startAsDate.getDate() - 1) / 7) + 1; emit()" />
+             @change="onToggleLastPosition($event.target.checked)" />
       <label class="form-check-label small" for="mm-last">改用「每月最後一個」</label>
     </div>
   </div>
