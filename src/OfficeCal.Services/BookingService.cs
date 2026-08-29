@@ -29,7 +29,8 @@ public class BookingService : IBookingService
         {
             await LockRoomForWriteAsync(roomId, ct);
             EnsureNoSelfOverlap(slots);
-            var conflicts = await FindConflictsAsync(roomId, slots, excludeEventId: ev.Id, ct);
+            var conflicts = await FindConflictsAsync(
+                roomId, slots, excludeEventId: ev.Id, excludeOccurrenceId: null, ct);
             if (conflicts.Count > 0) throw new ConflictException("會議廳於下列時段已被預約", conflicts);
         }
 
@@ -84,15 +85,30 @@ public class BookingService : IBookingService
         {
             await LockRoomForWriteAsync(roomId, ct);
 
+            // 對外查衝突：只有「新產生的」與「要搬過來的」需要跟別人的預約比對。
             var toCheck = newSlots
                 .Concat(movedSurvivors.Select(o => new TimeSlot(o.StartAt, o.EndAt)))
                 .ToList();
 
-            EnsureNoSelfOverlap(toCheck);
+            // 對內查重疊：比對範圍必須含「所有未來且未取消的保留列」，不只 movedSurvivors。
+            // 留在同一間會議廳的未來 IsModified 保留列（例如先被單獨改期到某個時段的那一次）
+            // 也真實佔用著這間會議廳；漏掉它，新展開的 slot 與它重疊就不會被偵測到，
+            // 同一會議廳同一時段會出現兩列未取消的佔用。
+            // FindConflictsAsync 帶 excludeEventId = ev.Id，這些保留列在資料庫查詢中被排除，
+            // 因此只有這裡的記憶體內比對能守住它們。
+            // 基底刻意用 newSlots 而不是 toCheck：movedSurvivors 是這批保留列的子集，
+            // 從 toCheck 疊上去會讓同一列出現兩次，自己跟自己重疊。
+            var occupied = newSlots
+                .Concat(survivors.Where(o => o.StartAt > now && !o.IsCancelled)
+                                 .Select(o => new TimeSlot(o.StartAt, o.EndAt)))
+                .ToList();
+
+            EnsureNoSelfOverlap(occupied);
 
             if (toCheck.Count > 0)
             {
-                var conflicts = await FindConflictsAsync(roomId, toCheck, excludeEventId: ev.Id, ct);
+                var conflicts = await FindConflictsAsync(
+                    roomId, toCheck, excludeEventId: ev.Id, excludeOccurrenceId: null, ct);
                 if (conflicts.Count > 0)
                     throw new ConflictException("會議廳於下列時段已被預約", conflicts);
             }
@@ -124,8 +140,11 @@ public class BookingService : IBookingService
         if (occ.RoomId is int roomId)
         {
             await LockRoomForWriteAsync(roomId, ct);
+            // 排除粒度是「這一列」而不是「整個事件」：移動的只有這次發生，同系列的其他
+            // occurrence 仍真實佔用著這間會議廳，必須參與比對，否則會撞上兄弟列而不自知。
             var conflicts = await FindConflictsAsync(
-                roomId, new[] { new TimeSlot(newStart, newEnd) }, excludeEventId: occ.EventId, ct);
+                roomId, new[] { new TimeSlot(newStart, newEnd) },
+                excludeEventId: null, excludeOccurrenceId: occ.Id, ct);
             if (conflicts.Count > 0) throw new ConflictException("會議廳於下列時段已被預約", conflicts);
         }
 
@@ -190,12 +209,14 @@ public class BookingService : IBookingService
     }
 
     private async Task<List<ConflictDetail>> FindConflictsAsync(
-        int roomId, IReadOnlyList<TimeSlot> slots, int? excludeEventId, CancellationToken ct)
+        int roomId, IReadOnlyList<TimeSlot> slots, int? excludeEventId, int? excludeOccurrenceId,
+        CancellationToken ct)
     {
         var from = slots.Min(s => s.Start);
         var to = slots.Max(s => s.End);
 
-        var existing = await _occurrences.GetRoomOccurrencesAsync(roomId, from, to, excludeEventId, ct);
+        var existing = await _occurrences.GetRoomOccurrencesAsync(
+            roomId, from, to, excludeEventId, excludeOccurrenceId, ct);
 
         return existing
             .Where(e => slots.Any(s => OverlapChecker.Overlaps(s.Start, s.End, e.StartAt, e.EndAt)))

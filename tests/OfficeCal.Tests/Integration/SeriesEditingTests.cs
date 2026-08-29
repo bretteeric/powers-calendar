@@ -432,4 +432,71 @@ public class SeriesEditingTests
         Assert.Equal(2, all.Count(o => o.StartAt.Date == D(28, 0).Date));
         Assert.Equal(D(28, 11), all.Single(o => o.OriginalStartAt == D(28, 11)).StartAt);
     }
+
+    // ---------- 最終審查合併阻擋 1：單筆改期的衝突檢查排除粒度 ----------
+    // 排除粒度原本是「整個 Event」，但要移動的只有「這一列 occurrence」。
+    // 同一系列的其他 occurrence 真實佔用著會議廳，卻一併被排除在比對之外。
+
+    [Fact]
+    public async Task 單筆改期到同系列另一次發生的時段時回衝突()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        await AddWeeklySeriesAsync(ctx, owner, room);
+
+        // 9/21 那次要搬到 9/28 10:00–11:00 —— 同系列的 9/28 那次正佔著這間會議廳的這個時段
+        var o21 = await ctx.EventOccurrences.FirstAsync(o => o.OriginalStartAt == D(21, 10));
+
+        var ex = await Assert.ThrowsAsync<ConflictException>(() => InTransactionAsync(ctx,
+            () => NewService(ctx).MoveOccurrenceAsync(o21, D(28, 10), D(28, 11))));
+
+        // 明細指向兄弟 occurrence，而不是自己
+        var conflict = Assert.Single(ex.Conflicts);
+        Assert.NotEqual(o21.Id, conflict.OccurrenceId);
+        Assert.Equal(D(28, 10), conflict.StartAt);
+
+        await using var verify = _db.CreateContext();
+        Assert.Equal(D(21, 10), (await verify.EventOccurrences.FindAsync(o21.Id))!.StartAt);
+        // 同一會議廳的 9/28 10:00–11:00 只有一列
+        Assert.Equal(1, await verify.EventOccurrences
+            .CountAsync(o => o.RoomId == room.Id && !o.IsCancelled && o.StartAt == D(28, 10)));
+    }
+
+    [Fact]
+    public async Task 單獨改期後再改整系列時間不會在同一會議廳留下重疊的兩列()
+    {
+        await _db.ResetAsync();
+        await using var ctx = _db.CreateContext();
+        var owner = await TestData.AddUserAsync(ctx, "E001", "陳大明");
+        var room = await TestData.AddRoomAsync(ctx, "A 棟 3F 大會議廳");
+        var ev = await AddWeeklySeriesAsync(ctx, owner, room);
+
+        // 第一步：9/21 那次單獨搬到 9/28 11:00–12:00。
+        // 同系列的 9/28 那次是 10:00–11:00，頭尾相接不算衝突，所以這一步本來就該成功。
+        var o21 = await ctx.EventOccurrences.FirstAsync(o => o.OriginalStartAt == D(21, 10));
+        await InTransactionAsync(ctx,
+            () => NewService(ctx).MoveOccurrenceAsync(o21, D(28, 11), D(28, 12)));
+
+        // 第二步：整系列 10:00 → 11:00。新產生的 9/28 11:00–12:00 會與上面那列完全重疊，
+        // 而它是「留在同一間會議廳的未來保留列」，原本不在 EnsureNoSelfOverlap 的比對範圍內。
+        await Assert.ThrowsAsync<ValidationException>(() =>
+            InTransactionAsync(ctx, () => NewService(ctx).ReExpandSeriesAsync(ev, SlotsAt(11))));
+
+        await using var verify = _db.CreateContext();
+        var rows = await verify.EventOccurrences
+            .Where(o => o.RoomId == room.Id && !o.IsCancelled)
+            .OrderBy(o => o.StartAt).ToListAsync();
+
+        // 同一間會議廳裡不存在任何一對互相重疊的未取消 occurrence
+        for (var i = 1; i < rows.Count; i++)
+            Assert.False(OverlapChecker.Overlaps(rows[i - 1].StartAt, rows[i - 1].EndAt,
+                                                 rows[i].StartAt, rows[i].EndAt),
+                         $"{rows[i - 1].StartAt:M/d HH:mm} 與 {rows[i].StartAt:M/d HH:mm} 重疊了");
+
+        // 交易已回滾：單獨改期的結果仍在，系列沒有長出新列
+        Assert.Equal(4, rows.Count);
+        Assert.Equal(D(28, 11), (await verify.EventOccurrences.FindAsync(o21.Id))!.StartAt);
+    }
 }

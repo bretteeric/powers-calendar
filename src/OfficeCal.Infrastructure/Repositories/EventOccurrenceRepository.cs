@@ -15,11 +15,13 @@ public class EventOccurrenceRepository : IEventOccurrenceRepository
               .Include(o => o.Room);
 
     public Task<List<EventOccurrence>> GetRoomOccurrencesAsync(
-        int roomId, DateTime from, DateTime to, int? excludeEventId, CancellationToken ct = default)
+        int roomId, DateTime from, DateTime to, int? excludeEventId, int? excludeOccurrenceId,
+        CancellationToken ct = default)
         => WithDetails()
             .Where(o => o.RoomId == roomId && !o.IsCancelled
                         && o.StartAt < to && o.EndAt > from
-                        && (excludeEventId == null || o.EventId != excludeEventId))
+                        && (excludeEventId == null || o.EventId != excludeEventId)
+                        && (excludeOccurrenceId == null || o.Id != excludeOccurrenceId))
             .ToListAsync(ct);
 
     public Task<List<EventOccurrence>> GetRangeForUserAsync(

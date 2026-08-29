@@ -6,11 +6,15 @@ public interface IEventOccurrenceRepository
 {
     /// <summary>
     /// 取得某會議廳在 [from, to) 區間內、未取消的 occurrence，供衝突偵測比對。
-    /// excludeEventId 不為 null 時排除該事件自己的 occurrence（編輯既有事件時使用）。
+    /// 兩個排除參數是兩種粒度，呼叫端只會用到其中一個：
+    /// excludeEventId 排除整個事件的所有 occurrence——建立與系列重新展開時，舊列本來就要被
+    /// 換掉，不排除會自己撞自己；excludeOccurrenceId 只排除那一列——單筆改期時只有那一列
+    /// 在移動，同系列的其他發生仍真實佔用著會議廳，必須參與比對。
     /// 已 Include Event、Event.Owner、Room，供組裝 409 明細。
     /// </summary>
     Task<List<EventOccurrence>> GetRoomOccurrencesAsync(
-        int roomId, DateTime from, DateTime to, int? excludeEventId, CancellationToken ct = default);
+        int roomId, DateTime from, DateTime to, int? excludeEventId, int? excludeOccurrenceId,
+        CancellationToken ct = default);
 
     /// <summary>scope=me：使用者擁有或被邀請的 occurrence。</summary>
     Task<List<EventOccurrence>> GetRangeForUserAsync(

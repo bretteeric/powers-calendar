@@ -26,7 +26,7 @@ public class EventOccurrenceRepositoryTests
                                            cancelled: true);
 
         var repo = new EventOccurrenceRepository(ctx);
-        var found = await repo.GetRoomOccurrencesAsync(room.Id, T(14, 10), T(14, 11), null);
+        var found = await repo.GetRoomOccurrencesAsync(room.Id, T(14, 10), T(14, 11), null, null);
 
         Assert.Single(found);
         Assert.Equal("重疊的會議", found[0].Event!.Title);
@@ -43,8 +43,8 @@ public class EventOccurrenceRepositoryTests
 
         var repo = new EventOccurrenceRepository(ctx);
 
-        Assert.Single(await repo.GetRoomOccurrencesAsync(room.Id, T(14, 10), T(14, 11), null));
-        Assert.Empty(await repo.GetRoomOccurrencesAsync(room.Id, T(14, 10), T(14, 11), ev.Id));
+        Assert.Single(await repo.GetRoomOccurrencesAsync(room.Id, T(14, 10), T(14, 11), null, null));
+        Assert.Empty(await repo.GetRoomOccurrencesAsync(room.Id, T(14, 10), T(14, 11), ev.Id, null));
     }
 
     [Fact]
